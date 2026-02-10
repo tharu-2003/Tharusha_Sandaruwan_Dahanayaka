@@ -27,7 +27,7 @@ export function SidebarProfile() {
         {/* Profile Image */}
         <div className="relative w-48 h-60 mb-4 rounded-2xl overflow-hidden">
           <img
-            src="../src/assets/myProfile.png"
+            src="../src/assets/images/myProfile.png"
             alt="Tharusha Sandaruwan"
             className="w-full h-full object-cover"
           />
