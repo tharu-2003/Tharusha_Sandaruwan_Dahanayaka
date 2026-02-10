@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* 1. Tailwind v4 Theme Variables */
+@theme {
+  --font-sans: "Poppins", sans-serif;
+  
+  --color-background: hsl(30 10% 5%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(30 5% 10%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(18 85% 58%);
+  --color-secondary: hsl(75 90% 62%);
+  --color-muted: hsl(30 5% 20%);
+  --color-muted-foreground: hsl(30 5% 60%);
+  --color-accent: hsl(18 85% 58%);
+  --color-border: hsl(30 5% 20%);
+  
+  --radius-lg: 0.75rem;
+}
+
+/* 2. Global Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* 3. Custom Utilities (Ghost text, patterns etc.) */
+@layer utilities {
+  /* Ghost text styling */
+  .ghost-text {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.12);
+    color: transparent;
+    font-weight: 900;
+  }
+
+  .ghost-text-thick {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
+    color: transparent;
+    font-weight: 900;
+  }
+
+  /* Skill card gradients */
+  .skill-card-orange {
+    background: linear-gradient(135deg, #ed6a3e 0%, #ff8a5e 100%);
+  }
+
+  .skill-card-lime {
+    background: linear-gradient(135deg, #c4f445 0%, #d4ff65 100%);
+  }
+
+  .card-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L30 0 L60 30 L30 60 Z' fill='none' stroke='rgba(255,255,255,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 30px 30px;
+    opacity: 0.3;
+  }
+}
+
+/* 4. Animations & Scrollbar (මෙතන සාමාන්‍ය CSS විදිහටම තියන්න) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #14140c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
