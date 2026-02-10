@@ -1,102 +1,260 @@
 // import Link from "next/link";
 import { Link } from "react-router-dom";
 
-const tools = [
-  {
-    name: "Framer",
-    description: "Website Builder",
-    link: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/>
-      </svg>
-    ),
-  },
-  {
-    name: "Figma",
-    description: "Design Tool",
-    link: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zM8.148 24c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v4.49c0 2.476-2.013 4.49-4.588 4.49zm-.029-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02 3.019-1.355 3.019-3.02v-3.019H8.119zM8.148 15.02H3.559v-6.04h4.588c2.476 0 4.49 2.015 4.49 4.491-.001 2.476-2.015 4.549-4.489 4.549zm-.029-4.57c-1.665 0-3.019 1.355-3.019 3.019v1.078h3.019c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.078-3.019-3.078zM15.852 15.02h-4.588V8.98h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.55-4.49 4.55zm0-4.569c-1.665 0-3.019 1.355-3.019 3.019v1.078h3.019c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.078-3.019-3.078z"/>
-      </svg>
-    ),
-  },
-  {
-    name: "Lemon Squeezy",
-    description: "Payments Provider",
-    link: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <circle cx="12" cy="12" r="10" fill="#FFC233"/>
-        <ellipse cx="12" cy="12" rx="6" ry="8" fill="#FFE066"/>
-      </svg>
-    ),
-  },
-  {
-    name: "ChatGPT",
-    description: "AI Assistant",
-    link: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.896zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
-      </svg>
-    ),
-  },
-  {
-    name: "Notion",
-    description: "Productivity Tool",
-    link: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.934zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.449.327s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.84.374-1.54 1.447-1.632z"/>
-      </svg>
-    ),
-  },
-  {
-    name: "Nextjs",
-    description: "React framework",
-    link: "#",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.251 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z"/>
-      </svg>
-    ),
-  },
-];
+const tools = {
+  frontend: [
+    {
+      name: "React",
+      description: "Frontend Library",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=react",
+    },
+    {
+      name: "TypeScript",
+      description: "Programming Language",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=typescript",
+    },
+    {
+      name: "JavaScript",
+      description: "Programming Language",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=javascript",
+    },
+    {
+      name: "Tailwind CSS",
+      description: "CSS Framework",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=tailwind",
+    },
+    {
+      name: "Bootstrap",
+      description: "CSS Framework",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=bootstrap",
+    },
+    {
+      name: "HTML",
+      description: "Markup Language",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=html",
+    },
+    {
+      name: "CSS",
+      description: "Styling Language",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=css",
+    },
+    {
+      name: "Redux",
+      description: "State Management",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=redux",
+    },
+    {
+      name: "jQuery",
+      description: "JavaScript Library",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=jquery",
+    },
+  ],
+  backend: [
+    {
+      name: "Java",
+      description: "Programming Language",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=java",
+    },
+    {
+      name: "Spring",
+      description: "Java Framework",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=spring",
+    },
+    {
+      name: "Node.js",
+      description: "Runtime Environment",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=nodejs",
+    },
+    {
+      name: "Express",
+      description: "Node.js Framework",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=express",
+    },
+    {
+      name: "Python",
+      description: "Programming Language",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=python",
+    },
+    {
+      name: "MongoDB",
+      description: "NoSQL Database",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=mongodb",
+    },
+    {
+      name: "MySQL",
+      description: "SQL Database",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=mysql",
+    },
+    {
+      name: "Docker",
+      description: "Containerization",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=docker",
+    },
+  ],
+  tools: [
+    {
+      name: "IntelliJ IDEA",
+      description: "Java IDE",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=idea",
+    },
+    {
+      name: "VS Code",
+      description: "Code Editor",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=vscode",
+    },
+    {
+      name: "Figma",
+      description: "Design Tool",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=figma",
+    },
+    {
+      name: "Git",
+      description: "Version Control",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=git",
+    },
+    {
+      name: "GitHub",
+      description: "Code Hosting",
+      link: "#",
+      icon: "https://skillicons.dev/icons?i=github",
+    },
+  ],
+};
 
 export function ToolsSection() {
   return (
-    <section id="tools" className="py-16 px-4">
+    <section id="tools" className="py-1 px-4">
       {/* Title */}
       <div className="mb-16">
         <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight">
-          PREMIUM
+          TECH
         </h2>
         <h2 className="text-5xl sm:text-6xl lg:text-7xl ghost-text font-black text-[#2a2a20] tracking-tight leading-tight">
-          TOOLS
+          STACK
         </h2>
       </div>
 
-      {/* Tools Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {tools.map((tool, index) => (
-          <Link
-            key={index}
-            to={tool.link}
-            className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-colors duration-300"
-          >
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden flex-shrink-0 bg-white flex items-center justify-center text-black shadow-md">
-              {tool.icon}
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#ed6a3e] transition-colors">
-                {tool.name}
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-500">{tool.description}</p>
-            </div>
-          </Link>
-        ))}
+      {/* Frontend & Languages */}
+      <div className="mb-12">
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+          Frontend & Languages
+        </h3>
+
+        {/* Simple gradient line */}
+        <div className="h-px bg-linear-to-r from-transparent via-white/30 to-transparent mb-6"></div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.frontend.map((tool, index) => (
+            <Link
+              key={index}
+              to={tool.link}
+              className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-all duration-300"
+            >
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+                <img 
+                  src={tool.icon} 
+                  alt={tool.name}
+                  className="w-14 h-14 sm:w-16 sm:h-16"
+                />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#ed6a3e] transition-colors">
+                  {tool.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500">{tool.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Backend & DevOps */}
+      <div className="mb-12">
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+          Backend & DevOps
+        </h3>
+
+        {/* Simple gradient line */}
+        <div className="h-px bg-linear-to-r from-transparent via-white/30 to-transparent mb-6"></div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.backend.map((tool, index) => (
+            <Link
+              key={index}
+              to={tool.link}
+              className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-all duration-300"
+            >
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+                <img 
+                  src={tool.icon} 
+                  alt={tool.name}
+                  className="w-14 h-14 sm:w-16 sm:h-16"
+                />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#ed6a3e] transition-colors">
+                  {tool.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500">{tool.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Tools & IDEs */}
+      <div>
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+          Tools & IDEs
+        </h3>
+
+        {/* Simple gradient line */}
+        <div className="h-px bg-linear-to-r from-transparent via-white/30 to-transparent mb-6"></div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.tools.map((tool, index) => (
+            <Link
+              key={index}
+              to={tool.link}
+              className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-all duration-300"
+            >
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+                <img 
+                  src={tool.icon} 
+                  alt={tool.name}
+                  className="w-14 h-14 sm:w-16 sm:h-16"
+                />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#ed6a3e] transition-colors">
+                  {tool.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500">{tool.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

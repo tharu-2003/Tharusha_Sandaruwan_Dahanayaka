@@ -138,7 +138,7 @@ export function AboutSection() {
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1a1a12] leading-tight">
               FRAMER, FIGMA,
               <br />
-              WORDPRESS, REACTJS
+              REACT
             </h3>
 
             <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 border-2 border-black/40 rounded-lg flex items-center justify-center group-hover:bg-black/10 transition-colors">

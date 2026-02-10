@@ -30,7 +30,7 @@ const thoughts = [
 
 export function ThoughtsSection() {
   return (
-    <section id="thoughts" className="py-16 px-4">
+    <section id="thoughts" className="py-1 px-4">
       {/* Title */}
       <div className="mb-16">
         <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight">
