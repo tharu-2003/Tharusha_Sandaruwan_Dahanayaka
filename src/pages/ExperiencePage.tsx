@@ -86,9 +86,9 @@ const ExperiencePage = () => {
                 <div
                   key={exp._id}
                   onClick={() => navigate(`/experience-details/${exp._id}`)}
-                  className="group relative cursor-pointer overflow-hidden rounded-[1.5rem] bg-[#0a0a0a] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-[240px] sm:h-[260px] w-full max-w-[550px]"
+                  className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#0a0a0a] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-65 w-full max-w-137.5"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none opacity-40 z-10" />
+                  <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent pointer-events-none opacity-40 z-10" />
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#ed6a3e]/5 blur-[80px] rounded-full" />
 
                   <div className="absolute inset-0 p-8 flex flex-col justify-between z-20">

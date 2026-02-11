@@ -77,7 +77,7 @@ export function ContentsSection() {
             </div>
 
             {/* Arrow Icon */}
-            <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-[#ed6a3e] group-hover:bg-[#ed6a3e] group-hover:text-white transition-all duration-300">
+            <div className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-[#ed6a3e] group-hover:bg-[#ed6a3e] group-hover:text-white transition-all duration-300">
               <svg
                 className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
                 fill="none"

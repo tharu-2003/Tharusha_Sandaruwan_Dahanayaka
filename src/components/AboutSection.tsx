@@ -24,29 +24,29 @@ export function AboutSection() {
       </div>
 
       {/* Stats Section */}
-<div className="grid grid-cols-2 sm:flex sm:items-start gap-y-10 gap-x-6 sm:gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-20">
-  {stats.map((stat, index) => (
-    <div key={index} className="group">
-      {/* Value with Hover Effect */}
-      <div className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-2 group-hover:text-[#ed6a3e] transition-colors duration-300">
-        {stat.value}
+      <div className="grid grid-cols-2 sm:flex sm:items-start gap-y-10 gap-x-6 sm:gap-8 md:gap-12 lg:gap-20 mb-12 md:mb-20">
+        {stats.map((stat, index) => (
+          <div key={index} className="group">
+            {/* Value with Hover Effect */}
+            <div className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-2 group-hover:text-[#ed6a3e] transition-colors duration-300">
+              {stat.value}
+            </div>
+            
+            {/* Labels with improved spacing */}
+            <div className="space-y-0.5 sm:space-y-1">
+              <div className="text-[10px] sm:text-[11px] lg:text-xs text-gray-400 font-bold tracking-[0.2em] uppercase leading-none">
+                {stat.label}
+              </div>
+              <div className="text-[9px] sm:text-[10px] lg:text-[11px] text-gray-600 font-medium tracking-widest uppercase leading-none">
+                {stat.sublabel}
+              </div>
+            </div>
+            
+            {/* Optional: Simple divider for mobile */}
+            <div className="w-8 h-0.5 bg-[#2a2a20] mt-4 sm:hidden" />
+          </div>
+        ))}
       </div>
-      
-      {/* Labels with improved spacing */}
-      <div className="space-y-0.5 sm:space-y-1">
-        <div className="text-[10px] sm:text-[11px] lg:text-xs text-gray-400 font-bold tracking-[0.2em] uppercase leading-none">
-          {stat.label}
-        </div>
-        <div className="text-[9px] sm:text-[10px] lg:text-[11px] text-gray-600 font-medium tracking-widest uppercase leading-none">
-          {stat.sublabel}
-        </div>
-      </div>
-      
-      {/* Optional: Simple divider for mobile */}
-      <div className="w-8 h-[2px] bg-[#2a2a20] mt-4 sm:hidden" />
-    </div>
-  ))}
-</div>
 
       {/* Skill Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
