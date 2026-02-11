@@ -1,4 +1,9 @@
+import { Link, useNavigate } from "react-router-dom";
+
 export function SidebarProfile() {
+  
+  const navigate = useNavigate();
+
   return (
     <div className="relative bg-white rounded-4xl p-6 overflow-hidden flex flex-col items-center max-w-sm">
       {/* Decorative Dashed Line - Top Left */}
@@ -105,15 +110,15 @@ export function SidebarProfile() {
           </a>
 
           {/* Email */}
-          <a
-            href="mailto:sandaruwantharusha968@gmail.com"
-            className="w-10 h-10 rounded-full flex items-center justify-center text-[#ed6a3e] hover:bg-[#ed6a3e] hover:text-white transition-all duration-200"
-            aria-label="Email"
+          <Link
+            to="/contact" 
+            className="w-10 h-10 rounded-full flex items-center justify-center text-[#ed6a3e] hover:bg-[#ed6a3e] hover:text-white transition-all duration-300"
+            aria-label="Contact Me"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-          </a>
+          </Link>
 
           {/* Facebook */}
           <a
