@@ -190,7 +190,7 @@ export function ToolsSection() {
               to={tool.link}
               className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-all duration-300"
             >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
                 <img 
                   src={tool.icon} 
                   alt={tool.name}
@@ -224,7 +224,7 @@ export function ToolsSection() {
               to={tool.link}
               className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-all duration-300"
             >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
                 <img 
                   src={tool.icon} 
                   alt={tool.name}
@@ -258,7 +258,7 @@ export function ToolsSection() {
               to={tool.link}
               className="flex items-center gap-4 group hover:bg-[#1a1a12]/50 p-2 rounded-xl transition-all duration-300"
             >
-              <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
                 <img 
                   src={tool.icon} 
                   alt={tool.name}
