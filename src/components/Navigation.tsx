@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const navItems = [
@@ -60,6 +60,7 @@ const navItems = [
 
 export function Navigation() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const location = useLocation(); // දැනට ඉන්න path එක ගන්නවා
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#14140c]/80 backdrop-blur-md">
@@ -67,27 +68,41 @@ export function Navigation() {
         <div className="flex items-center justify-center py-3 md:py-4">
           <div className="bg-[#1a1a12] rounded-full px-4 md:px-8 py-2 md:py-3 border border-[#2a2a20]">
             <ul className="flex items-center gap-4 md:gap-8">
-              {navItems.map((item) => (
-                <li 
-                  key={item.label} 
-                  className="relative"
-                  onMouseEnter={() => setHoveredItem(item.label)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <Link
-                    to={item.to}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 block"
+              {navItems.map((item) => {
+
+                const isActive = location.pathname === item.to;
+
+                return (
+                  <li 
+                    key={item.label} 
+                    className="relative flex flex-col items-center"
+                    onMouseEnter={() => setHoveredItem(item.label)}
+                    onMouseLeave={() => setHoveredItem(null)}
                   >
-                    {item.icon}
-                  </Link>
-                  {hoveredItem === item.label && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-[#2a2a20] text-white text-sm rounded-md whitespace-nowrap">
-                      {item.label}
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#2a2a20] rotate-45"></div>
-                    </div>
-                  )}
-                </li>
-              ))}
+                    <Link
+                      to={item.to}
+                      className={`transition-all duration-300 block ${
+                        isActive ? "text-[#ed6a3e] scale-110" : "text-gray-400 hover:text-white"
+                      }`}
+                    >
+                      {item.icon}
+                    </Link>
+
+                    {/* Active Indicator (Dot) */}
+                    {isActive && (
+                      <div className="absolute -bottom-1.5 w-1 h-1 bg-[#ed6a3e] rounded-full shadow-[0_0_8px_#ed6a3e]"></div>
+                    )}
+
+                    {/* Tooltip on Hover */}
+                    {hoveredItem === item.label && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 px-3 py-1.5 bg-[#2a2a20] text-white text-[10px] font-black uppercase tracking-widest rounded-lg whitespace-nowrap z-50 shadow-2xl">
+                        {item.label}
+                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#2a2a20] rotate-45"></div>
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
