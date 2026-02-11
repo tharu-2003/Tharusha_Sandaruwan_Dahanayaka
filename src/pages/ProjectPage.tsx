@@ -170,12 +170,6 @@ const ProjectPage = () => {
           </div>
         </div>
       </div>
-
-      <footer className="mt-32 border-t border-[#2a2a20] pt-20 text-center pb-10">
-        <h2 onClick={() => navigate('/contact')} className="text-4xl sm:text-7xl lg:text-8xl font-black text-white hover:text-[#ed6a3e] cursor-pointer transition-all duration-500 uppercase italic">
-          Let's Build Together →
-        </h2>
-      </footer>
     </div>
   );
 };
