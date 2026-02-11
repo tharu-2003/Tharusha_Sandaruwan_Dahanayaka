@@ -4,14 +4,24 @@ import { projectsData } from '../assets/datas/assets';
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
 
-
 const ProjectPage = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
-  // 1. Search Logic
+  // 1. Categories List
+  const quickFilters = [
+    { label: "All", value: "" },
+    { label: "Web", value: "Web" },
+    { label: "Mobile", value: "Mobile" },
+    { label: "Desktop", value: "Desktop" },
+    { label: "Backend", value: "Backend" },
+    { label: "Game", value: "Game" },
+    { label: "Data", value: "Data Science Project" },
+  ];
+
+  // 2. Search Logic
   const filteredProjects = useMemo(() => {
     const reversed = [...projectsData].reverse();
     return reversed.filter(project => 
@@ -21,7 +31,7 @@ const ProjectPage = () => {
     );
   }, [searchQuery]);
 
-  // 2. Pagination Calculations
+  // 3. Pagination Calculations
   const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -42,7 +52,7 @@ const ProjectPage = () => {
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mt-20 lg:mt-3">
         
-        {/* LEFT SIDE: Title & Search */}
+        {/* LEFT SIDE: Title, Search & Filters */}
         <div className="w-full lg:w-1/3 lg:sticky lg:top-32 h-fit space-y-8">
           <div>
             <h1 className="text-4xl sm:text-6xl lg:text-6xl font-black tracking-tighter leading-none uppercase">
@@ -51,21 +61,43 @@ const ProjectPage = () => {
             </h1>
           </div>
 
-          <div className="relative w-full max-w-md">
-            <input 
-              type="text"
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={handleSearch}
-              className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
-            />
+          <div className="space-y-4">
+            {/* Search Box */}
+            <div className="relative w-full max-w-md">
+              <input 
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={handleSearch}
+                className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
+              />
+            </div>
+
+            {/* Quick Filter Buttons */}
+            <div className="flex flex-wrap gap-2 max-w-md overflow-x-auto no-scrollbar pb-2">
+              {quickFilters.map((filter) => (
+                <button
+                  key={filter.label}
+                  onClick={() => {
+                    setSearchQuery(filter.value);
+                    setCurrentPage(1);
+                  }}
+                  className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
+                    (searchQuery === filter.value) || (filter.label === "All" && searchQuery === "")
+                      ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20"
+                      : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:border-gray-400 hover:text-gray-300"
+                  }`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
           </div>
           
           <p className="text-gray-500 text-xs sm:text-sm font-medium uppercase tracking-[0.2em]">
             Displaying {filteredProjects.length} results
           </p>
 
-          {/* Pagination CALL (Desktop View) */}
           <div className="hidden lg:block">
             <Pagination 
               currentPage={currentPage} 
@@ -83,7 +115,7 @@ const ProjectPage = () => {
                 <div
                   key={project._id}
                   onClick={() => navigate(`/projects-details/${project._id}`)}
-                  className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-[240px] sm:h-[280px] w-full"
+                  className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-70 w-full"
                 >
                   <div className="absolute inset-0 z-0">
                     <img
@@ -102,9 +134,23 @@ const ProjectPage = () => {
                         </span>
                       </div>
                     </div>
-                    <h3 className="text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500">
-                      {project.title}
-                    </h3>
+
+                    <div>
+                      <h3 className="text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-3">
+                        {project.title}
+                      </h3>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, i) => (
+                          <span 
+                            key={i} 
+                            className="text-[9px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20] group-hover:border-[#ed6a3e]/40 transition-colors"
+                          >
+                            {tag} {i !== project.tags.length - 1 ? "•" : ""}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -115,7 +161,6 @@ const ProjectPage = () => {
             </div>
           )}
 
-          {/* Pagination CALL (Mobile View) */}
           <div className="lg:hidden mt-12 pb-10">
             <Pagination 
               currentPage={currentPage} 
@@ -127,7 +172,7 @@ const ProjectPage = () => {
       </div>
 
       <footer className="mt-32 border-t border-[#2a2a20] pt-20 text-center pb-10">
-        <h2 onClick={() => navigate('/contact')} className="text-4xl sm:text-6xl font-black text-white hover:text-[#ed6a3e] cursor-pointer transition-all duration-500 uppercase italic">
+        <h2 onClick={() => navigate('/contact')} className="text-4xl sm:text-7xl lg:text-8xl font-black text-white hover:text-[#ed6a3e] cursor-pointer transition-all duration-500 uppercase italic">
           Let's Build Together →
         </h2>
       </footer>
