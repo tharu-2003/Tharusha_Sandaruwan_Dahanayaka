@@ -399,6 +399,56 @@ export const contentData: Content[] = [
         watchingTime: "12min watch",
         link: "https://youtube.com/debugging-video",
     },
+    {
+        _id: "4", // Content ekata unique identifier ekak damma
+        title: "How to Build a Real-time Chat Appaaaaaaaaaa aaaaaaaaaaaaa",
+        description:
+        "Me video eken mama kiyala denawa React saha Firebase use karala real-time chat application ekak hadana widiya step-by-step.",
+        date: "Feb 11, 2026",
+        category: "Video",
+        watchingTime: "18min watch",
+        link: "https://youtube.com/your-video-link",
+    },
+    {
+        _id: "5",
+        title: "My Experience with Java and Spring Boot bbbbbbbbbb bbbbbbbb",
+        description:
+        "Software engineering igena ganna kenekuta Java backend development kiyanne godak watina skill ekak. Me mage experience eka.",
+        date: "Feb 08, 2026",
+        category: "Post",
+        readTime: "6min read",
+        link: "/blog/java-experience",
+    },
+    {
+        _id: "6",
+        title: "React Native Debugging Tips cccccc ccccccccc",
+        description:
+        "React Native apps develop karaddi ena common errors saha ewa solve karaganna lesima widi me video eken balanna puluwan.",
+        date: "Jan 30, 2026",
+        category: "Video",
+        watchingTime: "12min watch",
+        link: "https://youtube.com/debugging-video",
+    },
+    {
+        _id: "7",
+        title: "My Experience with Java and Spring Boot dddd ddddddddddd dd",
+        description:
+        "Software engineering igena ganna kenekuta Java backend development kiyanne godak watina skill ekak. Me mage experience eka.",
+        date: "Feb 08, 2026",
+        category: "Post",
+        readTime: "6min read",
+        link: "/blog/java-experience",
+    },
+    {
+        _id: "8",
+        title: "React Native Debugging Tips eeeee eeeeeeee ",
+        description:
+        "React Native apps develop karaddi ena common errors saha ewa solve karaganna lesima widi me video eken balanna puluwan.",
+        date: "Jan 30, 2026",
+        category: "Video",
+        watchingTime: "12min watch",
+        link: "https://youtube.com/debugging-video",
+    },
 ];
 
 
