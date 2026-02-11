@@ -4,6 +4,33 @@ import project_image1 from "../projectImages/project_image1.png";
 import project_image2 from "../projectImages/project_image2.png";
 import project_image3 from "../projectImages/project_image3.png";
 
+import reactIcon from "../images/react-icon.svg";
+import expoIcon from "../images/expo-icon.png";
+import typescriptIcon from "../images/typescript-icon.svg";
+import javascriptIcon from "../images/javascript-icon.svg";
+import tailwindIcon from "../images/tailwind-icon.svg";
+import bootstrapIcon from "../images/bootstrap-icon.svg";
+import htmlIcon from "../images/html-icon.svg";
+import cssIcon from "../images/css-icon.svg";
+import reduxIcon from "../images/redux-icon.svg";
+import jqueryIcon from "../images/jquery-icon.svg";
+
+import javaIcon from "../images/java-icon.svg";
+import springIcon from "../images/spring-icon.svg";
+import nodeIcon from "../images/nodejs-icon.svg";
+import expressIcon from "../images/express-icon.svg";
+import pythonIcon from "../images/python-icon.svg";
+import mongodbIcon from "../images/mongodb-icon.svg";
+import mysqlIcon from "../images/mysql-icon.svg";
+import dockerIcon from "../images/docker-icon.svg";
+import postmanIcon from "../images/postman-icon.svg";
+
+import ideaIcon from "../images/idea-icon.svg";
+import vscodeIcon from "../images/vscode-icon.svg";
+import figmaIcon from "../images/figma-icon.svg";
+import gitIcon from "../images/git-icon.svg";
+import githubIcon from "../images/github-icon.svg";
+import canvaIcon from "../images/canva-icon.svg";
 
 // ---------- TYPES ----------
 
@@ -40,24 +67,26 @@ export interface Project {
     };
 }
 
+export interface ToolItem {
+  name: string;
+  description: string;
+  link: string;
+  icon: string;
+}
 
-export const technologyList: string[] = [
-  "Java",
-  "Spring Boot",
-  "React",
-  "React Native",
-  "TypeScript",
-  "JavaScript",
-  "Python",
-  "Node.js",
-  "MySQL",
-  "MongoDB",
-  "Firebase",
-  "Tailwind CSS",
-  "Git & GitHub",
-  "Vercel",
-  "Expo"
-];
+export interface ToolsDataType {
+  frontend: ToolItem[];
+  backend: ToolItem[];
+  tools: ToolItem[];
+}
+
+export interface DashboardData {
+  yearsOfExperience: number;
+  projectsCount: number;
+  technologiesCount: number;
+}
+
+
 
 export const projectCategories = [
   "All", // index 0
@@ -99,13 +128,84 @@ export const projectCategories = [
 
 
 export const assets = {    
-    project_image1,
-    project_image2,
-    project_image3
+  // Project Images
+  project_image1,
+  project_image2,
+  project_image3,
+
+  // Frontend Icons
+  reactIcon,
+  expoIcon,
+  typescriptIcon,
+  javascriptIcon,
+  tailwindIcon,
+  bootstrapIcon,
+  htmlIcon,
+  cssIcon,
+  reduxIcon,
+  jqueryIcon,
+
+  // Backend Icons
+  javaIcon,
+  springIcon,
+  nodeIcon,
+  expressIcon,
+  pythonIcon,
+  mongodbIcon,
+  mysqlIcon,
+  dockerIcon,
+  postmanIcon,
+
+  // Tools Icons
+  ideaIcon,
+  vscodeIcon,
+  figmaIcon,
+  gitIcon,
+  githubIcon,
+  canvaIcon,
 };
 
 
+
 // ----------- DUMMY DATA -----------
+
+export const toolsData: ToolsDataType = {
+  frontend: [
+    { name: "React", description: "Frontend Library", link: "#", icon: reactIcon },
+    { name: "Expo", description: "React Native Platform", link: "#", icon: expoIcon },
+    { name: "TypeScript", description: "Programming Language", link: "#", icon: typescriptIcon },
+    { name: "JavaScript", description: "Programming Language", link: "#", icon: javascriptIcon },
+    { name: "Tailwind CSS", description: "CSS Framework", link: "#", icon: tailwindIcon },
+    { name: "Bootstrap", description: "CSS Framework", link: "#", icon: bootstrapIcon },
+    { name: "HTML", description: "Markup Language", link: "#", icon: htmlIcon },
+    { name: "CSS", description: "Styling Language", link: "#", icon: cssIcon },
+    { name: "Redux", description: "State Management", link: "#", icon: reduxIcon },
+    { name: "jQuery", description: "JavaScript Library", link: "#", icon: jqueryIcon },
+  ],
+
+  backend: [
+    { name: "Java", description: "Programming Language", link: "#", icon: javaIcon },
+    { name: "Spring", description: "Java Framework", link: "#", icon: springIcon },
+    { name: "Node.js", description: "Runtime Environment", link: "#", icon: nodeIcon },
+    { name: "Express", description: "Node.js Framework", link: "#", icon: expressIcon },
+    { name: "Python", description: "Programming Language", link: "#", icon: pythonIcon },
+    { name: "MongoDB", description: "NoSQL Database", link: "#", icon: mongodbIcon },
+    { name: "MySQL", description: "SQL Database", link: "#", icon: mysqlIcon },
+    { name: "Docker", description: "Containerization", link: "#", icon: dockerIcon },
+    { name: "Postman", description: "API Testing Tool", link: "#", icon: postmanIcon },
+  ],
+
+  tools: [
+    { name: "IntelliJ IDEA", description: "Java IDE", link: "#", icon: ideaIcon },
+    { name: "VS Code", description: "Code Editor", link: "#", icon: vscodeIcon },
+    { name: "Figma", description: "Design Tool", link: "#", icon: figmaIcon },
+    { name: "Git", description: "Version Control", link: "#", icon: gitIcon },
+    { name: "GitHub", description: "Code Hosting", link: "#", icon: githubIcon },
+    { name: "Canva", description: "Design Platform", link: "#", icon: canvaIcon },
+  ],
+};
+
+
 
 export const projectsData: Project[] = [
     {
@@ -451,4 +551,21 @@ export const contentData: Content[] = [
     },
 ];
 
+const JOURNEY_START_DATE = new Date("2024-01-01");
 
+const currentDate = new Date();
+
+const yearsOfExperience = currentDate.getFullYear() - JOURNEY_START_DATE.getFullYear();
+
+const projectsCount = projectsData.length;
+
+const technologiesCount =
+  toolsData.frontend.length +
+  toolsData.backend.length +
+  toolsData.tools.length;
+
+export const DashboardData: DashboardData = {
+  yearsOfExperience,
+  projectsCount,
+  technologiesCount,
+};
