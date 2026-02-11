@@ -1,8 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function SidebarProfile() {
   
-  const navigate = useNavigate();
 
   return (
     <div className="relative bg-white rounded-4xl p-6 overflow-hidden flex flex-col items-center max-w-sm">
