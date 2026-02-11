@@ -63,35 +63,35 @@ export const projectCategories = [
   "All", // index 0
 
   // Mobile Development
-  "Mobile Application", // index 1
+  "Mobile", // index 1                        ////
   "Cross Platform App", // index 2
-  "Android Application", // index 3
-  "iOS Application", // index 4
+  "Android", // index 3
+  "iOS", // index 4
 
   // Web Development
-  "Web Application", // index 5
-  "Frontend Project", // index 6
-  "Full Stack Application", // index 7
+  "Web", // index 5                         ////
+  "Frontend", // index 6
+  "Full Stack", // index 7
   "Progressive Web App (PWA)", // index 8
 
   // Backend / Server
-  "Backend System", // index 9
+  "Backend", // index 9
   "REST API Service", // index 10
   "Microservices Project", // index 11
   "Cloud Backend", // index 12
 
   // Desktop / Software
-  "Desktop Application", // index 13
-  "Java Application", // index 14
+  "Desktop", // index 13                        ////
+  "Java", // index 14
   "Enterprise System", // index 15
 
   // AI / Data
-  "AI Application", // index 16
+  "AI", // index 16
   "Machine Learning Project", // index 17
-  "Data Science Project", // index 18
+  "Data Science Project", // index 18                        ////
 
   // Modern Tech Areas
-  "Game Development", // index 19
+  "Game", // index 19                        ////
   "IoT Application", // index 20
   "Blockchain Project", // index 21
   "DevOps Tool" // index 22
