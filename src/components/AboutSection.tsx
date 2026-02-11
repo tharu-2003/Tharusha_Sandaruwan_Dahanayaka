@@ -1,10 +1,24 @@
 import { Link } from "react-router-dom";
+import { DashboardData } from "../assets/datas/assets";
 
 const stats = [
-  { value: "+1", label: "YEARS OF", sublabel: "EXPERIENCE" },
-  { value: "+15", label: "PROJECTS", sublabel: "COMPLETED" },
-  { value: "+15", label: "MODERN", sublabel: "TECHNOLOGIES" },
+  {
+    value: `+${DashboardData.yearsOfExperience}`,
+    label: "YEARS OF",
+    sublabel: "EXPERIENCE",
+  },
+  {
+    value: `+${DashboardData.projectsCount}`,
+    label: "PROJECTS",
+    sublabel: "COMPLETED",
+  },
+  {
+    value: `+${DashboardData.technologiesCount}`,
+    label: "MODERN",
+    sublabel: "TECHNOLOGIES",
+  },
 ];
+
 
 export function AboutSection() {
   return (
