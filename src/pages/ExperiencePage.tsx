@@ -8,7 +8,7 @@ const ExperiencePage = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2; 
+  const itemsPerPage = 3; 
 
   // 1. Search Logic: Year, Company, Role saha Skills walin filter wenawa
   const filteredExperiences = useMemo(() => {
@@ -41,11 +41,11 @@ const ExperiencePage = () => {
     <div className="min-h-screen bg-black text-white p-6 sm:p-12 lg:p-20 font-sans">
       <Navigation />
 
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-56 mt-10">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-56 mt-4">
         
         {/* LEFT SIDE: Title & Search */}
         <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit">
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-none uppercase mb-10">
+          <h1 className="text-5xl sm:text-7xl lg:text-7xl font-black tracking-tighter leading-none uppercase mb-10">
             MY <br />
             <span className="text-5xl sm:text-7xl lg:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase">JOURNEY</span>
           </h1>
@@ -146,12 +146,6 @@ const ExperiencePage = () => {
           </div>
         </div>
       </div>
-
-      <footer className="mt-32 border-t border-[#2a2a20] pt-20 text-center pb-10">
-        <h2 onClick={() => navigate('/contact')} className="text-4xl sm:text-6xl font-black text-white hover:text-[#ed6a3e] cursor-pointer transition-all duration-500 uppercase italic">
-          Let's Build Together →
-        </h2>
-      </footer>
     </div>
   );
 };
