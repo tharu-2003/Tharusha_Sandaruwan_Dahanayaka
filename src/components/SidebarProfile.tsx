@@ -1,6 +1,6 @@
 export function SidebarProfile() {
   return (
-    <div className="relative bg-white rounded-[32px] p-6 overflow-hidden flex flex-col items-center max-w-sm">
+    <div className="relative bg-white rounded-4xl p-6 overflow-hidden flex flex-col items-center max-w-sm">
       {/* Decorative Dashed Line - Top Left */}
       <svg className="absolute top-0 left-0 w-24 h-24" viewBox="0 0 120 120">
         <path 
