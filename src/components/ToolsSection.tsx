@@ -1,41 +1,29 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toolsData } from "../assets/datas/assets";
 
-const tools = {
-  frontend: [
-    { name: "React", description: "Frontend Library", link: "#", icon: "../src/assets/images/react-icon.svg" },
-    { name: "Expo", description: "React Native Platform", link: "#", icon: "../src/assets/images/expo-icon.png" },
-    { name: "TypeScript", description: "Programming Language", link: "#", icon: "../src/assets/images/typescript-icon.svg" },
-    { name: "JavaScript", description: "Programming Language", link: "#", icon: "../src/assets/images/javascript-icon.svg" },
-    { name: "Tailwind CSS", description: "CSS Framework", link: "#", icon: "../src/assets/images/tailwind-icon.svg" },
-    { name: "Bootstrap", description: "CSS Framework", link: "#", icon: "../src/assets/images/bootstrap-icon.svg" },
-    { name: "HTML", description: "Markup Language", link: "#", icon: "../src/assets/images/html-icon.svg" },
-    { name: "CSS", description: "Styling Language", link: "#", icon: "../src/assets/images/css-icon.svg" },
-    { name: "Redux", description: "State Management", link: "#", icon: "../src/assets/images/redux-icon.svg" },
-    { name: "jQuery", description: "JavaScript Library", link: "#", icon: "../src/assets/images/jquery-icon.svg" },
-  ],
-  backend: [
-    { name: "Java", description: "Programming Language", link: "#", icon: "../src/assets/images/java-icon.svg" },
-    { name: "Spring", description: "Java Framework", link: "#", icon: "../src/assets/images/spring-icon.svg" },
-    { name: "Node.js", description: "Runtime Environment", link: "#", icon: "../src/assets/images/nodejs-icon.svg" },
-    { name: "Express", description: "Node.js Framework", link: "#", icon: "../src/assets/images/express-icon.svg" },
-    { name: "Python", description: "Programming Language", link: "#", icon: "../src/assets/images/python-icon.svg" },
-    { name: "MongoDB", description: "NoSQL Database", link: "#", icon: "../src/assets/images/mongodb-icon.svg" },
-    { name: "MySQL", description: "SQL Database", link: "#", icon: "../src/assets/images/mysql-icon.svg" },
-    { name: "Docker", description: "Containerization", link: "#", icon: "../src/assets/images/docker-icon.svg" },
-    { name: "Postman", description: "API Testing Tool", link: "#", icon: "../src/assets/images/postman-icon.svg" },
-  ],
-  tools: [
-    { name: "IntelliJ IDEA", description: "Java IDE", link: "#", icon: "../src/assets/images/idea-icon.svg" },
-    { name: "VS Code", description: "Code Editor", link: "#", icon: "../src/assets/images/vscode-icon.svg" },
-    { name: "Figma", description: "Design Tool", link: "#", icon: "../src/assets/images/figma-icon.svg" },
-    { name: "Git", description: "Version Control", link: "#", icon: "../src/assets/images/git-icon.svg" },
-    { name: "GitHub", description: "Code Hosting", link: "#", icon: "../src/assets/images/github-icon.svg" },
-    { name: "Canva", description: "Design Platform", link: "#", icon: "../src/assets/images/canva-icon.svg" },
-  ],
-};
+export interface ToolItem {
+  name: string;
+  description: string;
+  link: string;
+  icon: string;
+}
+
+export interface ToolsDataType {
+  frontend: ToolItem[];
+  backend: ToolItem[];
+  tools: ToolItem[];
+}
 
 export function ToolsSection() {
   const navigate = useNavigate();
+    
+  const [tools, setTools] = useState<ToolsDataType | null>(null);
+
+  useEffect(() => {
+    // Array eke anthima items 3 ganna (-3 use karanna)
+    setTools(toolsData); 
+  }, []);
 
   const renderToolGrid = (title: string, data: any[]) => (
     <div className="mb-20">
@@ -100,9 +88,10 @@ export function ToolsSection() {
         </h2>
       </div>
 
-      {renderToolGrid("Frontend & Languages", tools.frontend)}
-      {renderToolGrid("Backend & DevOps", tools.backend)}
-      {renderToolGrid("Tools & IDEs", tools.tools)}
+      {renderToolGrid("Frontend & Languages", tools?.frontend ?? [])}
+      {renderToolGrid("Backend & DevOps", tools?.backend ?? [])}
+      {renderToolGrid("Tools & IDEs", tools?.tools ?? [])}
+
 
       {/* See All Projects Button */}
       <div className="mt-12 flex justify-center">

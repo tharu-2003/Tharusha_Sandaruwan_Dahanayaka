@@ -1,33 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Navigation } from '../components/Navigation';
+import { toolsData } from '../assets/datas/assets';
 
-// Data tika categories walata wen karala thiyaganna
-const toolsData = {
-  frontend: [
-    { name: "React", description: "Frontend Library", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { name: "Expo", description: "Mobile Platform", icon: "https://www.vectorlogo.zone/logos/expoio/expoio-icon.svg" },
-    { name: "TypeScript", description: "Language", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-    { name: "Tailwind CSS", description: "CSS Framework", icon: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
-    { name: "Redux", description: "State Management", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-  ],
-  backend: [
-    { name: "Java", description: "Programming Language", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-    { name: "Spring", description: "Java Framework", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
-    { name: "Node.js", description: "Runtime", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    { name: "MySQL", description: "SQL Database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-    { name: "MongoDB", description: "NoSQL Database", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  ],
-  tools: [
-    { name: "VS Code", description: "Editor", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
-    { name: "GitHub", description: "Version Control", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-    { name: "Figma", description: "Design Tool", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-    { name: "Docker", description: "Containers", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-  ]
-};
+export interface ToolItem {
+  name: string;
+  description: string;
+  link: string;
+  icon: string;
+}
+
+export interface ToolsDataType {
+  frontend: ToolItem[];
+  backend: ToolItem[];
+  tools: ToolItem[];
+}
 
 const ToolPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [tools, setTools] = useState<ToolsDataType | null>(null);
+  
+    useEffect(() => {
+      setTools(toolsData); 
+    }, []);
 
   // Search filter logic
   const handleSearch = (data: any[]) => {
@@ -93,9 +89,9 @@ const ToolPage = () => {
 
         {/* RIGHT SIDE: Tools Grid */}
         <div className="w-full lg:w-2/3">
-          {renderSection("Frontend & Mobile", toolsData.frontend)}
-          {renderSection("Backend & Systems", toolsData.backend)}
-          {renderSection("Development Tools", toolsData.tools)}
+          {renderSection("Frontend & Mobile", tools?.frontend ?? [])}
+          {renderSection("Backend & Systems", tools?.backend ?? [])}
+          {renderSection("Development Tools", tools?.tools ?? [])}
         </div>
       </div>
     </div>
