@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer";
 import { Navigation } from "../components/Navigation";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { SidebarProfile } from "../components/SidebarProfile";
-import { ThoughtsSection } from "../components/ThoughtsSection";
+import { ContentsSection } from "../components/ContentsSection";
 import { ToolsSection } from "../components/ToolsSection";
 
 const HomePage = () => {
@@ -39,7 +39,7 @@ const HomePage = () => {
               <ProjectsSection />
               <ExperienceSection />
               <ToolsSection />
-              <ThoughtsSection />
+              <ContentsSection />
               <ContactSection />
               <Footer />
             </div>
