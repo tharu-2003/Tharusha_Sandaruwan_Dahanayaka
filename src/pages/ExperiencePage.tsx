@@ -1,31 +1,52 @@
 import { useEffect, useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { experiencesData } from '../assets/datas/assets';
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
+import { ExperiencePopup } from '../components/ExperiencePopup';
 
 const ExperiencePage = () => {
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeMode, setActiveMode] = useState<"All" | "Work" | "Education">("All");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; 
 
-  // 1. Search Logic: Year, Company, Role saha Skills walin filter wenawa
-  const filteredExperiences = useMemo(() => {
-    const reversed = [...experiencesData].reverse();
-    
-    if (!searchQuery.trim()) return reversed;
+  const [selectedExp, setSelectedExp] = useState<any>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    return reversed.filter(exp => {
+  const openPopup = (exp: any) => {
+    setSelectedExp(exp);
+    setIsPopupOpen(true);
+    document.body.style.overflow = 'hidden'; // Background scroll lock
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    document.body.style.overflow = 'unset'; // Unlock
+  };
+
+  // 1. Filter Logic: Mode සහ Search Query දෙකම හරියටම apply කිරීම
+  const filteredExperiences = useMemo(() => {
+    // මුලින්ම array එක reverse කරගන්නවා (Latest first)
+    let results = [...experiencesData].reverse();
+
+    // අදියර 1: Mode එක අනුව filter කිරීම (Work/Education)
+    if (activeMode !== "All") {
+      results = results.filter(exp => exp.mode === activeMode);
+    }
+
+    // අදියර 2: Search Query එකක් තිබේ නම් එයින් filter කිරීම
+    if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      return (
+      results = results.filter(exp => 
         exp.company.toLowerCase().includes(query) ||
         exp.role.toLowerCase().includes(query) ||
         exp.period.toLowerCase().includes(query) ||
         exp.skills.some(skill => skill.toLowerCase().includes(query))
       );
-    });
-  }, [searchQuery]);
+    }
+
+    return results;
+  }, [searchQuery, activeMode]); // Dependencies දෙකම ඇතුළත් කළා
 
   // 2. Pagination Calculations
   const totalPages = Math.ceil(filteredExperiences.length / itemsPerPage);
@@ -40,6 +61,12 @@ const ExperiencePage = () => {
   return (
     <div className="min-h-screen bg-black text-white p-6 sm:p-12 lg:p-20 font-sans">
       <Navigation />
+
+      <ExperiencePopup 
+        experience={selectedExp} 
+        isOpen={isPopupOpen} 
+        onClose={closePopup} 
+      />
 
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-56 mt-4">
         
@@ -63,6 +90,26 @@ const ExperiencePage = () => {
               className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
             />
           </div>
+
+          {/* Quick Filter Buttons */}
+            <div className="flex flex-wrap gap-2 max-w-md overflow-x-auto no-scrollbar pb-2">
+              {["All", "Work", "Education"].map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => {
+                    setActiveMode(mode as any); 
+                    setCurrentPage(1)
+                  }}
+                  className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
+                    activeMode === mode
+                      ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20"
+                      : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:border-gray-400 hover:text-gray-300"
+                  }`}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
           
           <p className="mt-6 text-gray-500 text-sm font-medium uppercase tracking-widest mb-10">
             {filteredExperiences.length} Milestones Recorded
@@ -85,7 +132,7 @@ const ExperiencePage = () => {
               {currentItems.map((exp, index) => (
                 <div
                   key={exp._id}
-                  onClick={() => navigate(`/experience-details/${exp._id}`)}
+                  onClick={() => openPopup(exp)}
                   className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#0a0a0a] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-65 w-full max-w-137.5"
                 >
                   <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent pointer-events-none opacity-40 z-10" />
