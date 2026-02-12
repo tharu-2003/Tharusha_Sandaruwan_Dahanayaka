@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { projectsData } from '../assets/datas/assets';
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
 import { ProjectPopup } from '../components/ProjectPopup';
 
 const ProjectPage = () => {
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;

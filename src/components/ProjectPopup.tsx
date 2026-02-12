@@ -12,14 +12,14 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-12">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 lg:p-12">
           {/* Enhanced Backdrop with animated gradients */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-[#ed6a3e]/10 backdrop-blur-2xl"
+            className="absolute inset-0 bg-linear-to-br from-black via-black/95 to-[#ed6a3e]/10 backdrop-blur-2xl"
           />
 
           {/* Floating animated orbs in background */}
@@ -55,7 +55,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
             <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-[#ed6a3e]/40 rounded-br-[2.5rem] pointer-events-none" />
             
             {/* Subtle glow effect around modal */}
-            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#ed6a3e]/10 via-transparent to-[#828277]/10 opacity-60 blur-2xl pointer-events-none" />
+            <div className="absolute inset-0 rounded-[2.5rem] bg-linear-to-br from-[#ed6a3e]/10 via-transparent to-[#828277]/10 opacity-60 blur-2xl pointer-events-none" />
             
             {/* Header Sticky Area */}
             <div className="relative">
@@ -64,16 +64,16 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                 onClick={onClose}
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.95 }}
-                className="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-[#2f2f28] to-[#1a1a15] border border-[#828277] flex items-center justify-center text-white hover:bg-[#ed6a3e] hover:border-[#ed6a3e] transition-all duration-300 shadow-lg group"
+                className="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-linear-to-br from-[#2f2f28] to-[#1a1a15] border border-[#828277] flex items-center justify-center text-white hover:bg-[#ed6a3e] hover:border-[#ed6a3e] transition-all duration-300 shadow-lg group"
               >
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#ed6a3e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#ed6a3e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 relative z-10">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </motion.button>
 
               {/* Main Banner Layout */}
-              <div className="flex flex-col lg:flex-row min-h-[400px]">
+              <div className="flex flex-col lg:flex-row min-h-100">
                 {/* LEFT: Image Section with enhanced effects */}
                 <div className="w-full lg:w-[60%] h-72 sm:h-96 lg:h-auto overflow-hidden relative border-b lg:border-b-0 lg:border-r border-[#2a2a20]">
                   <motion.img
@@ -86,14 +86,14 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                   />
                   
                   {/* Multi-layer overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent lg:hidden" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#ed6a3e]/5 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent lg:hidden" />
+                  <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/5 via-transparent to-transparent" />
                   
                   {/* Animated scan line */}
                   <motion.div
                     animate={{ y: ['-100%', '200%'] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
-                    className="absolute inset-x-0 h-32 bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"
+                    className="absolute inset-x-0 h-32 bg-linear-to-b from-transparent via-white/5 to-transparent pointer-events-none"
                   />
                   
                   {/* Corner grid pattern */}
@@ -113,7 +113,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                 </div>
 
                 {/* RIGHT: Essential Info with enhanced styling */}
-                <div className="w-full lg:w-[40%] p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-white/5 to-transparent relative overflow-hidden">
+                <div className="w-full lg:w-[40%] p-8 lg:p-12 flex flex-col justify-center bg-linear-to-br from-white/5 to-transparent relative overflow-hidden">
                   {/* Background pattern */}
                   <div className="absolute inset-0 opacity-5">
                     <div className="absolute inset-0" style={{
@@ -131,9 +131,9 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                     {/* Category badge with glow */}
                     <motion.span
                       whileHover={{ scale: 1.05 }}
-                      className="relative inline-block px-5 py-2 rounded-full bg-gradient-to-r from-[#ed6a3e]/20 to-[#ed6a3e]/10 border border-[#ed6a3e]/30 text-[#ed6a3e] text-[10px] font-black tracking-[0.2em] uppercase mb-6 overflow-hidden group cursor-default"
+                      className="relative inline-block px-5 py-2 rounded-full bg-linear-to-r from-[#ed6a3e]/20 to-[#ed6a3e]/10 border border-[#ed6a3e]/30 text-[#ed6a3e] text-[10px] font-black tracking-[0.2em] uppercase mb-6 overflow-hidden group cursor-default"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
                       <span className="relative">{project.category}</span>
                     </motion.span>
                     
@@ -144,25 +144,25 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                     
                     {/* Compact Stats Bar with enhanced design */}
                     <div className="flex gap-8 border-t border-white/10 pt-6 relative">
-                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ed6a3e]/50 to-transparent" />
+                      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#ed6a3e]/50 to-transparent" />
                       
                       <motion.div
                         whileHover={{ y: -2 }}
                         className="group cursor-default"
                       >
-                        <div className="text-2xl font-black bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent group-hover:from-[#ed6a3e] group-hover:to-[#ed6a3e]/60 transition-all duration-300">
+                        <div className="text-2xl font-black bg-linear-to-br from-white to-gray-400 bg-clip-text text-transparent group-hover:from-[#ed6a3e] group-hover:to-[#ed6a3e]/60 transition-all duration-300">
                           {project.timeline || "2024"}
                         </div>
                         <div className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">Timeline</div>
                       </motion.div>
                       
-                      <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+                      <div className="w-px h-12 bg-linear-to-b from-transparent via-white/20 to-transparent" />
                       
                       <motion.div
                         whileHover={{ y: -2 }}
                         className="group cursor-default"
                       >
-                        <div className="text-2xl font-black bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent group-hover:from-[#ed6a3e] group-hover:to-[#ed6a3e]/60 transition-all duration-300">
+                        <div className="text-2xl font-black bg-linear-to-br from-white to-gray-400 bg-clip-text text-transparent group-hover:from-[#ed6a3e] group-hover:to-[#ed6a3e]/60 transition-all duration-300">
                           Full
                         </div>
                         <div className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">System</div>
@@ -176,7 +176,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
             {/* Content Body Layout with enhanced spacing */}
             <div className="p-8 sm:p-12 border-t border-[#2a2a20] relative">
               {/* Top border glow */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ed6a3e]/30 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#ed6a3e]/30 to-transparent" />
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
                 
@@ -195,12 +195,12 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                         className="w-2 h-2 bg-[#ed6a3e] rounded-full shadow-[0_0_10px_rgba(237,106,62,0.8)]"
                       />
                       <h3 className="text-gray-500 text-[11px] font-black uppercase tracking-[0.3em]">Project Insight</h3>
-                      <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                      <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                     </div>
                     
                     {/* Description card with subtle background */}
-                    <div className="relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
-                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#ed6a3e] to-transparent rounded-l-2xl" />
+                    <div className="relative p-6 rounded-2xl bg-linear-to-br from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
+                      <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-[#ed6a3e] to-transparent rounded-l-2xl" />
                       <p className="text-gray-300 text-base sm:text-lg leading-relaxed font-medium pl-4">
                         {project.description || "Detailed project overview showing the core objectives and solutions implemented during the development cycle."}
                       </p>
@@ -210,7 +210,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                   <section>
                     <div className="flex items-center gap-3 mb-6">
                       <h3 className="text-gray-500 text-[11px] font-black uppercase tracking-[0.3em]">Built With</h3>
-                      <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                      <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                     </div>
                     
                     <div className="flex flex-wrap gap-3">
@@ -221,9 +221,9 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.4 + i * 0.05 }}
                           whileHover={{ scale: 1.05, y: -2 }}
-                          className="group relative px-5 py-3 rounded-xl bg-gradient-to-br from-[#1a1a15] to-[#0f0f0c] border border-[#2a2a20] text-gray-400 text-[11px] font-bold uppercase tracking-widest cursor-default overflow-hidden"
+                          className="group relative px-5 py-3 rounded-xl bg-linear-to-br from-[#1a1a15] to-[#0f0f0c] border border-[#2a2a20] text-gray-400 text-[11px] font-bold uppercase tracking-widest cursor-default overflow-hidden"
                         >
-                          <div className="absolute inset-0 bg-gradient-to-r from-[#ed6a3e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="absolute inset-0 bg-linear-to-r from-[#ed6a3e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           <div className="absolute inset-0 border border-[#ed6a3e]/0 group-hover:border-[#ed6a3e]/50 rounded-xl transition-all duration-300" />
                           <span className="relative group-hover:text-white transition-colors">{tag}</span>
                         </motion.span>
@@ -241,7 +241,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <h3 className="text-gray-500 text-[11px] font-black uppercase tracking-[0.3em]">Deployment</h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                    <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent" />
                   </div>
                   
                   <div className="flex flex-col gap-4">
@@ -253,8 +253,8 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                       whileTap={{ scale: 0.98 }}
                       className="relative flex items-center justify-between w-full px-6 py-5 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest group overflow-hidden shadow-lg"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#ed6a3e] to-[#ed6a3e]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-linear-to-r from-[#ed6a3e] to-[#ed6a3e]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
                       <span className="relative z-10 group-hover:text-white transition-colors">Source Code</span>
                       <motion.svg
                         className="w-5 h-5 relative z-10 group-hover:text-white"
@@ -277,7 +277,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                         whileTap={{ scale: 0.98 }}
                         className="relative flex items-center justify-between w-full px-6 py-5 border-2 border-[#828277] text-white rounded-2xl font-black text-xs uppercase tracking-widest group overflow-hidden"
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#ed6a3e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-linear-to-r from-[#ed6a3e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <span className="relative z-10">Live Preview</span>
                         <motion.svg
                           className="w-5 h-5 relative z-10"
@@ -293,7 +293,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                   </div>
 
                   {/* Meta Details List with enhanced design */}
-                  <div className="pt-8 space-y-6 p-6 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl">
+                  <div className="pt-8 space-y-6 p-6 bg-linear-to-br from-white/5 to-transparent border border-white/10 rounded-2xl">
                     <div className="flex items-center justify-between group">
                       <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-gray-500" />
@@ -301,7 +301,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                       </span>
                       <span className="text-white text-xs font-bold group-hover:text-[#ed6a3e] transition-colors">{project.platform || "Web / Mobile"}</span>
                     </div>
-                    <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <div className="h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
                     <div className="flex items-center justify-between group">
                       <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-gray-500" />

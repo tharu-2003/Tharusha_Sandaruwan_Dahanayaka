@@ -43,7 +43,6 @@ const HomePage = () => {
               <ContactSection />
               <Footer />
             </div>
-            
           </div>
         </div>
       </div>

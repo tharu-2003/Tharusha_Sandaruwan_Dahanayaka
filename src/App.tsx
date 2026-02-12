@@ -5,8 +5,6 @@ import ExperiencePage from "./pages/ExperiencePage";
 import ToolPage from "./pages/ToolPage";
 import ContactPage from "./pages/ContactPage";
 import ContentsPage from "./pages/ContentsPage";
-import ProjectDetailsPage from "./pages/ProjectDetailsPage";
-import ExperienceDetailsPage from "./pages/ExperienceDetailsPage";
 
 
 const App = () => {
@@ -16,9 +14,7 @@ const App = () => {
       <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/projects' element={<ProjectPage />} />
-            <Route path='/projects-details/:id' element={<ProjectDetailsPage />} />
             <Route path='/experience' element={<ExperiencePage />} />
-            <Route path='/experience-details/:id' element={<ExperienceDetailsPage />} />
             <Route path='/tools' element={<ToolPage />} />
             <Route path='/contents' element={<ContentsPage />} />
             <Route path='/contact' element={<ContactPage />} />
