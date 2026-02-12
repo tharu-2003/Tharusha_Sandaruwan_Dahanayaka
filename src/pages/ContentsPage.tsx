@@ -1,9 +1,9 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { contentData } from '../assets/datas/assets'; 
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
+import { ContentPopup } from '../components/ContentPopup';
 
 // Icons set eka (Categories walata anuwa wenas wenna)
 const VideoIcon = () => (
@@ -18,6 +18,21 @@ const ContentsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
+
+  // Popup state
+  const [selectedContent, setSelectedContent] = useState<any>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openContent = (content: any) => {
+    setSelectedContent(content);
+    setIsPopupOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeContent = () => {
+    setIsPopupOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   // 1. Filter & Reverse Logic
   const filteredContents = useMemo(() => {
@@ -55,6 +70,12 @@ const ContentsPage = () => {
   return (
     <div className="min-h-screen bg-black text-white p-5 sm:p-10 md:p-16 lg:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
+
+      <ContentPopup 
+        content={selectedContent} 
+        isOpen={isPopupOpen} 
+        onClose={closeContent} 
+      />
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-32 mt-20 lg:mt-3">
         
@@ -138,10 +159,9 @@ const ContentsPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
                 >
-                  <Link
-                    to={item.link}
-                    target={item.category === "Video" ? "_blank" : "_self"}
-                    className="group flex items-start justify-between gap-4 sm:gap-10 py-10 border-b border-[#2a2a20] hover:border-[#ed6a3e]/40 transition-all duration-500 block"
+                  <div
+                    onClick={() => openContent(item)}
+                    className="group flex items-start justify-between gap-4 sm:gap-10 py-10 border-b border-[#2a2a20] hover:border-[#ed6a3e]/40 transition-all duration-500 cursor-pointer"
                   >
                     <div className="flex-1">
                       {/* Category & Icon */}
@@ -210,7 +230,7 @@ const ContentsPage = () => {
                         </svg>
                       </div>
                     </motion.div>
-                  </Link>
+                  </div>
                 </motion.div>
               ))}
             </div>
