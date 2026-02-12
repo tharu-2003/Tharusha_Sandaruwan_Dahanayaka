@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
-// TypeScript interface එකක් මඟින් props වල වර්ගය (Type) නිර්වචනය කිරීම
 interface ContactFormProps {
   formData: {
     name: string;
@@ -18,17 +19,81 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Submitted Data:", formData);
-        // මෙතනට ඔයාගේ submission logic එක (EmailJS වගේ) දාන්න පුළුවන්
-    };
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  // Custom styled loading toast
+  const loadingToast = toast.loading('Initiating transmission...', {
+    style: {
+      borderRadius: '12px',
+      background: '#1a1a12',
+      color: '#fff',
+      border: '1px solid #2a2a20',
+      fontSize: '14px',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+    },
+  });
+
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  emailjs.send(serviceId, templateId, {
+    name: formData.name,
+    email: formData.email,
+    budget: formData.budget,
+    message: formData.message,
+  }, publicKey)
+  .then(() => {
+    // Custom Success Toast
+    toast.success('Message sent successfully! 🚀', {
+      id: loadingToast,
+      duration: 5000,
+      iconTheme: {
+        primary: '#ed6a3e',
+        secondary: '#fff',
+      },
+      style: {
+        borderRadius: '12px',
+        background: '#1a1a12',
+        color: '#fff',
+        border: '1px solid #ed6a3e', // Orange border on success
+        fontSize: '14px',
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: '0.1em',
+      },
+    });
+    setFormData({ name: '', email: '', budget: '', message: '' });
+  })
+  .catch(() => {
+    // Custom Error Toast
+    toast.error('Transmission failed. Try again.', {
+      id: loadingToast,
+      style: {
+        borderRadius: '12px',
+        background: '#1a1a12',
+        color: '#fff',
+        border: '1px solid #ff4b4b', // Red border on error
+        fontSize: '14px',
+        textTransform: 'uppercase',
+        letterSpacing: '0.1em',
+      },
+    });
+  })
+  .finally(() => {
+    setLoading(false);
+  });
+};
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {/* Name */}
+        {/* Name Input */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,12 +108,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
-            transition={{ duration: 0.2 }}
             className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors"
           />
         </motion.div>
 
-        {/* Email */}
+        {/* Email Input */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,13 +127,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
-            transition={{ duration: 0.2 }}
             className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors"
           />
         </motion.div>
       </div>
 
-      {/* Budget */}
+      {/* Budget Input */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -82,31 +145,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
         <div className="relative">
           <motion.input
             list="budget-options"
-            id="budget"
             placeholder="Select range or type amount..."
             value={formData.budget}
             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
             whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
-            transition={{ duration: 0.2 }}
             className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors appearance-none"
           />
           <datalist id="budget-options">
             <option value="$100 - $500" />
             <option value="$500 - $1,000" />
             <option value="$1,000 - $5,000" />
-            <option value="$5,000 - $10,000" />
-            <option value="$10,000+" />
+            <option value="$5,000+" />
           </datalist>
-          
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-600">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
         </div>
       </motion.div>
 
-      {/* Message */}
+      {/* Message Input */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -121,22 +175,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
-          transition={{ duration: 0.2 }}
           className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors resize-none"
         />
       </motion.div>
 
+      {/* Submit Button */}
       <motion.button
         type="submit"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.5 }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full bg-[#ed6a3e] hover:bg-[#d85a2e] text-white font-bold py-4 rounded-xl transition-all duration-300 uppercase tracking-widest"
+        disabled={loading}
+        whileHover={{ scale: loading ? 1 : 1.02 }}
+        whileTap={{ scale: loading ? 1 : 0.98 }}
+        className={`w-full font-bold py-4 rounded-xl transition-all duration-300 uppercase tracking-widest ${
+          loading ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#ed6a3e] hover:bg-[#d85a2e] text-white'
+        }`}
       >
-        Send Message
+        {loading ? "Sending..." : "Send Message"}
       </motion.button>
     </form>
   );

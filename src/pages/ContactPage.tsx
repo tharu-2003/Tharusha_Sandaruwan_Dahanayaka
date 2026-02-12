@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navigation } from '../components/Navigation';
 import ContactForm from '../components/ContactForm';
+import { Toaster } from 'react-hot-toast';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -161,6 +162,7 @@ const ContactPage = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="w-full lg:w-2/3 mt-8"
         >
+          <Toaster position="top-right" reverseOrder={false} />
           <ContactForm formData={formData} setFormData={setFormData} />
         </motion.div>
       </div>

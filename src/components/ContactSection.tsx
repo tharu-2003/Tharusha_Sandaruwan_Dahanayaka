@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
+import { Toaster } from "react-hot-toast";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -47,6 +48,7 @@ export function ContactSection() {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
+        <Toaster position="top-right" reverseOrder={false} />
         <ContactForm formData={formData} setFormData={setFormData} />
       </motion.div>
     </section>
