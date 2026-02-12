@@ -114,7 +114,7 @@ export function SidebarProfile() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-gray-500 text-xs leading-relaxed max-w-xs mb-6"
         >
-          Full Stack Developer | MERN Stack | Python | Java • Spring Boot • React | UI/UX & Data Analytics
+          Full Stack Developer | MERN Stack | Python | Java • Spring Boot • React | UI/UX & Data Analytics | Monolithic | MVC | Layered | Microservices 
         </motion.p>
 
         {/* Social Links */}
