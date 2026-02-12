@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { projectsData } from '../assets/datas/assets';
+import { ProjectPopup } from './ProjectPopup';
 // import { projectsData } from '../assets/datas/assets';
 
 export interface Project {
@@ -22,6 +23,20 @@ export function ProjectsSection() {
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Project[]>([]);
 
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openProject = (project: any) => {
+    setSelectedProject(project);
+    setIsPopupOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProject = () => {
+    setIsPopupOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   useEffect(() => {
     // Array eke anthima items 3 ganna (-3 use karanna)
     setProjects(projectsData.slice(-3).reverse()); 
@@ -29,6 +44,12 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="py-1 px-4">
+        <ProjectPopup 
+          project={selectedProject} 
+          isOpen={isPopupOpen} 
+          onClose={closeProject} 
+        />
+
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
@@ -66,7 +87,7 @@ export function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.15 }}
-            onClick={() => navigate(`/projects-details/${project._id}`)}
+            onClick={() => openProject(project)}
             className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 py-6 sm:py-8 border-b border-[#2a2a20] hover:border-[#ed6a3e]/30 transition-all duration-300 cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">

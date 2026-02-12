@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { experiencesData } from '../assets/datas/assets';
+import { ExperiencePopup } from './ExperiencePopup';
 
 export interface Experience {
     _id: string; 
@@ -16,6 +17,20 @@ export function ExperienceSection() {
   const navigate = useNavigate();
   const [experiences, setExperiences] = useState<Experience[]>([]);
 
+  const [selectedExp, setSelectedExp] = useState<any>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = (exp: any) => {
+    setSelectedExp(exp);
+    setIsPopupOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   useEffect(() => {
     // Array eke anthima items 3 ganna (-3 use karanna)
     setExperiences(experiencesData.slice(-3).reverse()); 
@@ -23,6 +38,13 @@ export function ExperienceSection() {
   
   return (
     <section id="experience" className="py-1 px-4">
+
+      <ExperiencePopup 
+        experience={selectedExp} 
+        isOpen={isPopupOpen} 
+        onClose={closePopup} 
+      />
+
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
@@ -61,7 +83,7 @@ export function ExperienceSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.15 }}
             // Click karama page ekata navigate wenna methana onClick damma
-            onClick={() => navigate(`/experience-details/${exp._id}`)}
+            onClick={() => openPopup(exp)}
             className="group block pb-8 border-b border-[#2a2a20] hover:bg-[#1a1a12]/50 transition-all duration-300 cursor-pointer"
           >
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
