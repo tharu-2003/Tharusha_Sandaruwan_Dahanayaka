@@ -337,66 +337,7 @@ export const experiencesData: Experience[] = [
 
 
 export const contentData: Content[] = [
-    {
-        _id: "1", // Content ekata unique identifier ekak damma
-        title: "How to Build a Real-time Chat App",
-        description:
-        "Me video eken mama kiyala denawa React saha Firebase use karala real-time chat application ekak hadana widiya step-by-step.",
-        date: "Feb 11, 2026",
-        category: "Video",
-        watchingTime: "18min watch",
-        link: "https://youtube.com/your-video-link",
-    },
-    {
-        _id: "2",
-        title: "My Experience with Java and Spring Boot",
-        description:
-        "Software engineering igena ganna kenekuta Java backend development kiyanne godak watina skill ekak. Me mage experience eka.",
-        date: "Feb 08, 2026",
-        category: "Post",
-        readTime: "6min read",
-        link: "/blog/java-experience",
-    },
-    {
-        _id: "3",
-        title: "React Native Debugging Tips",
-        description:
-        "React Native apps develop karaddi ena common errors saha ewa solve karaganna lesima widi me video eken balanna puluwan.",
-        date: "Jan 30, 2026",
-        category: "Video",
-        watchingTime: "12min watch",
-        link: "https://youtube.com/debugging-video",
-    },
-    {
-        _id: "4", // Content ekata unique identifier ekak damma
-        title: "How to Build a Real-time Chat Appaaaaaaaaaa aaaaaaaaaaaaa",
-        description:
-        "Me video eken mama kiyala denawa React saha Firebase use karala real-time chat application ekak hadana widiya step-by-step.",
-        date: "Feb 11, 2026",
-        category: "Video",
-        watchingTime: "18min watch",
-        link: "https://youtube.com/your-video-link",
-    },
-    {
-        _id: "5",
-        title: "My Experience with Java and Spring Boot bbbbbbbbbb bbbbbbbb",
-        description:
-        "Software engineering igena ganna kenekuta Java backend development kiyanne godak watina skill ekak. Me mage experience eka.",
-        date: "Feb 08, 2026",
-        category: "Post",
-        readTime: "6min read",
-        link: "/blog/java-experience",
-    },
-    {
-        _id: "6",
-        title: "React Native Debugging Tips cccccc ccccccccc",
-        description:
-        "React Native apps develop karaddi ena common errors saha ewa solve karaganna lesima widi me video eken balanna puluwan.",
-        date: "Jan 30, 2026",
-        category: "Video",
-        watchingTime: "12min watch",
-        link: "https://youtube.com/debugging-video",
-    },
+    
     {
         _id: "7",
         title: "My Experience with Java and Spring Boot dddd ddddddddddd dd",
@@ -405,7 +346,7 @@ export const contentData: Content[] = [
         date: "Feb 08, 2026",
         category: "Post",
         readTime: "6min read",
-        link: "/blog/java-experience",
+        link: "https://medium.com/@sandaruwantharusha968/mastering-spring-security-with-jwt-your-ultimate-guide-to-bulletproof-authentication-4c6f36ac9877",
     },
     {
         _id: "8",
@@ -415,7 +356,7 @@ export const contentData: Content[] = [
         date: "Jan 30, 2026",
         category: "Video",
         watchingTime: "12min watch",
-        link: "https://youtube.com/debugging-video",
+        link: "https://youtu.be/zr1Bdqjglhk?si=tXimqcv15gLEO1ha",
     },
 ];
 
@@ -437,3 +378,20 @@ export const DashboardData: DashboardData = {
   projectsCount,
   technologiesCount,
 };
+
+export const getYouTubeEmbedUrl = (url: string) => {
+  if (!url) return "";
+
+  let videoId = "";
+
+  if (url.includes("youtu.be/")) {
+    videoId = url.split("youtu.be/")[1].split("?")[0];
+  } else if (url.includes("watch?v=")) {
+    videoId = url.split("v=")[1].split("&")[0];
+  } else if (url.includes("embed/")) {
+    videoId = url.split("embed/")[1].split("?")[0];
+  }
+
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+};
+
