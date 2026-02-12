@@ -46,31 +46,33 @@ import gitIcon from "../images/git-icon.svg";
 import githubIcon from "../images/github-icon.svg";
 import canvaIcon from "../images/canva-icon.svg";
 
+
 // ---------- TYPES ----------
 
 export interface Content {
-    _id: string; // Content ekata unique identifier ekak damma
+    _id: string; 
     title: string;
     description: string;
     date: string;
-    category: "Video" | "Post"; // Category eka me deken ekak pamanak wenna limit kalaa
+    category: "Video" | "Post"; 
     link: string;
-    watchingTime?: string; // Optional field (Video wala pamanak thiyena nisa)
-    readTime?: string;     // Optional field (Post wala pamanak thiyena nisa)
+    watchingTime?: string; 
+    readTime?: string;    
 }
 
 export interface Experience {
-    _id: string; // Experience ekata unique identifier ekak damma
+    _id: string; 
     role: string;
     company: string;
     period: string;
     description: string;
-    skills: string[]; // Oya use karapu technologies list ekak widiyata
+    skills: string[];
     location: string;
-    industry: string; // e.g. "Software Development", "Education", "Finance", etc.
-    mode: "Work" | "Education"; // Experience eka work experience da education experience da kiyala pennanna
-    workModeStatements: string; // Work experience nam work mode ekata adala statements, education nam education mode ekata adala statements
-    links: string; // Company website, LinkedIn page, etc.
+    industry: string;
+    mode: "Work" | "Education";
+    priority: "High" | "Medium" | "Low"; 
+    workModeStatements: string; 
+    links: string; 
 }
 
 export interface Project {
@@ -110,6 +112,7 @@ export interface DashboardData {
 }
 
 
+// ---------- DATA ----------
 
 export const projectCategories = [
   "All", // index 0
@@ -335,6 +338,7 @@ export const experiencesData: Experience[] = [
     location: "Colombo, Sri Lanka",
     industry: "Education",
     mode: "Education",
+    priority: "Medium",
     workModeStatements: "Learning core software engineering concepts and full-stack development.",
     links: "https://ijse.lk/"
   },
@@ -348,6 +352,7 @@ export const experiencesData: Experience[] = [
     location: "Remote",
     industry: "Software Development",
     mode: "Work",
+    priority: "High",
     workModeStatements: "Designing and implementing scalable software solutions.",
     links: "https://github.com/tharusha/rapidride"
   },
@@ -361,37 +366,14 @@ export const experiencesData: Experience[] = [
     location: "Remote",
     industry: "Software Development",
     mode: "Work",
+    priority: "High",
     workModeStatements: "Leading technical implementation and system architecture.",
     links: "https://github.com/tharusha/mobile-projects"
-  },
-  {
-    _id: "4",
-    role: "Frontend Developer Intern",
-    company: "Tech Solutions Lanka",
-    period: "2023 - 2024",
-    description: "Worked on responsive UI development using React and Tailwind CSS. Collaborated with backend teams to integrate REST APIs.",
-    skills: ["React", "Tailwind CSS", "JavaScript", "REST API"],
-    location: "Colombo, Sri Lanka",
-    industry: "Software Development",
-    mode: "Work",
-    workModeStatements: "Implementing responsive UI components.",
-    links: "https://techsolutions.lk/"
-  },
-  {
-    _id: "5",
-    role: "Backend Developer Trainee",
-    company: "CodeLab Academy",
-    period: "2023",
-    description: "Built RESTful APIs using Spring Boot and handled database design using MySQL.",
-    skills: ["Java", "Spring Boot", "MySQL", "Hibernate"],
-    location: "Colombo, Sri Lanka",
-    industry: "Software Development",
-    mode: "Work",
-    workModeStatements: "Developing backend APIs.",
-    links: "https://codelab.lk/"
-  },
-  // ... Continue similarly for all remaining experiences
+  }
 ];
+
+
+
 
 
 export const contentData: Content[] = [
