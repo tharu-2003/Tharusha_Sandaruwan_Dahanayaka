@@ -337,26 +337,46 @@ export const experiencesData: Experience[] = [
 
 
 export const contentData: Content[] = [
-    
+  
     {
-        _id: "7",
-        title: "My Experience with Java and Spring Boot dddd ddddddddddd dd",
+        _id: "1",
+        title: "Mastering Spring Security with JWT",
         description:
-        "Software engineering igena ganna kenekuta Java backend development kiyanne godak watina skill ekak. Me mage experience eka.",
-        date: "Feb 08, 2026",
+        "Spring Security and JWT provide a powerful way to protect modern Spring Boot applications by ensuring only authorized users can access system resources. By implementing secure authentication and token-based authorization, developers can prevent data breaches, protect user data, and build reliable, production-ready systems that maintain user trust.",
+        date: "Sep 29, 2025",
         category: "Post",
-        readTime: "6min read",
+        watchingTime: "60min read",
         link: "https://medium.com/@sandaruwantharusha968/mastering-spring-security-with-jwt-your-ultimate-guide-to-bulletproof-authentication-4c6f36ac9877",
     },
     {
-        _id: "8",
-        title: "React Native Debugging Tips eeeee eeeeeeee ",
+        _id: "2",
+        title: "How to Talk to a Computer",
         description:
-        "React Native apps develop karaddi ena common errors saha ewa solve karaganna lesima widi me video eken balanna puluwan.",
-        date: "Jan 30, 2026",
+        "Complete beginner wondering where to start your journey in tech? This video is designed for you. We break down the core Programming Fundamentals that every developer needs to know before diving into complex projects.",
+        date: "Feb 10, 2026",
         category: "Video",
-        watchingTime: "12min watch",
-        link: "https://youtu.be/zr1Bdqjglhk?si=tXimqcv15gLEO1ha",
+        readTime: "7min watch",
+        link: "https://youtu.be/zr1Bdqjglhk?si=EeoPJaYMsJF1WpRT",
+    },
+    {
+        _id: "3",
+        title: "A Guide to MySQL Databases (Part 1)",
+        description:
+        "Are you a student starting your journey in Software Engineering, or just curious about how data is stored in the apps you use every day? In this video, I break down the core concepts of Databases in the simplest way possible!",
+        date: "Feb 11, 2026",
+        category: "Video",
+        readTime: "7min watch",
+        link: "https://youtu.be/JWkMz1ea5QU?si=r8XkBqIRkcDHWj4W",
+    },
+    {
+        _id: "4",
+        title: "Demystifying Databases (Part 2)",
+        description:
+        "Welcome back to Part 2 of my Database series! In the first video, we covered the  \"what\" and \"why\" of databases. Now, it’s time to get our hands dirty with MySQL Queries.",
+        date: "Feb 12, 2026",
+        category: "Video",
+        readTime: "8min watch",
+        link: "https://youtu.be/rTyLz8O6dmg?si=iDrkq7UKOycY797F",
     },
 ];
 
