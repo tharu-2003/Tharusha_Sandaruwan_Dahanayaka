@@ -247,7 +247,7 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                   <div className="flex flex-col gap-4">
                     {/* GitHub button with enhanced effects */}
                     <motion.a
-                      href={project.github || "#"}
+                      href={project.links?.github || "#"}
                       target="_blank"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -268,9 +268,9 @@ export const ProjectPopup = ({ project, isOpen, onClose }: ProjectPopupProps) =>
                     </motion.a>
 
                     {/* Live demo button */}
-                    {project.links?.live && ( // project.live වෙනුවට project.links?.live ලෙස වෙනස් කළා
+                    {project.links?.live && ( 
                       <motion.a
-                        href={project.links.live} // project.live වෙනුවට project.links.live
+                        href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
