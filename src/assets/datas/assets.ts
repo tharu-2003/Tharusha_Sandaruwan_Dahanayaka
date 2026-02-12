@@ -3,6 +3,20 @@
 import project_image1 from "../projectImages/project_image1.png";
 import project_image2 from "../projectImages/project_image2.png";
 import project_image3 from "../projectImages/project_image3.png";
+import project_image4 from "../projectImages/project_image4.png";
+import project_image5 from "../projectImages/project_image5.png";
+import project_image6 from "../projectImages/project_image6.png";
+import project_image7 from "../projectImages/project_image7.png";
+import project_image8 from "../projectImages/project_image8.png";
+import project_image9 from "../projectImages/project_image9.png";
+import project_image10 from "../projectImages/project_image10.png";
+import project_image11 from "../projectImages/project_image11.png";
+import project_image12 from "../projectImages/project_image12.png";
+import project_image13 from "../projectImages/project_image13.png";
+import project_image14 from "../projectImages/project_image14.png";
+import project_image15 from "../projectImages/project_image15.png";
+import project_image16 from "../projectImages/project_image16.png";
+
 
 import reactIcon from "../images/react-icon.svg";
 import expoIcon from "../images/expo-icon.png";
@@ -141,6 +155,20 @@ export const assets = {
   project_image1,
   project_image2,
   project_image3,
+  project_image4,
+  project_image5,
+  project_image6,
+  project_image7,
+  project_image8,
+  project_image9,
+  project_image10,
+  project_image11,
+  project_image12,
+  project_image13,
+  project_image14,
+  project_image15,
+  project_image16,
+
 
   // Frontend Icons
   reactIcon,
@@ -213,7 +241,6 @@ export const toolsData: ToolsDataType = {
     { name: "Canva", description: "Design Platform", link: "#", icon: canvaIcon },
   ],
 };
-
 
 
 export const projectsData: Project[] = [
@@ -381,11 +408,8 @@ export const contentData: Content[] = [
 ];
 
 const JOURNEY_START_DATE = new Date("2024-01-01");
-
 const currentDate = new Date();
-
 const yearsOfExperience = currentDate.getFullYear() - JOURNEY_START_DATE.getFullYear();
-
 const projectsCount = projectsData.length;
 
 const technologiesCount =
