@@ -69,21 +69,110 @@ export function AboutSection() {
       {/* Skill Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {/* Orange Card */}
-        <Link to="/experience" className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#ed6a3e] group transition-transform hover:scale-[1.02] duration-300">
-            {/* ... Pattern and Content ... */}
-            <div className="relative z-10 flex flex-col h-full">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight">DYNAMIC ANIMATION, <br /> MOTION DESIGN</h3>
-                {/* Arrow icon */}
+        <Link 
+          to="/experience" 
+          className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#ed6a3e] group transition-transform hover:scale-[1.02] duration-300"
+        >
+          {/* Diagonal Pattern Background */}
+          <div className="absolute inset-0 opacity-30">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern
+                  id="orange-pattern"
+                  x="0"
+                  y="0"
+                  width="100"
+                  height="100"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M0,50 L50,0 L100,50 L50,100 Z"
+                    stroke="rgba(0,0,0,0.15)"
+                    fill="none"
+                    strokeWidth="2"
+                  />
+                  <circle cx="50" cy="50" r="30" stroke="rgba(0,0,0,0.1)" fill="none" strokeWidth="1.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#orange-pattern)" />
+            </svg>
+          </div>
+          
+          {/* Content */}
+          <div className="relative z-10 flex flex-col h-full">
+            {/* Icon */}
+            <div className="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4">
+              <svg viewBox="0 0 24 24" fill="white" className="w-full h-full">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
             </div>
+            
+            {/* Text */}
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-auto">
+              DYNAMIC ANIMATION,<br />MOTION DESIGN
+            </h3>
+            
+            {/* Arrow Button */}
+            <div className="flex justify-end">
+              <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center group-hover:border-white/50 transition-colors">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </Link>
 
         {/* Lime Card */}
-        <Link to="/projects" className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#c4f445] group transition-transform hover:scale-[1.02] duration-300">
-            {/* ... Pattern and Content ... */}
-            <div className="relative z-10 flex flex-col h-full">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1a1a12] leading-tight">FRAMER, FIGMA, <br /> REACT</h3>
-                {/* Arrow icon */}
+        <Link 
+          to="/projects" 
+          className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#c4f445] group transition-transform hover:scale-[1.02] duration-300"
+        >
+          {/* Diagonal Pattern Background */}
+          <div className="absolute inset-0 opacity-25">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern
+                  id="lime-pattern"
+                  x="0"
+                  y="0"
+                  width="80"
+                  height="80"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <line x1="0" y1="40" x2="80" y2="40" stroke="rgba(0,0,0,0.15)" strokeWidth="2"/>
+                  <line x1="40" y1="0" x2="40" y2="80" stroke="rgba(0,0,0,0.15)" strokeWidth="2"/>
+                  <circle cx="40" cy="40" r="25" stroke="rgba(0,0,0,0.1)" fill="none" strokeWidth="1.5"/>
+                  <path d="M20,40 L40,20 L60,40 L40,60 Z" stroke="rgba(0,0,0,0.12)" fill="none" strokeWidth="1.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#lime-pattern)" />
+            </svg>
+          </div>
+          
+          {/* Content */}
+          <div className="relative z-10 flex flex-col h-full">
+            {/* Icon */}
+            <div className="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4">
+              <svg viewBox="0 0 24 24" fill="#1a1a12" className="w-full h-full">
+                <path d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 0h7v7h-7v-7z" />
+              </svg>
             </div>
+            
+            {/* Text */}
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1a1a12] leading-tight mb-auto">
+              FRAMER, FIGMA,<br />WORDPRESS, REACTJS
+            </h3>
+            
+            {/* Arrow Button */}
+            <div className="flex justify-end">
+              <div className="w-10 h-10 rounded-full border-2 border-[#1a1a12]/30 flex items-center justify-center group-hover:border-[#1a1a12]/50 transition-colors">
+                <svg className="w-5 h-5 text-[#1a1a12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </Link>
       </div>
     </section>
