@@ -55,17 +55,21 @@ export interface Experience {
 }
 
 export interface Project {
-    _id: string; // Project ekata unique identifier ekak damma
-    title: string;
-    category: string; // e.g. "Mobile App", "Web App"
-    description: string;
-    image: string;    // Project thumbnail image link
-    tags: string[];   // Tech stack (e.g. ["React Native", "Firebase"])
-    links: {
-        github: string;
-        live?: string; // Optional (Live link ekak nethnam danna ona naha)
-    };
+  _id: string;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  tags: string[];
+  timeline: string;   // NEW
+  role: string;       // NEW
+  platform: string;   // NEW
+  links: {
+    github?: string;
+    live?: string;
+  };
 }
+
 
 export interface ToolItem {
   name: string;
@@ -208,158 +212,54 @@ export const toolsData: ToolsDataType = {
 
 
 export const projectsData: Project[] = [
-    {
-        _id: "1",
-        title: "RapidRide",
-        category: projectCategories[1],
-        description: "A real-time taxi booking application built with React Native and Firebase.",
-        image: project_image1,
-        tags: ["React Native", "Firebase", "Tailwind CSS"],
-        links: {
-            github: "https://github.com/your-username/RapidRide",
-            live: "https://rapidride-demo.vercel.app"
-        }
-    },
-    {
-        _id: "2",
-        title: "Queue Management System",
-        category: projectCategories[9],
-        description: "A robust Java-based application designed to manage customer flow.",
-        image: project_image2,
-        tags: ["Java", "MySQL", "Data Structures"],
-        links: {
-            github: "https://github.com/your-username/queue-manager"
-        }
-    },
-    {
-        _id: "3",
-        title: "Modern Calculator",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
-    },
-    {
-        _id: "4",
-        title: "Queue Management Systemaaaaaaaaaaaa",
-        category: projectCategories[9],
-        description: "A robust Java-based application designed to manage customer flow.",
-        image: project_image2,
-        tags: ["Java", "MySQL", "Data Structures"],
-        links: {
-            github: "https://github.com/your-username/queue-manager"
-        }
-    },
-    {
-        _id: "5",
-        title: "Modern Calculatoraaaaaaaaaaaa",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
-    },
-    {
-        _id: "6",
-        title: "Modern Calculator",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
-    },
-    {
-        _id: "7",
-        title: "Queue Management Systemaaaaaaaaaaaa",
-        category: projectCategories[9],
-        description: "A robust Java-based application designed to manage customer flow.",
-        image: project_image2,
-        tags: ["Java", "MySQL", "Data Structures"],
-        links: {
-            github: "https://github.com/your-username/queue-manager"
-        }
-    },
-    {
-        _id: "8",
-        title: "Modern Calculatoraaaaaaaaaaaa",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
-    },
-    {
-        _id: "9",
-        title: "Queue Management Systemaaaaaaaaaaaa",
-        category: projectCategories[9],
-        description: "A robust Java-based application designed to manage customer flow.",
-        image: project_image2,
-        tags: ["Java", "MySQL", "Data Structures"],
-        links: {
-            github: "https://github.com/your-username/queue-manager"
-        }
-    },
-    {
-        _id: "10",
-        title: "Modern Calculatoraaaaaaaaaaaa",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
-    },
-    {
-        _id: "11",
-        title: "Modern Calculator",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
-    },
-    {
-        _id: "12",
-        title: "Queue Management Systemaaaaaaaaaaaa",
-        category: projectCategories[9],
-        description: "A robust Java-based application designed to manage customer flow.",
-        image: project_image2,
-        tags: ["Java", "MySQL", "Data Structures"],
-        links: {
-            github: "https://github.com/your-username/queue-manager"
-        }
-    },
-    {
-        _id: "13",
-        title: "Modern Calculatoraaaaaaaaaaaa",
-        category: projectCategories[1],
-        description: "A clean and functional calculator web app focused on modern UI/UX.",
-        image: project_image3,
-        tags: ["React", "JavaScript", "CSS3"],
-        links: {
-            github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-            live: "https://my-calculator.vercel.app"
-        }
+  {
+    _id: "1",
+    title: "RapidRide",
+    category: projectCategories[1],
+    description: "A real-time taxi booking application built with React Native and Firebase.",
+    image: project_image1,
+    tags: ["React Native", "Firebase", "Tailwind CSS"],
+    timeline: "2 Months (2024)",
+    role: "Fullstack Developer",
+    platform: "Cross-Platform Mobile App",
+    links: {
+      github: "https://github.com/your-username/RapidRide",
+      live: "https://rapidride-demo.vercel.app"
     }
+  },
+
+  {
+    _id: "2",
+    title: "Queue Management System",
+    category: projectCategories[9],
+    description: "A robust Java-based application designed to manage customer flow.",
+    image: project_image2,
+    tags: ["Java", "MySQL", "Data Structures"],
+    timeline: "3 Months (2024)",
+    role: "Backend Developer / Student Project",
+    platform: "Desktop Application",
+    links: {
+      github: "https://github.com/your-username/queue-manager"
+    }
+  },
+
+  {
+    _id: "3",
+    title: "Modern Calculator",
+    category: projectCategories[1],
+    description: "A clean and functional calculator web app focused on modern UI/UX.",
+    image: project_image3,
+    tags: ["React", "JavaScript", "CSS3"],
+    timeline: "1 Month (2024)",
+    role: "Frontend Developer",
+    platform: "Web Application",
+    links: {
+      github: "https://github.com/your-username/IT-Assignment-06-Calculator",
+      live: "https://my-calculator.vercel.app"
+    }
+  }
 ];
+
 
 export const experiencesData: Experience[] = [
     {
