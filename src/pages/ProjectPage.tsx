@@ -3,12 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import { projectsData } from '../assets/datas/assets';
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
+import { ProjectPopup } from '../components/ProjectPopup';
 
 const ProjectPage = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
+
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openProject = (project: any) => {
+    setSelectedProject(project);
+    setIsPopupOpen(true);
+    // Modal එක open වුණාම පිටුපස scroll වීම වැළැක්වීමට
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProject = () => {
+    setIsPopupOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   // 1. Categories List
   const quickFilters = [
@@ -49,6 +65,12 @@ const ProjectPage = () => {
   return (
     <div className="min-h-screen bg-black text-white p-5 sm:p-10 md:p-16 lg:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
+
+      <ProjectPopup 
+        project={selectedProject} 
+        isOpen={isPopupOpen} 
+        onClose={closeProject} 
+      />
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mt-20 lg:mt-3">
         
@@ -114,7 +136,7 @@ const ProjectPage = () => {
               {currentProjects.map((project) => (
                 <div
                   key={project._id}
-                  onClick={() => navigate(`/projects-details/${project._id}`)}
+                  onClick={() => openProject(project)}
                   className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-70 w-full"
                 >
                   <div className="absolute inset-0 z-0">
