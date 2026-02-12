@@ -246,50 +246,81 @@ export const toolsData: ToolsDataType = {
 export const projectsData: Project[] = [
   {
     _id: "1",
-    title: "RapidRide",
-    category: projectCategories[1],
-    description: "A real-time taxi booking application built with React Native and Firebase.",
+    title: "Tic-Tac-Toe Game",
+    category: projectCategories[19],
+    description: "I’m excited to share a project I’ve been working on—a \"Tic-Tac-Toe Game\" built using \"JavaFX\". While it may look like a simple game, the logic under the hood was a fantastic challenge to implement!",
     image: project_image1,
-    tags: ["React Native", "Firebase", "Tailwind CSS"],
+    tags: [
+            "#Java",
+            "#JavaFX",
+            "#MinimaxAlgorithm",
+            "#MVCArchitecture",
+          ],
     timeline: "2 Months (2024)",
-    role: "Fullstack Developer",
-    platform: "Cross-Platform Mobile App",
+    role: "Student at IJSE",
+    platform: "OOP",
     links: {
-      github: "https://github.com/your-username/RapidRide",
-      live: "https://rapidride-demo.vercel.app"
+      github: "https://github.com/tharu-2003/TicTacToy-Game.git"
     }
   },
 
   {
     _id: "2",
-    title: "Queue Management System",
-    category: projectCategories[9],
-    description: "A robust Java-based application designed to manage customer flow.",
+    title: "Rapid Ride",
+    category: projectCategories[13],
+    description: "I've developed RapidRide, a comprehensive desktop application designed to streamline cab service operations from booking to billing. This project showcases full-stack development principles applied to real-world business automation.",
     image: project_image2,
-    tags: ["Java", "MySQL", "Data Structures"],
+    tags: [
+          "Java",
+          "JavaFX",
+          "MySQL",
+          "#LayeredArchitecture",
+        ],
     timeline: "3 Months (2024)",
-    role: "Backend Developer / Student Project",
-    platform: "Desktop Application",
+    role: "Student at IJSE",
+    platform: "Layered",
     links: {
-      github: "https://github.com/your-username/queue-manager"
+      github: "https://github.com/tharu-2003/RapidRide.git"
+    }
+  },
+  {
+    _id: "3",
+    title: "Therapy Center",
+    category: projectCategories[13],
+    description: "I recently completed a comprehensive management platform designed to streamline operations for therapy clinics. This project focuses on improving the patient experience while making administrative tasks more efficient.",
+    image: project_image3,
+    tags: [
+          "Java",
+          "JavaFX",
+          "MySQL",
+          "#LayeredArchitecture",
+          "#Maven",
+          "#Hibernate",
+          "#jBCrypt"
+        ],
+    timeline: "2 Month (2024)",
+    role: "Student at IJSE",
+    platform: "ORM",
+    links: {
+      github: "https://github.com/tharu-2003/Therapy-Center.git"
     }
   },
 
-  {
-    _id: "3",
-    title: "Modern Calculator",
-    category: projectCategories[1],
-    description: "A clean and functional calculator web app focused on modern UI/UX.",
-    image: project_image3,
-    tags: ["React", "JavaScript", "CSS3"],
-    timeline: "1 Month (2024)",
-    role: "Frontend Developer",
-    platform: "Web Application",
-    links: {
-      github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-      live: "https://my-calculator.vercel.app"
-    }
-  }
+  // {
+  //   _id: "3",
+  //   title: "Modern Calculator",
+  //   category: projectCategories[1],
+  //   description: "A clean and functional calculator web app focused on modern UI/UX.",
+  //   image: project_image3,
+  //   tags: ["React", "JavaScript", "CSS3"],
+  //   timeline: "1 Month (2024)",
+  //   role: "Student at IJSE",
+  //   platform: "Web Application",
+  //   links: {
+  //     github: "https://github.com/your-username/IT-Assignment-06-Calculator",
+  //     live: "https://my-calculator.vercel.app"
+  //   }
+  // }
 ];
 
 
