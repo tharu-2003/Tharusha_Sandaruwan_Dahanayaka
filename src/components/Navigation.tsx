@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { 
@@ -60,53 +61,91 @@ const navItems = [
 
 export function Navigation() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const location = useLocation(); // දැනට ඉන්න path එක ගන්නවා
+  const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#14140c]/80 backdrop-blur-md">
+    <motion.nav 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-[#14140c]/80 backdrop-blur-md"
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-center py-3 md:py-4">
-          <div className="bg-[#1a1a12] rounded-full px-4 md:px-8 py-2 md:py-3 border border-[#2a2a20]">
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="bg-[#1a1a12] rounded-full px-4 md:px-8 py-2 md:py-3 border border-[#2a2a20]"
+          >
             <ul className="flex items-center gap-4 md:gap-8">
-              {navItems.map((item) => {
-
+              {navItems.map((item, index) => {
                 const isActive = location.pathname === item.to;
 
                 return (
-                  <li 
-                    key={item.label} 
+                  <motion.li 
+                    key={item.label}
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                     className="relative flex flex-col items-center"
                     onMouseEnter={() => setHoveredItem(item.label)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Link
                       to={item.to}
-                      className={`transition-all duration-300 block ${
-                        isActive ? "text-[#ed6a3e] scale-110" : "text-gray-400 hover:text-white"
-                      }`}
+                      className="block"
                     >
-                      {item.icon}
+                      <motion.div
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`transition-all duration-300 ${
+                          isActive ? "text-[#ed6a3e]" : "text-gray-400 hover:text-white"
+                        }`}
+                      >
+                        {item.icon}
+                      </motion.div>
                     </Link>
 
-                    {/* Active Indicator (Dot) */}
-                    {isActive && (
-                      <div className="absolute -bottom-1.5 w-1 h-1 bg-[#ed6a3e] rounded-full shadow-[0_0_8px_#ed6a3e]"></div>
-                    )}
+                    {/* Active Indicator (Dot) with animation */}
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div 
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="absolute -bottom-1.5 w-1 h-1 bg-[#ed6a3e] rounded-full shadow-[0_0_8px_#ed6a3e]"
+                        />
+                      )}
+                    </AnimatePresence>
 
-                    {/* Tooltip on Hover */}
-                    {hoveredItem === item.label && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 px-3 py-1.5 bg-[#2a2a20] text-white text-[10px] font-black uppercase tracking-widest rounded-lg whitespace-nowrap z-50 shadow-2xl">
-                        {item.label}
-                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#2a2a20] rotate-45"></div>
-                      </div>
-                    )}
-                  </li>
+                    {/* Tooltip on Hover with animation */}
+                    <AnimatePresence>
+                      {hoveredItem === item.label && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.8 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-4 px-3 py-1.5 bg-[#2a2a20] text-white text-[10px] font-black uppercase tracking-widest rounded-lg whitespace-nowrap z-50 shadow-2xl"
+                        >
+                          {item.label}
+                          <motion.div 
+                            initial={{ rotate: 0 }}
+                            animate={{ rotate: 45 }}
+                            className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#2a2a20]"
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.li>
                 );
               })}
             </ul>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
