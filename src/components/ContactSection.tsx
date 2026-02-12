@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 
 export function ContactSection() {
@@ -12,17 +13,42 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-1 px-4">
       {/* Title Section */}
-      <div className="mb-16">
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight uppercase">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="mb-16"
+      >
+        <motion.h2 
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight uppercase"
+        >
           LET&apos;S WORK
-        </h2>
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#2a2a20] tracking-tight leading-tight uppercase">
+        </motion.h2>
+        <motion.h2 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#2a2a20] tracking-tight leading-tight uppercase"
+        >
           TOGETHER
-        </h2>
-      </div>
+        </motion.h2>
+      </motion.div>
 
       {/* Passing props to ContactForm */}
-      <ContactForm formData={formData} setFormData={setFormData} />
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
+        <ContactForm formData={formData} setFormData={setFormData} />
+      </motion.div>
     </section>
   );
 }

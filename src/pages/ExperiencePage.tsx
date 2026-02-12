@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { experiencesData } from '../assets/datas/assets';
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
@@ -16,25 +17,21 @@ const ExperiencePage = () => {
   const openPopup = (exp: any) => {
     setSelectedExp(exp);
     setIsPopupOpen(true);
-    document.body.style.overflow = 'hidden'; // Background scroll lock
+    document.body.style.overflow = 'hidden';
   };
 
   const closePopup = () => {
     setIsPopupOpen(false);
-    document.body.style.overflow = 'unset'; // Unlock
+    document.body.style.overflow = 'unset';
   };
 
-  // 1. Filter Logic: Mode සහ Search Query දෙකම හරියටම apply කිරීම
   const filteredExperiences = useMemo(() => {
-    // මුලින්ම array එක reverse කරගන්නවා (Latest first)
     let results = [...experiencesData].reverse();
 
-    // අදියර 1: Mode එක අනුව filter කිරීම (Work/Education)
     if (activeMode !== "All") {
       results = results.filter(exp => exp.mode === activeMode);
     }
 
-    // අදියර 2: Search Query එකක් තිබේ නම් එයින් filter කිරීම
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       results = results.filter(exp => 
@@ -46,9 +43,8 @@ const ExperiencePage = () => {
     }
 
     return results;
-  }, [searchQuery, activeMode]); // Dependencies දෙකම ඇතුළත් කළා
+  }, [searchQuery, activeMode]);
 
-  // 2. Pagination Calculations
   const totalPages = Math.ceil(filteredExperiences.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -72,14 +68,38 @@ const ExperiencePage = () => {
         
         {/* LEFT SIDE: Title & Search */}
         <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit">
-          <h1 className="text-5xl sm:text-7xl lg:text-7xl font-black tracking-tighter leading-none uppercase mb-10">
-            MY <br />
-            <span className="text-5xl sm:text-7xl lg:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase">JOURNEY</span>
-          </h1>
+          {/* Title with staggered animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h1 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-5xl sm:text-7xl lg:text-7xl font-black tracking-tighter leading-none uppercase mb-2"
+            >
+              MY
+            </motion.h1>
+            <motion.span 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-5xl sm:text-7xl lg:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block mb-10"
+            >
+              JOURNEY
+            </motion.span>
+          </motion.div>
 
           {/* Search Box */}
-          <div className="mb-8">
-             <input 
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mb-8"
+          >
+            <input 
               type="text"
               placeholder="Search by year, company or role..."
               value={searchQuery}
@@ -89,40 +109,60 @@ const ExperiencePage = () => {
               }}
               className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
             />
-          </div>
+          </motion.div>
 
           {/* Quick Filter Buttons */}
-            <div className="flex flex-wrap gap-2 max-w-md overflow-x-auto no-scrollbar pb-2">
-              {["All", "Work", "Education"].map((mode) => (
-                <button
-                  key={mode}
-                  onClick={() => {
-                    setActiveMode(mode as any); 
-                    setCurrentPage(1)
-                  }}
-                  className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
-                    activeMode === mode
-                      ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20"
-                      : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:border-gray-400 hover:text-gray-300"
-                  }`}
-                >
-                  {mode}
-                </button>
-              ))}
-            </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-wrap gap-2 max-w-md overflow-x-auto no-scrollbar pb-2"
+          >
+            {["All", "Work", "Education"].map((mode, index) => (
+              <motion.button
+                key={mode}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  setActiveMode(mode as any); 
+                  setCurrentPage(1)
+                }}
+                className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
+                  activeMode === mode
+                    ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20"
+                    : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:border-gray-400 hover:text-gray-300"
+                }`}
+              >
+                {mode}
+              </motion.button>
+            ))}
+          </motion.div>
           
-          <p className="mt-6 text-gray-500 text-sm font-medium uppercase tracking-widest mb-10">
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="mt-6 text-gray-500 text-sm font-medium uppercase tracking-widest mb-10"
+          >
             {filteredExperiences.length} Milestones Recorded
-          </p>
+          </motion.p>
 
-          {/* Pagination CALL (Desktop View) */}
-          <div className="hidden lg:block">
+          {/* Pagination (Desktop View) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="hidden lg:block"
+          >
             <Pagination 
               currentPage={currentPage} 
               totalPages={totalPages} 
               setCurrentPage={setCurrentPage} 
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* RIGHT SIDE: Experience List */}
@@ -130,8 +170,12 @@ const ExperiencePage = () => {
           {currentItems.length > 0 ? (
             <div className="grid grid-cols-1 gap-8">
               {currentItems.map((exp, index) => (
-                <div
+                <motion.div
                   key={exp._id}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                  whileHover={{ scale: 1.02 }}
                   onClick={() => openPopup(exp)}
                   className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#0a0a0a] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-65 w-full max-w-137.5"
                 >
@@ -140,57 +184,98 @@ const ExperiencePage = () => {
 
                   <div className="absolute inset-0 p-8 flex flex-col justify-between z-20">
                     <div className="flex justify-between items-start">
-                      <div className="px-3 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/5">
+                      <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.15 + 0.2 }}
+                        className="px-3 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/5"
+                      >
                         <span className="text-[#ed6a3e] text-[10px] font-black tracking-widest uppercase">
                           {exp.period}
                         </span>
-                      </div>
-                      <div className="text-3xl font-black text-[#1a1a12] stroke-[#2a2a20] stroke-1">
+                      </motion.div>
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
+                        className="text-3xl font-black text-[#1a1a12] stroke-[#2a2a20] stroke-1"
+                      >
                         0{indexOfFirstItem + index + 1}
-                      </div>
+                      </motion.div>
                     </div>
 
-                    <div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
+                    >
                       <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter group-hover:text-[#ed6a3e] transition-colors duration-500">
                         {exp.company}
                       </h3>
                       <p className="text-gray-400 font-medium italic text-sm sm:text-base">
                         {exp.role}
                       </p>
-                    </div>
+                    </motion.div>
 
                     <div className="flex justify-between items-end">
-                      <div className="flex flex-wrap gap-2">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.15 + 0.4 }}
+                        className="flex flex-wrap gap-2"
+                      >
                         {exp.skills.map((skill, i) => (
-                          <span key={i} className="text-[10px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20]">
+                          <motion.span 
+                            key={i}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.15 + 0.5 + i * 0.05 }}
+                            className="text-[10px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20]"
+                          >
                             {skill} {i !== exp.skills.length - 1 ? " |" : ""}
-                          </span>
+                          </motion.span>
                         ))}
-                      </div>
-                      <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#ed6a3e] transition-all">
+                      </motion.div>
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: index * 0.15 + 0.4 }}
+                        whileHover={{ scale: 1.1, rotate: 45 }}
+                        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#ed6a3e] transition-all"
+                      >
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 border border-dashed border-[#2a2a20] rounded-3xl">
-               <p className="text-gray-600 uppercase tracking-widest font-bold">No results found.</p>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-center py-20 border border-dashed border-[#2a2a20] rounded-3xl"
+            >
+              <p className="text-gray-600 uppercase tracking-widest font-bold">No results found.</p>
+            </motion.div>
           )}
 
-          {/* Pagination CALL (Mobile View) */}
-          <div className="lg:hidden mt-12 mb-10">
+          {/* Pagination (Mobile View) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="lg:hidden mt-12 mb-10"
+          >
             <Pagination 
               currentPage={currentPage} 
               totalPages={totalPages} 
               setCurrentPage={setCurrentPage} 
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

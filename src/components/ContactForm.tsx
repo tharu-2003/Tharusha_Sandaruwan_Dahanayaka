@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 // TypeScript interface එකක් මඟින් props වල වර්ගය (Type) නිර්වචනය කිරීම
 interface ContactFormProps {
@@ -28,44 +29,65 @@ const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
     <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Name */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
           <label className="block text-xs sm:text-sm text-gray-500 mb-2 uppercase tracking-widest">Name</label>
-          <input
+          <motion.input
             required
             type="text"
             placeholder="Your Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
+            transition={{ duration: 0.2 }}
             className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors"
           />
-        </div>
+        </motion.div>
 
         {/* Email */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
           <label className="block text-xs sm:text-sm text-gray-500 mb-2 uppercase tracking-widest">Email</label>
-          <input
+          <motion.input
             required
             type="email"
             placeholder="Your@email.com"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
+            transition={{ duration: 0.2 }}
             className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Budget */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+      >
         <label className="block text-xs sm:text-sm text-gray-500 mb-2 uppercase tracking-widest">
           Budget (Select or Type your own)
         </label>
         <div className="relative">
-          <input
+          <motion.input
             list="budget-options"
             id="budget"
             placeholder="Select range or type amount..."
             value={formData.budget}
             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+            whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
+            transition={{ duration: 0.2 }}
             className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors appearance-none"
           />
           <datalist id="budget-options">
@@ -82,27 +104,40 @@ const ContactForm: React.FC<ContactFormProps> = ({ formData, setFormData }) => {
             </svg>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Message */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.4 }}
+      >
         <label className="block text-xs sm:text-sm text-gray-500 mb-2 uppercase tracking-widest">Message</label>
-        <textarea
+        <motion.textarea
           required
           rows={5}
           placeholder="Tell me about your project"
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          whileFocus={{ scale: 1.02, borderColor: "#ed6a3e" }}
+          transition={{ duration: 0.2 }}
           className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-colors resize-none"
         />
-      </div>
+      </motion.div>
 
-      <button
+      <motion.button
         type="submit"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.5 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
         className="w-full bg-[#ed6a3e] hover:bg-[#d85a2e] text-white font-bold py-4 rounded-xl transition-all duration-300 uppercase tracking-widest"
       >
         Send Message
-      </button>
+      </motion.button>
     </form>
   );
 }
