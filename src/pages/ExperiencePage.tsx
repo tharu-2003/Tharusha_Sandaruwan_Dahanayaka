@@ -104,7 +104,7 @@ const ExperiencePage = () => {
 
           {/* Quick Filter Buttons */}
           <motion.div className="flex flex-wrap gap-2 max-w-md overflow-x-auto no-scrollbar pb-2">
-            {["All", "Work", "Education"].map((mode, index) => (
+            {["All", "Work", "Education"].map((mode) => (
               <motion.button
                 key={mode}
                 whileHover={{ scale: 1.05 }}

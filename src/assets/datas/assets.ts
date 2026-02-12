@@ -16,6 +16,7 @@ import project_image13 from "../projectImages/project_image13.png";
 import project_image14 from "../projectImages/project_image14.png";
 import project_image15 from "../projectImages/project_image15.png";
 import project_image16 from "../projectImages/project_image16.png";
+import project_image17 from "../projectImages/project_image17.png";
 
 
 import reactIcon from "../images/react-icon.svg";
@@ -171,6 +172,7 @@ export const assets = {
   project_image14,
   project_image15,
   project_image16,
+  project_image17,
 
 
   // Frontend Icons
