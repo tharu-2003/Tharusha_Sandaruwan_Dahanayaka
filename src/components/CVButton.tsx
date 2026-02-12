@@ -7,10 +7,10 @@ const CVButton = () => {
    
     <button
       onClick={handleViewCV}
-      className="group relative flex items-center gap-3 px-2 py-3 bg-[#1a1a12] border border-[#4f4f48] rounded-xl hover:border-[#ed6a3e]/50 transition-all duration-500 overflow-hidden w-full max-w-[190px] sm:max-w-[210px] active:scale-95 shadow-lg shadow-black/20"
+      className="group relative flex items-center gap-3 px-2 py-3 bg-[#1a1a12] border border-[#4f4f48] rounded-xl hover:border-[#ed6a3e]/50 transition-all duration-500 overflow-hidden w-full max-w-47.5 sm:max-w-52.5 active:scale-95 shadow-lg shadow-black/20"
     >
       {/* Background Hover Glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#ed6a3e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-linear-to-r from-[#ed6a3e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       {/* Small Icon Container */}
       <div className="relative w-8 h-8 shrink-0 rounded-lg bg-black border border-[#38382c] flex items-center justify-center text-[#ed6a3e] group-hover:bg-[#ed6a3e] group-hover:text-white transition-all duration-500">
