@@ -126,12 +126,12 @@ export const projectCategories = [
 
   // Web Development
   "Web", // index 5                         ////
-  "Frontend", // index 6
-  "Full Stack", // index 7
+  "Frontend", // index 6                              ///
+  "Full Stack", // index 7                            ///
   "Progressive Web App (PWA)", // index 8
 
   // Backend / Server
-  "Backend", // index 9
+  "Backend", // index 9                               ///
   "REST API Service", // index 10
   "Microservices Project", // index 11
   "Cloud Backend", // index 12
@@ -268,7 +268,6 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/TicTacToy-Game.git"
     }
   },
-
   {
     _id: "2",
     title: "Rapid Ride",
@@ -276,9 +275,9 @@ export const projectsData: Project[] = [
     description: "I've developed RapidRide, a comprehensive desktop application designed to streamline cab service operations from booking to billing. This project showcases full-stack development principles applied to real-world business automation.",
     image: project_image2,
     tags: [
-          "Java",
-          "JavaFX",
-          "MySQL",
+          "#Java",
+          "#JavaFX",
+          "#MySQL",
           "#LayeredArchitecture",
         ],
     timeline: "3 Months (2024)",
@@ -292,13 +291,13 @@ export const projectsData: Project[] = [
     _id: "3",
     title: "Therapy Center",
     category: projectCategories[13],
-    description: "I recently completed a comprehensive management platform designed to streamline operations for therapy clinics. This project focuses on improving the patient experience while making administrative tasks more efficient.",
+    description: "A comprehensive management system designed for therapy centers to handle patient appointments, therapist schedules, and treatment records efficiently. This system streamlines the administrative workflow and improves patient management.",
     image: project_image3,
     tags: [
-          "Java",
-          "JavaFX",
-          "MySQL",
-          "#LayeredArchitecture",
+          "#Java",
+          "#JavaFX",
+          "#MySQL",
+          "#Layered",
           "#Maven",
           "#Hibernate",
           "#jBCrypt"
@@ -310,22 +309,173 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/Therapy-Center.git"
     }
   },
-
-  // {
-  //   _id: "3",
-  //   title: "Modern Calculator",
-  //   category: projectCategories[1],
-  //   description: "A clean and functional calculator web app focused on modern UI/UX.",
-  //   image: project_image3,
-  //   tags: ["React", "JavaScript", "CSS3"],
-  //   timeline: "1 Month (2024)",
-  //   role: "Student at IJSE",
-  //   platform: "Web Application",
-  //   links: {
-  //     github: "https://github.com/your-username/IT-Assignment-06-Calculator",
-  //     live: "https://my-calculator.vercel.app"
-  //   }
-  // }
+  {
+    _id: "4",
+    title: "Complaint System",
+    category: projectCategories[5],
+    description: "A web-based application developed to manage and track employee complaints within a municipal IT division. It supports role-based access for Employees and Admins, allowing efficient complaint submission, status tracking, and resolution management.",
+    image: project_image4,
+    tags: [
+      "#Jakarta EE", 
+      "#JSP", 
+      "#Servlets", 
+      "#MySQL", 
+      "#Apache Tomcat", 
+      "#MVC", 
+      "#Maven", 
+      "#Java"
+    ],
+    timeline: "1 Month (2024)",
+    role: "Student at IJSE",
+    platform: "JSP",
+    links: {
+      github: "https://github.com/tharu-2003/Complaint-Management-System.git",
+      live: "https://www.youtube.com/watch?v=7zMqkyEsu80"
+    }
+  },
+  {
+    _id: "5",
+    title: "Internet Technologies Lessons Site",
+    category: projectCategories[5],
+    description: "An educational platform designed to provide structured lessons on Internet Technologies. It features a clean, responsive interface to help students and developers learn web concepts, protocols, and modern development practices effectively.",
+    image: project_image5,
+    tags: [
+      "#HTML", 
+      "#CSS", 
+      "#JavaScript", 
+      "#Web Development", 
+      "#Education", 
+      "#Responsive Design",
+      "#Firebase"
+    ],
+    timeline: "2024 - 2025",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/Internet-Technologies-Lessons-Site.git",
+      live: "https://internet-technologies-72.firebaseapp.com/"
+    }
+  },
+  {
+    _id: "6",
+    title: "Interactive Web Calculator",
+    category: projectCategories[5],
+    description: "A functional and responsive web-based calculator built to handle basic arithmetic operations. This project focuses on DOM manipulation, event handling in JavaScript, and sleek UI design using CSS.",
+    image: project_image6,
+    tags: [
+      "#HTML", 
+      "#CSS", 
+      "#JavaScript", 
+      "#DOM Manipulation",  
+      "#Responsive Design",
+      "#Frontend",
+      "#Firebase"
+    ],
+    timeline: "1 Week (2024)",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/IT-Assignment-06-Calculator.git?authuser=0",
+      live: "https://assignment-06-calculator.web.app/?authuser=0"
+    }
+  },
+  {
+    _id: "7",
+    title: "Web-Based POS System",
+    category: projectCategories[5],
+    description: "A comprehensive Point of Sale system developed to manage inventory, customer details, and sales transactions. This project demonstrates CRUD operations using jQuery AJAX, JavaScript, and local storage/database integration with a professional user interface.",
+    image: project_image7,
+    tags: [
+      "#HTML", 
+      "#CSS", 
+      "#JavaScript",
+      "#MVC", 
+      "#DOM Manipulation",  
+      "#Responsive Design",
+      "#SPA",
+      "#Frontend",
+      "$CRUD Operations",
+      "#Firebase"
+    ],
+    timeline: "1 Week (2024)",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/Assignment-08-POS.git?authuser=0",
+      live: "https://assignment-08--pos.web.app/?authuser=0"
+    }
+  },
+  {
+    _id: "8",
+    title: "2D Highway Racer Game",
+    category: projectCategories[19],
+    description: "A fast-paced 2D arcade-style racing game developed using pure JavaScript. The game features collision detection, score tracking, and increasing difficulty levels, providing an engaging user experience with smooth animations.",
+    image: project_image8,
+    tags: [
+      "#JavaScript",
+      "#HTML", 
+      "#CSS", 
+      "#Game Logic",  
+      "#Responsive Design",
+      "#Frontend",
+      "#Firebase"
+    ],
+    timeline: "2 Week (2024)",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/CarGame.git",
+      live: "https://assignment-09-c43f8.web.app/?authuser=0"
+    }
+  },
+  {
+    _id: "9",
+    title: "Sri Lankan Foods Exploration Site",
+    category: projectCategories[6],
+    description: "A visually appealing website dedicated to showcasing the rich culinary heritage of Sri Lanka. It features various traditional recipes and food categories, emphasizing responsive design and interactive elements to provide a smooth user experience.",
+    image: project_image9,
+    tags: [
+      "#HTML", 
+      "#CSS", 
+      "#JavaScript",
+      "#UI/UX",  
+      "#Responsive Design",
+      "#Frontend",
+      "#Firebase"
+    ],
+    timeline: "2024 - 2025",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/Sri-Lankan-Foods.git?authuser=0",
+      live: "https://recipe-website-a3813.web.app/?authuser=0"
+    }
+  },
+  {
+    _id: "10",
+    title: "Cinnamon Life Luxury Apartments Clone",
+    category: projectCategories[6],
+    description: "A visually stunning web project that replicates the premium and luxury aesthetic of the Cinnamon Life website. This project focuses on high-quality image presentation, elegant typography, and smooth layouts to showcase luxury real estate and lifestyle services.",
+    image: project_image10,
+    tags: [
+      "#HTML", 
+      "#CSS", 
+      "#Bootstrap",
+      "#JavaScript",
+      "#UI/UX",  
+      "#Responsive Design",
+      "#Frontend",
+      "#Luxury Aesthetic",
+      "#Firebase"
+    ],
+    timeline: "2024 - 2025",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/Cinnamon-Life.git?authuser=0",
+      live: "https://cinnamon-life.web.app/?authuser=0"
+    }
+  },
 ];
 
 
