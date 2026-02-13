@@ -1,5 +1,39 @@
 // ----------- IMPORTS -----------
 
+// Frontend Icons
+import reactIcon from "../images/react-icon.svg";
+import expoIcon from "../images/expo-icon.png";
+import typescriptIcon from "../images/typescript-icon.svg";
+import javascriptIcon from "../images/javascript-icon.svg";
+import tailwindIcon from "../images/tailwind-icon.svg";
+import bootstrapIcon from "../images/bootstrap-icon.svg";
+import htmlIcon from "../images/html-icon.svg";
+import cssIcon from "../images/css-icon.svg";
+import reduxIcon from "../images/redux-icon.svg";
+import jqueryIcon from "../images/jquery-icon.svg";
+
+// Backend Icons
+import javaIcon from "../images/java-icon.svg";
+import springIcon from "../images/spring-icon.svg";
+import nodeIcon from "../images/nodejs-icon.svg";
+import expressIcon from "../images/express-icon.svg";
+import pythonIcon from "../images/python-icon.svg";
+import mongodbIcon from "../images/mongodb-icon.svg";
+import mysqlIcon from "../images/mysql-icon.svg";
+import dockerIcon from "../images/docker-icon.svg";
+import postmanIcon from "../images/postman-icon.svg";
+
+// Tools Icons
+import ideaIcon from "../images/idea-icon.svg";
+import vscodeIcon from "../images/vscode-icon.svg";
+import figmaIcon from "../images/figma-icon.svg";
+import gitIcon from "../images/git-icon.svg";
+import githubIcon from "../images/github-icon.svg";
+import canvaIcon from "../images/canva-icon.svg";
+
+
+
+// Project Images
 import project_image1 from "../projectImages/project_image1.png";
 import project_image2 from "../projectImages/project_image2.png";
 import project_image3 from "../projectImages/project_image3.png";
@@ -19,34 +53,11 @@ import project_image16 from "../projectImages/project_image16.png";
 import project_image17 from "../projectImages/project_image17.png";
 
 
-import reactIcon from "../images/react-icon.svg";
-import expoIcon from "../images/expo-icon.png";
-import typescriptIcon from "../images/typescript-icon.svg";
-import javascriptIcon from "../images/javascript-icon.svg";
-import tailwindIcon from "../images/tailwind-icon.svg";
-import bootstrapIcon from "../images/bootstrap-icon.svg";
-import htmlIcon from "../images/html-icon.svg";
-import cssIcon from "../images/css-icon.svg";
-import reduxIcon from "../images/redux-icon.svg";
-import jqueryIcon from "../images/jquery-icon.svg";
 
-import javaIcon from "../images/java-icon.svg";
-import springIcon from "../images/spring-icon.svg";
-import nodeIcon from "../images/nodejs-icon.svg";
-import expressIcon from "../images/express-icon.svg";
-import pythonIcon from "../images/python-icon.svg";
-import mongodbIcon from "../images/mongodb-icon.svg";
-import mysqlIcon from "../images/mysql-icon.svg";
-import dockerIcon from "../images/docker-icon.svg";
-import postmanIcon from "../images/postman-icon.svg";
-
-import ideaIcon from "../images/idea-icon.svg";
-import vscodeIcon from "../images/vscode-icon.svg";
-import figmaIcon from "../images/figma-icon.svg";
-import gitIcon from "../images/git-icon.svg";
-import githubIcon from "../images/github-icon.svg";
-import canvaIcon from "../images/canva-icon.svg";
-
+// Experience Images
+import experience_image1 from "../experienceImages/experience_image1.png";
+// import experience_image2 from "../experienceImages/experience_image2.png";
+// import experience_image3 from "../experienceImages/experience_image3.png";
 
 // ---------- TYPES ----------
 
@@ -67,6 +78,7 @@ export interface Experience {
     company: string;
     period: string;
     description: string;
+    image: string;
     skills: string[];
     location: string;
     industry: string;
@@ -173,6 +185,12 @@ export const assets = {
   project_image15,
   project_image16,
   project_image17,
+
+
+  // Experience Images
+  experience_image1,
+  // experience_image2,
+  // experience_image3,
 
 
   // Frontend Icons
@@ -678,6 +696,7 @@ export const experiencesData: Experience[] = [
     company: "IJSE - Institute of Software Engineering",
     period: "2024 - Present",
     description: "Focusing on Full-Stack Development, Architecture, and industry-level coding standards. Currently in the second year of the GDSE program.",
+    image: experience_image1,
     skills: ["Java", "MySQL", "Architecture"],
     location: "Colombo, Sri Lanka",
     industry: "Education",
@@ -692,6 +711,7 @@ export const experiencesData: Experience[] = [
     company: "Personal Projects",
     period: "2025 - 2026",
     description: "Developed various applications including 'RapidRide' (Taxi Booking App) and data analysis tools using modern tech stacks.",
+    image: experience_image1,
     skills: ["React", "Node.js", "Firebase", "Tailwind CSS"],
     location: "Remote",
     industry: "Software Development",
@@ -706,18 +726,16 @@ export const experiencesData: Experience[] = [
     company: "Open Source / Freelance",
     period: "2025 - Present",
     description: "Specializing in building cross-platform mobile applications with React Native and Expo, focusing on performance and UI/UX.",
+    image: experience_image1,
     skills: ["React Native", "Expo", "TypeScript"],
     location: "Remote",
     industry: "Software Development",
     mode: "Work",
-    priority: "High",
+    priority: "Low",
     workModeStatements: "Leading technical implementation and system architecture.",
     links: "https://github.com/tharusha/mobile-projects"
   }
 ];
-
-
-
 
 
 export const contentData: Content[] = [
@@ -762,6 +780,7 @@ export const contentData: Content[] = [
         readTime: "8min watch",
         link: "https://youtu.be/rTyLz8O6dmg?si=iDrkq7UKOycY797F",
     },
+
 ];
 
 const JOURNEY_START_DATE = new Date("2024-01-01");
