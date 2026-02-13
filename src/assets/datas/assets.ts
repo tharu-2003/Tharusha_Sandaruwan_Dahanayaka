@@ -59,6 +59,11 @@ import experience_image1 from "../experienceImages/experience_image1.png";
 // import experience_image2 from "../experienceImages/experience_image2.png";
 // import experience_image3 from "../experienceImages/experience_image3.png";
 
+//Content Images
+import content_image1 from "../contentImages/content_images1.webp";
+
+
+
 // ---------- TYPES ----------
 
 export interface Content {
@@ -68,6 +73,7 @@ export interface Content {
     date: string;
     category: "Video" | "Post"; 
     link: string;
+    noteImage?: string;
     watchingTime?: string; 
     readTime?: string;    
 }
@@ -191,6 +197,10 @@ export const assets = {
   experience_image1,
   // experience_image2,
   // experience_image3,
+
+
+  // Content Images
+  content_image1,
 
 
   // Frontend Icons
@@ -749,6 +759,7 @@ export const contentData: Content[] = [
         category: "Post",
         watchingTime: "60min read",
         link: "https://medium.com/@sandaruwantharusha968/mastering-spring-security-with-jwt-your-ultimate-guide-to-bulletproof-authentication-4c6f36ac9877",
+        noteImage: content_image1
     },
     {
         _id: "2",
