@@ -7,6 +7,18 @@ interface ContentPopupProps {
   onClose: () => void;
 }
 
+export interface Content {
+    _id: string; 
+    title: string;
+    description: string;
+    date: string;
+    category: "Video" | "Post"; 
+    link: string;
+    noteImage?: string; // Image for Posts
+    watchingTime?: string; 
+    readTime?: string;    
+}
+
 export const ContentPopup = ({ content, isOpen, onClose }: ContentPopupProps) => {
   if (!content) return null;
 
@@ -88,136 +100,55 @@ export const ContentPopup = ({ content, isOpen, onClose }: ContentPopupProps) =>
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
-                      
-                      {/* Overlay gradient for non-video fallback */}
                       <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/5 via-transparent to-transparent pointer-events-none" />
                     </div>
                   ) : (
-                    <div className="w-full h-full relative bg-linear-to-br from-[#1a1a15] to-[#0a0a0a] flex items-center justify-center">
-                      {/* Decorative content icon - moved to background */}
-                      <motion.div
-                        animate={{ 
-                          opacity: [0.05, 0.1, 0.05],
-                          scale: [1, 1.05, 1],
-                        }}
-                        transition={{ duration: 5, repeat: Infinity }}
-                        className="absolute text-[200px] text-[#ed6a3e]/10"
-                      >
-                        <svg className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" />
-                        </svg>
-                      </motion.div>
-                      
-                      {/* Read Content Button */}
-                      <div className="w-full h-full relative bg-linear-to-br from-[#1a1a15] to-[#0a0a0a] flex items-center justify-center">
-                        {/* Decorative content icon - moved to background */}
+                    /* Post එකක් නම් මෙතන ක්‍රියාත්මක වේ */
+                    <div className="w-full h-full relative bg-[#0a0a0a] flex items-center justify-center group/media">
+                      {/* Background Note Image */}
+                      {content.noteImage ? (
+                        <motion.img 
+                          initial={{ scale: 1.1, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          src={content.noteImage}
+                          alt={content.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-105"
+                        />
+                      ) : (
+                        /* Image එකක් නැතිනම් පෙන්වන Icon එක */
                         <motion.div
-                          animate={{ 
-                            opacity: [0.05, 0.1, 0.05],
-                            scale: [1, 1.05, 1],
-                          }}
+                          animate={{ opacity: [0.05, 0.1, 0.05] }}
                           transition={{ duration: 5, repeat: Infinity }}
                           className="absolute text-[200px] text-[#ed6a3e]/10"
                         >
-                          <svg className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
+                          <svg fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" />
                           </svg>
                         </motion.div>
-                        
-                        {/* Read Content Button */}
-                        <motion.a
-                          href={content.link}
-                          target={isVideo ? "_blank" : "_self"}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="group relative z-10 flex items-center justify-between w-full max-w-55 px-4 py-4 bg-[#1a1a12] border border-[#38382c] rounded-2xl hover:border-[#ed6a3e]/50 transition-all duration-500 overflow-hidden shadow-xl active:scale-95"
-                        >
-                          {/* Hover එකේදී එන පසුබිම් Glow එක */}
-                          <div className="absolute inset-0 bg-linear-to-r from-[#ed6a3e]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          
-                          {/* Shine Animation Effect */}
-                          <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                          
-                          <span className="relative z-10 flex items-center gap-3 w-full">
-                            {/* Icon Container - CVButton style */}
-                            <div className="relative w-9 h-9 shrink-0 rounded-xl bg-black border border-[#38382c] flex items-center justify-center text-[#ed6a3e] group-hover:bg-[#ed6a3e] group-hover:text-white transition-all duration-500 shadow-lg">
-                              <svg 
-                                className="w-5 h-5 transition-transform duration-500 group-hover:rotate-12" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                strokeWidth="2.5" 
-                                viewBox="0 0 24 24"
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                              </svg>
-                            </div>
-                            
-                            {/* Text Section */}
-                            <div className="relative text-left min-w-0 flex-1">
-                              <span className="block text-[9px] font-black uppercase tracking-[0.25em] text-[#ed6a3e] leading-none mb-1 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-1 group-hover:translate-y-0">
-                                Article
-                              </span>
-                              <span className="block text-white font-bold text-sm uppercase tracking-tight leading-none group-hover:translate-x-1 transition-transform duration-300">
-                                Read Content
-                              </span>
-                            </div>
-                            
-                            {/* Right Arrow - Hover එකේදී පමණක් ලස්සනට මතු වේ */}
-                            <div className="relative ml-auto opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#ed6a3e]">
-                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                              </svg>
-                            </div>
-                          </span>
-                        </motion.a>
-                        
-                        {/* Multi-layer overlay */}
-                        <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent lg:hidden" />
-                        <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/5 via-transparent to-transparent" />
-                        
-                        {/* Corner grid pattern */}
-                        <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
-                          <div className="grid grid-cols-8 gap-1 h-full">
-                            {[...Array(64)].map((_, i) => (
-                              <motion.div
-                                key={i}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: [0, 0.5, 0] }}
-                                transition={{ duration: 2, delay: i * 0.02, repeat: Infinity }}
-                                className="w-full h-full bg-[#ed6a3e] rounded-sm"
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Multi-layer overlay */}
-                      <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent lg:hidden" />
-                      <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/5 via-transparent to-transparent" />
-                      
-                      {/* Corner grid pattern */}
-                      <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
-                        <div className="grid grid-cols-8 gap-1 h-full">
-                          {[...Array(64)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: [0, 0.5, 0] }}
-                              transition={{ duration: 2, delay: i * 0.02, repeat: Infinity }}
-                              className="w-full h-full bg-[#ed6a3e] rounded-sm"
-                            />
+                      )}
+
+                      {/* Overlay Gradients */}
+                      <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/10 via-transparent to-transparent" />
+
+
+                      {/* Corner Grid Decoration */}
+                      <div className="absolute bottom-6 left-6 w-20 h-20 opacity-20 pointer-events-none">
+                        <div className="grid grid-cols-4 gap-1 h-full">
+                          {[...Array(16)].map((_, i) => (
+                            <div key={i} className="w-1 h-1 bg-[#ed6a3e] rounded-full" />
                           ))}
                         </div>
                       </div>
+
+                      {/* Animated Scan Line */}
+                      <motion.div
+                        animate={{ y: ['-100%', '200%'] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        className="absolute inset-x-0 h-32 bg-linear-to-b from-transparent via-[#ed6a3e]/10 to-transparent pointer-events-none"
+                      />
                     </div>
                   )}
-                  
-                  {/* Animated scan line */}
-                  <motion.div
-                    animate={{ y: ['-100%', '200%'] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
-                    className="absolute inset-x-0 h-32 bg-linear-to-b from-transparent via-white/5 to-transparent pointer-events-none"
-                  />
                 </div>
 
                 {/* RIGHT: Essential Info */}
