@@ -28,6 +28,8 @@ const ProjectPage = () => {
   const quickFilters = [
     { label: "All", value: "" },
     { label: "Web", value: "Web" },
+    { label: "Frontend", value: "Frontend" },
+    { label: "Full Stack", value: "Full Stack" },
     { label: "Mobile", value: "Mobile" },
     { label: "Desktop", value: "Desktop" },
     { label: "Backend", value: "Backend" },
