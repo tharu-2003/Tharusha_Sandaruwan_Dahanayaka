@@ -119,25 +119,25 @@ export const projectCategories = [
   "All", // index 0
 
   // Mobile Development
-  "Mobile", // index 1                        ////
+  "Mobile", // index 1                      ////
   "Cross Platform App", // index 2
   "Android", // index 3
   "iOS", // index 4
 
   // Web Development
   "Web", // index 5                         ////
-  "Frontend", // index 6                              ///
-  "Full Stack", // index 7                            ///
+  "Frontend", // index 6                    ////
+  "Full Stack", // index 7                  ////
   "Progressive Web App (PWA)", // index 8
 
   // Backend / Server
-  "Backend", // index 9                               ///
+  "Backend", // index 9                     ////
   "REST API Service", // index 10
   "Microservices Project", // index 11
   "Cloud Backend", // index 12
 
   // Desktop / Software
-  "Desktop", // index 13                        ////
+  "Desktop", // index 13                    ////
   "Java", // index 14
   "Enterprise System", // index 15
 
@@ -320,6 +320,8 @@ export const projectsData: Project[] = [
       "#JSP", 
       "#Servlets", 
       "#MySQL", 
+      "Html",
+      "CSS",
       "#Apache Tomcat", 
       "#MVC", 
       "#Maven", 
@@ -327,7 +329,7 @@ export const projectsData: Project[] = [
     ],
     timeline: "1 Month (2024)",
     role: "Student at IJSE",
-    platform: "JSP",
+    platform: "Jakarta EE",
     links: {
       github: "https://github.com/tharu-2003/Complaint-Management-System.git",
       live: "https://www.youtube.com/watch?v=7zMqkyEsu80"
@@ -441,7 +443,8 @@ export const projectsData: Project[] = [
       "#UI/UX",  
       "#Responsive Design",
       "#Frontend",
-      "#Firebase"
+      "#Firebase",
+      "#Food Exploration"
     ],
     timeline: "2024 - 2025",
     role: "Student at IJSE",
@@ -458,9 +461,9 @@ export const projectsData: Project[] = [
     description: "A visually stunning web project that replicates the premium and luxury aesthetic of the Cinnamon Life website. This project focuses on high-quality image presentation, elegant typography, and smooth layouts to showcase luxury real estate and lifestyle services.",
     image: project_image10,
     tags: [
+      "#Bootstrap",
       "#HTML", 
       "#CSS", 
-      "#Bootstrap",
       "#JavaScript",
       "#UI/UX",  
       "#Responsive Design",
@@ -476,6 +479,173 @@ export const projectsData: Project[] = [
       live: "https://cinnamon-life.web.app/?authuser=0"
     }
   },
+  {
+    _id: "11",
+    title: "Discover Sri Lanka",
+    category: projectCategories[6],
+    description: "A comprehensive travel platform designed to promote Sri Lankan tourism. This project features high-quality destination showcases, optimized SEO meta tags for better search visibility, and a fully responsive interface to provide travelers with a seamless experience across all devices.",
+    image: project_image11,
+    tags: [
+      "#HTML", 
+      "#CSS", 
+      "#JavaScript",
+      "#UI/UX",  
+      "#Responsive Design",
+      "#Frontend",
+      "#Firebase",
+      "#SEO Optimization",
+      "#Travel Platform"
+    ],
+    timeline: "2024 - 2025",
+    role: "Student at IJSE",
+    platform: "IT",
+    links: {
+      github: "https://github.com/tharu-2003/Discover-Sri-Lanka.git",
+      live: "https://discover-sri-lanka-30fcc.web.app"
+    }
+  },
+  {
+    _id: "12",
+    title: "Multi-Client Terminal Chat Application",
+    category: projectCategories[9],
+    description: "A real-time terminal-based chat application developed using Java Socket Programming. It enables multiple clients to connect to a central server and exchange messages simultaneously, demonstrating key concepts in multi-threading and network communication.",
+    image: project_image12,
+    tags: [
+      "#Java", 
+      "#Socket Programming", 
+      "#Multi-threading", 
+      "#Client-Server Architecture", 
+      "#Terminal UI",
+      "#Networking",
+      "#Chat Application"
+    ],
+    timeline: "January 2025",
+    role: "Student at IJSE",
+    platform: "INP",
+    links: {
+      github: "https://github.com/tharu-2003/MultiClient-Terminal-Project-.git"
+    }
+  },
+  {
+    _id: "13",
+    title: "Real-Time Group Chat Application",
+    category: projectCategories[13],
+    description: "A feature-rich group chat application developed using Java Sockets and JavaFX. It allows multiple users to join a common chat room, send real-time text messages, and share images. The application utilizes multi-threading to handle concurrent client connections seamlessly.",
+    image: project_image13,
+    tags: [
+      "#Java", 
+      "JavaFX",
+      "#Socket Programming", 
+      "#Multi-threading", 
+      "#Client-Server Architecture", 
+      "#Networking",
+      "#Chat Application",
+      "#Desktop App"
+    ],
+    timeline: "February 2025",
+    role: "Student at IJSE",
+    platform: "INP",
+    links: {
+      github: "https://github.com/tharu-2003/Group-Chat.git"
+    }
+  },
+  {
+    _id: "14",
+    title: "Learn Loop",
+    category: projectCategories[7],
+    description: "A comprehensive Learning Management System (LMS) designed to streamline education delivery. It features specialized modules for course management, student enrollment, and progress tracking, providing a robust digital environment for both educators and learners.",
+    image: project_image14,
+    tags: [
+      "#Java", 
+      "#Mevan",
+      "#Html",
+      "#CSS",
+      "#MySQL",
+      "#Cloudinary",
+      "#Gmail API",
+      "#Socket Programming", 
+      "#Multi-threading", 
+      "#Web Application",
+    ],
+    timeline: "January 2025",
+    role: "Student at IJSE",
+    platform: "AAD",
+    links: {
+      github: "https://github.com/tharu-2003/LearnLoop.git",
+      live: "https://youtu.be/-dFuGJIvC0s?si=znLzZmyFDLKbOQsC"
+    }
+  },
+  {
+    _id: "15",
+    title: "Car Rental Management System",
+    category: projectCategories[7],
+    description: "A professional and user-centric frontend for a Car Rental System. This platform allows users to browse available vehicles, view detailed specifications, and make reservations. It features a modern dashboard for managing fleet status and booking history with a focus on seamless user experience.",
+    image: project_image15,
+    tags: [
+      "MERN Stack",
+      "#MongoDB",
+      "#Express.js",
+      "#React",
+      "#Node.js",
+      "#Typescript",
+      "#JWT Authentication",
+      "#Refresh Token",
+      "#Password Encryption", 
+      "#AI Chatbot",
+      "#Redux",
+      "#Context API", 
+      "#Axios", 
+      "#Cloudinary", 
+      "#Tailwind CSS", 
+      "#Vercel",
+      "#Modern UI",
+      "#Vite",
+      "#MVC",
+      "#Motion Design", 
+    ],
+    timeline: "January - February 2026",
+    role: "Student at IJSE",
+    platform: "React",
+    links: {
+      github: "https://github.com/tharu-2003/CarRental-fe.git",
+      live: "https://car-rental-fe-steel.vercel.app/"
+    }
+  },
+  {
+    _id: "16",
+    title: "Queue Management System",
+    category: projectCategories[1],
+
+    description: "A mobile solution designed to manage and monitor service queues in real time.This application enables service providers to efficiently organize customer flow.\nUsers can join queues remotely without physically waiting in line.The app allows users to track their queue status from anywhere.\n*Download the APK here🚀:\n\"https://drive.google.com/file/d/17u8E1IFM1gFYYFkX3rmXDh-ORrv1ug3y/view\"",
+
+    image: project_image16,
+    tags: [
+      "React Native",
+      "Expo",
+      "#MongoDB Atlas",
+      "#Firebase",
+      "#Firebase Authentication",
+      "#Firebase Database",
+      "#Firestore",
+      "#Expo Camera",
+      "#GraphQL",
+      "#Typescript",
+      "#Cloudinary", 
+      "#Tailwind CSS", 
+      "#Axios", 
+      "#Node.js",
+      "#Push Notifications",
+      "#Real-Time Updates",
+      "#Mobile App",
+    ],
+    timeline: "February - March 2026",
+    role: "Student at IJSE",
+    platform: "AMD",
+    links: {
+      github: "https://github.com/tharu-2003/Queue-Management-App.git"
+    }
+  }
+
 ];
 
 
