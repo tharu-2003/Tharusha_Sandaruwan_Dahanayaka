@@ -399,7 +399,7 @@ export const projectsData: Project[] = [
       "$CRUD Operations",
       "#Firebase"
     ],
-    timeline: "1 Week (2024)",
+    timeline: "1 Months (2024)",
     role: "Student at IJSE",
     platform: "IT",
     links: {
@@ -422,7 +422,7 @@ export const projectsData: Project[] = [
       "#Frontend",
       "#Firebase"
     ],
-    timeline: "2 Week (2024)",
+    timeline: "2 Months (2025)",
     role: "Student at IJSE",
     platform: "IT",
     links: {
@@ -446,7 +446,7 @@ export const projectsData: Project[] = [
       "#Firebase",
       "#Food Exploration"
     ],
-    timeline: "2024 - 2025",
+    timeline: "1 Months (2025)",
     role: "Student at IJSE",
     platform: "IT",
     links: {
@@ -471,7 +471,7 @@ export const projectsData: Project[] = [
       "#Luxury Aesthetic",
       "#Firebase"
     ],
-    timeline: "2024 - 2025",
+    timeline: "1 Months (2025)",
     role: "Student at IJSE",
     platform: "IT",
     links: {
@@ -496,7 +496,7 @@ export const projectsData: Project[] = [
       "#SEO Optimization",
       "#Travel Platform"
     ],
-    timeline: "2024 - 2025",
+    timeline: "1 Months (2025)",
     role: "Student at IJSE",
     platform: "IT",
     links: {
@@ -519,7 +519,7 @@ export const projectsData: Project[] = [
       "#Networking",
       "#Chat Application"
     ],
-    timeline: "January 2025",
+    timeline: "1 Week (2025)",
     role: "Student at IJSE",
     platform: "INP",
     links: {
@@ -542,7 +542,7 @@ export const projectsData: Project[] = [
       "#Chat Application",
       "#Desktop App"
     ],
-    timeline: "February 2025",
+    timeline: "2 Week (2025)",
     role: "Student at IJSE",
     platform: "INP",
     links: {
@@ -644,7 +644,29 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/tharu-2003/Queue-Management-App.git"
     }
-  }
+  },
+  {
+    _id: "17",
+    title: "Vitality Health Network",
+    category: projectCategories[18],
+
+    description: "A Health Informatics solution for Vitality Health Network (VHN) to identify high-risk diabetic patients using the custom Vitality Complexity Index (VCI) and automated ICD-9 enrichment via web scraping.",
+
+    image: project_image17,
+    tags: [
+      "#Python", 
+      "#Pandas", 
+      "#BeautifulSoup", 
+      "#Data Analytics", 
+      "#Healthcare"
+    ],
+    timeline: "January 2026",
+    role: "Student at IJSE",
+    platform: "Python",
+    links: {
+      github: "https://github.com/tharu-2003/Vitality-Health-Network.git"
+    }
+  },
 
 ];
 
