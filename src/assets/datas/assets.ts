@@ -277,6 +277,7 @@ export const toolsData: ToolsDataType = {
 
 
 export const projectsData: Project[] = [
+  // Tic-Tac-Toe Game
   {
     _id: "1",
     title: "Tic-Tac-Toe Game",
@@ -296,6 +297,8 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/TicTacToy-Game.git"
     }
   },
+
+  // Rapid Ride
   {
     _id: "2",
     title: "Rapid Ride",
@@ -315,6 +318,8 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/RapidRide.git"
     }
   },
+
+  // Therapy Center
   {
     _id: "3",
     title: "Therapy Center",
@@ -337,6 +342,8 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/Therapy-Center.git"
     }
   },
+
+  // Complaint System
   {
     _id: "4",
     title: "Complaint System",
@@ -363,6 +370,8 @@ export const projectsData: Project[] = [
       live: "https://www.youtube.com/watch?v=7zMqkyEsu80"
     }
   },
+
+  // Internet Technologies Lessons Site
   {
     _id: "5",
     title: "Internet Technologies Lessons Site",
@@ -386,6 +395,8 @@ export const projectsData: Project[] = [
       live: "https://internet-technologies-72.firebaseapp.com/"
     }
   },
+
+  // Interactive Web Calculator
   {
     _id: "6",
     title: "Interactive Web Calculator",
@@ -409,6 +420,8 @@ export const projectsData: Project[] = [
       live: "https://assignment-06-calculator.web.app/?authuser=0"
     }
   },
+
+  // Web-Based POS System
   {
     _id: "7",
     title: "Web-Based POS System",
@@ -435,6 +448,8 @@ export const projectsData: Project[] = [
       live: "https://assignment-08--pos.web.app/?authuser=0"
     }
   },
+
+  // 2D Highway Racer Game
   {
     _id: "8",
     title: "2D Highway Racer Game",
@@ -458,6 +473,8 @@ export const projectsData: Project[] = [
       live: "https://assignment-09-c43f8.web.app/?authuser=0"
     }
   },
+
+  // Sri Lankan Foods Exploration Site
   {
     _id: "9",
     title: "Sri Lankan Foods Exploration Site",
@@ -482,6 +499,8 @@ export const projectsData: Project[] = [
       live: "https://recipe-website-a3813.web.app/?authuser=0"
     }
   },
+
+  // Cinnamon Life Luxury Apartments Clone
   {
     _id: "10",
     title: "Cinnamon Life Luxury Apartments Clone",
@@ -507,6 +526,8 @@ export const projectsData: Project[] = [
       live: "https://cinnamon-life.web.app/?authuser=0"
     }
   },
+
+  // Discover Sri Lanka
   {
     _id: "11",
     title: "Discover Sri Lanka",
@@ -532,6 +553,8 @@ export const projectsData: Project[] = [
       live: "https://discover-sri-lanka-30fcc.web.app"
     }
   },
+
+  // Multi-Client Terminal Chat Application
   {
     _id: "12",
     title: "Multi-Client Terminal Chat Application",
@@ -554,6 +577,8 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/MultiClient-Terminal-Project-.git"
     }
   },
+
+  // Real-Time Group Chat Application
   {
     _id: "13",
     title: "Real-Time Group Chat Application",
@@ -577,6 +602,8 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/Group-Chat.git"
     }
   },
+
+  // Learn Loop
   {
     _id: "14",
     title: "Learn Loop",
@@ -603,6 +630,8 @@ export const projectsData: Project[] = [
       live: "https://youtu.be/-dFuGJIvC0s?si=znLzZmyFDLKbOQsC"
     }
   },
+
+  // Car Rental Management System
   {
     _id: "15",
     title: "Car Rental Management System",
@@ -639,6 +668,8 @@ export const projectsData: Project[] = [
       live: "https://car-rental-fe-steel.vercel.app/"
     }
   },
+
+  // Queue Management System
   {
     _id: "16",
     title: "Queue Management System",
@@ -673,6 +704,8 @@ export const projectsData: Project[] = [
       github: "https://github.com/tharu-2003/Queue-Management-App.git"
     }
   },
+
+  // Vitality Health Network
   {
     _id: "17",
     title: "Vitality Health Network",
@@ -702,50 +735,54 @@ export const projectsData: Project[] = [
 export const experiencesData: Experience[] = [
   {
     _id: "1",
-    role: "Software Engineering Student",
-    company: "IJSE - Institute of Software Engineering",
-    period: "2024 - Present",
-    description: "Focusing on Full-Stack Development, Architecture, and industry-level coding standards. Currently in the second year of the GDSE program.",
+    role: "GCE Ordinary Level",
+    company: "Department of Examinations, Sri Lanka",
+    period: "2020 - 2021",
+    description:
+      "Achieved 9A passes including Mathematics and English.",
     image: experience_image1,
-    skills: ["Java", "MySQL", "Architecture"],
-    location: "Colombo, Sri Lanka",
-    industry: "Education",
+    skills: ["Mathematics", "English", "Science", "General Knowledge"],
+    location: "Sri Lanka",
+    industry: "General Education",
     mode: "Education",
     priority: "Medium",
-    workModeStatements: "Learning core software engineering concepts and full-stack development.",
-    links: "https://ijse.lk/"
+    workModeStatements: "Full-time secondary education",
+    links: ""
   },
   {
     _id: "2",
-    role: "Full-Stack Developer (Self-Employed/Projects)",
-    company: "Personal Projects",
-    period: "2025 - 2026",
-    description: "Developed various applications including 'RapidRide' (Taxi Booking App) and data analysis tools using modern tech stacks.",
+    role: "GCE Advanced Level – Mathematics Stream",
+    company: "Department of Examinations, Sri Lanka",
+    period: "2022 - 2024",
+    description:
+      "Completed Advanced Level in Mathematics stream.",
     image: experience_image1,
-    skills: ["React", "Node.js", "Firebase", "Tailwind CSS"],
-    location: "Remote",
-    industry: "Software Development",
-    mode: "Work",
-    priority: "High",
-    workModeStatements: "Designing and implementing scalable software solutions.",
-    links: "https://github.com/tharusha/rapidride"
+    skills: ["Mathematics", "Physics", "ICT", "Problem Solving"],
+    location: "Sri Lanka",
+    industry: "General Education",
+    mode: "Education",
+    priority: "Low",
+    workModeStatements: "Full-time secondary education",
+    links: ""
   },
   {
     _id: "3",
-    role: "Mobile App Developer",
-    company: "Open Source / Freelance",
-    period: "2025 - Present",
-    description: "Specializing in building cross-platform mobile applications with React Native and Expo, focusing on performance and UI/UX.",
+    role: "Higher National Diploma in Software Engineering",
+    company: "Institute of Java & Software Engineering (IJSE)",
+    period: "2024 - Present",
+    description:
+      "Specializing in full-stack development, OOP principles, enterprise application architecture, and database systems.",
     image: experience_image1,
-    skills: ["React Native", "Expo", "TypeScript"],
-    location: "Remote",
-    industry: "Software Development",
-    mode: "Work",
-    priority: "Low",
-    workModeStatements: "Leading technical implementation and system architecture.",
-    links: "https://github.com/tharusha/mobile-projects"
-  }
+    skills: ["Java", "Spring Boot", "MySQL", "Hibernate", "JavaFX", "Architecture"],
+    location: "Colombo, Sri Lanka",
+    industry: "Software Engineering Education",
+    mode: "Education",
+    priority: "High",
+    workModeStatements: "Full-time on-campus academic program",
+    links: "https://ijse.lk"
+  },
 ];
+
 
 
 export const contentData: Content[] = [
