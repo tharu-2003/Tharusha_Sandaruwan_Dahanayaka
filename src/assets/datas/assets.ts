@@ -674,9 +674,7 @@ export const projectsData: Project[] = [
     _id: "16",
     title: "Queue Management System",
     category: projectCategories[1],
-
-    description: "A mobile solution designed to manage and monitor service queues in real time.This application enables service providers to efficiently organize customer flow.\nUsers can join queues remotely without physically waiting in line.The app allows users to track their queue status from anywhere.\n*Download the APK here🚀:\n\"https://drive.google.com/file/d/17u8E1IFM1gFYYFkX3rmXDh-ORrv1ug3y/view\"",
-
+    description: "A mobile solution designed to manage and monitor service queues in real time.This application enables service providers to efficiently organize customer flow.Users can join queues remotely without physically waiting in line.The app allows users to track their queue status from anywhere.",
     image: project_image16,
     tags: [
       "React Native",
