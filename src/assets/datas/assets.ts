@@ -744,8 +744,8 @@ export const experiencesData: Experience[] = [
     description:
       "Achieved 9A passes including Mathematics and English.",
     image: experience_image1,
-    skills: ["Mathematics", "English", "Science", "General Knowledge"],
-    location: "Sri Lanka",
+    skills: ["Mathematics", "English", "Science", "ICT", "COMMERCE", "General Knowledge"],
+    location: "Glle, Sri Lanka",
     industry: "General Education",
     mode: "Education",
     priority: "Medium",
@@ -760,8 +760,8 @@ export const experiencesData: Experience[] = [
     description:
       "Completed Advanced Level in Mathematics stream.",
     image: experience_image1,
-    skills: ["Mathematics", "Physics", "ICT", "Problem Solving"],
-    location: "Sri Lanka",
+    skills: ["Mathematics", "Physics", "Chemistry", "Combined Maths", "ICT", "Problem Solving"],
+    location: "Galle, Sri Lanka",
     industry: "General Education",
     mode: "Education",
     priority: "Low",
@@ -776,7 +776,24 @@ export const experiencesData: Experience[] = [
     description:
       "Specializing in full-stack development, OOP principles, enterprise application architecture, and database systems.",
     image: experience_image1,
-    skills: ["Java", "Spring Boot", "MySQL", "Hibernate", "JavaFX", "Architecture"],
+    skills: [
+      // High Priority
+      "Java",
+      "Spring Boot",
+      "React",
+      "MySQL",
+      "Hibernate",
+      "MongoDB",
+
+      // Medium Priority
+      "Python",
+      "React Native",
+      "Expo",
+
+      // Low Priority / Specialized
+      "JavaFX",
+      "Architecture"
+    ],    
     location: "Colombo, Sri Lanka",
     industry: "Software Engineering Education",
     mode: "Education",
