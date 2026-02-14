@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { assets } from "../assets/datas/assets";
 
 export function SidebarProfile() {
   const MotionLink = motion(Link);
@@ -55,7 +56,7 @@ export function SidebarProfile() {
           className="relative w-48 h-60 mb-4 rounded-2xl overflow-hidden"
         >
           <img
-            src="../src/assets/images/myProfile.png"
+            src={assets.myImage}
             alt="Tharusha Sandaruwan"
             className="w-full h-full object-cover"
           />

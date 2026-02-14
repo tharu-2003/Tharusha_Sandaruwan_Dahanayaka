@@ -1,5 +1,8 @@
 // ----------- IMPORTS -----------
 
+//my image
+import myImage from "../images/myProfile.png";
+
 // Frontend Icons
 import reactIcon from "../images/react-icon.svg";
 import expoIcon from "../images/expo-icon.png";
@@ -233,6 +236,8 @@ export const assets = {
   gitIcon,
   githubIcon,
   canvaIcon,
+
+  myImage
 };
 
 
