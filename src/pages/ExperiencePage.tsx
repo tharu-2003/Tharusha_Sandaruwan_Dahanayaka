@@ -81,11 +81,12 @@ const ExperiencePage = () => {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
+    <div className="min-h-screen bg-black text-white p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
       <ExperiencePopup experience={selectedExp} isOpen={isPopupOpen} onClose={closePopup} />
 
-      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-24 mt-4">
+      {/* Main Container: Stacked on Mobile, Row on Desktop */}
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-24 mt-20 lg:mt-5">
         
         {/* LEFT SIDE: Controls */}
         <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-4 sm:space-y-6 md:space-y-8">
@@ -97,13 +98,13 @@ const ExperiencePage = () => {
           <div className="space-y-3 sm:space-y-4 md:space-y-6">
             {/* Search Box */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-              <input 
-                type="text"
+            <input 
+              type="text"
                 placeholder="Search milestones..."
-                value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+              value={searchQuery}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                 className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
-              />
+            />
             </motion.div>
 
             {/* Mode Filters */}
@@ -140,7 +141,7 @@ const ExperiencePage = () => {
                 ))}
               </div>
             </motion.div>
-          </div>
+            </div>
           
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="text-gray-500 text-xs font-bold uppercase tracking-widest">
             {filteredExperiences.length} Milestones Found
@@ -171,7 +172,7 @@ const ExperiencePage = () => {
                       initial={{ scale: 1.1 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.6 }}
-                      src={exp.image}
+                      src={exp.image} 
                       alt={exp.company}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
                     />
@@ -183,7 +184,7 @@ const ExperiencePage = () => {
                     animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     className={`absolute top-0 right-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 blur-[60px] sm:blur-[70px] md:blur-[80px] rounded-full z-10 ${
-                      exp.priority === "High" ? "bg-[#ed6a3e]" : exp.priority === "Medium" ? "bg-blue-500" : "bg-gray-500"
+                    exp.priority === "High" ? "bg-[#ed6a3e]" : exp.priority === "Medium" ? "bg-blue-500" : "bg-gray-500"
                     }`} 
                   />
 
@@ -192,8 +193,8 @@ const ExperiencePage = () => {
                     <div className="flex justify-between items-start gap-2">
                       <div className="flex gap-1.5 sm:gap-2 flex-wrap">
                         <span className="px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-md border border-white/5 text-[#ed6a3e] text-[9px] sm:text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
-                          {exp.period}
-                        </span>
+                        {exp.period}
+                      </span>
                         <span className={`px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest ${
                           exp.priority === 'High' ? 'text-white' : 'text-gray-400'
                         }`}>

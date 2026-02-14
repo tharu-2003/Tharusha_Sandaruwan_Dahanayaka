@@ -66,11 +66,11 @@ const ContentsPage = () => {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-8 lg:p-22 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
+    <div className="min-h-screen bg-black text-white p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
       <ContentPopup content={selectedContent} isOpen={isPopupOpen} onClose={closeContent} />
 
-      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-24 mt-4">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-24 mt-20 lg:mt-5">
         
         {/* LEFT SIDE: Title & Filters */}
         <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-4 sm:space-y-6 md:space-y-8">
