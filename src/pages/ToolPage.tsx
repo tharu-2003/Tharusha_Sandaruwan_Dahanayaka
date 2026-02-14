@@ -112,7 +112,7 @@ const ToolPage = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-6xl sm:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none uppercase"
+              className="text-5xl sm:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-none uppercase"
             >
               TECH
             </motion.h2>
@@ -120,7 +120,7 @@ const ToolPage = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-6xl sm:text-7xl lg:text-8xl ghost-text font-black text-[#1a1a12] stroke-[#2a2a20] stroke-1 tracking-tighter leading-none uppercase"
+              className="text-5xl sm:text-7xl lg:text-8xl ghost-text font-black text-[#1a1a12] stroke-[#2a2a20] stroke-1 tracking-tighter leading-none uppercase"
             >
               STACK
             </motion.h2>

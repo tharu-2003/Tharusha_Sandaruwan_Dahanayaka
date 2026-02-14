@@ -90,8 +90,8 @@ const ExperiencePage = () => {
         {/* LEFT SIDE: Controls */}
         <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-4 sm:space-y-6 md:space-y-8">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter uppercase mb-1">MY</h1>
-            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block leading-none">JOURNEY</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-black tracking-tighter uppercase mb-1">JOURNEY &</h1>
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block leading-none">EXPERIENCE</span>
           </motion.div>
 
           <div className="space-y-3 sm:space-y-4 md:space-y-6">
