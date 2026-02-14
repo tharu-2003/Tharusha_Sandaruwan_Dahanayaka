@@ -5,13 +5,29 @@ import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
 import { ExperiencePopup } from '../components/ExperiencePopup';
 
+export interface Experience {
+    _id: string; 
+    role: string;
+    company: string;
+    period: string;
+    description: string;
+    image: string;
+    skills: string[];
+    location: string;
+    industry: string;
+    mode: "Work" | "Education";
+    priority: "High" | "Medium" | "Low"; 
+    workModeStatements: string; 
+    links: string; 
+}
+
 const ExperiencePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMode, setActiveMode] = useState<"All" | "Work" | "Education">("All");
   const [activePriority, setActivePriority] = useState<"All" | "High" | "Medium" | "Low">("All");
   
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; 
+  const itemsPerPage = 4;
 
   const [selectedExp, setSelectedExp] = useState<any>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -65,238 +81,156 @@ const ExperiencePage = () => {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-6 sm:p-12 lg:p-20 font-sans">
+    <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
       <ExperiencePopup experience={selectedExp} isOpen={isPopupOpen} onClose={closePopup} />
 
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-56 mt-4">
+      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-24 mt-4">
         
         {/* LEFT SIDE: Controls */}
-        <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-8">
-          {/* Title with staggered animation */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.6 }}
-          >
-            <motion.h1 
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-5xl sm:text-7xl font-black tracking-tighter uppercase mb-2"
-            >
-              MY
-            </motion.h1>
-            <motion.span 
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl sm:text-7xl lg:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block"
-            >
-              JOURNEY
-            </motion.span>
+        <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-4 sm:space-y-6 md:space-y-8">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter uppercase mb-1">MY</h1>
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block leading-none">JOURNEY</span>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-3 sm:space-y-4 md:space-y-6">
             {/* Search Box */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
               <input 
                 type="text"
-                placeholder="Search archive..."
+                placeholder="Search milestones..."
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
+                className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
               />
             </motion.div>
 
-            {/* Mode Filters (Work/Education) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-2"
-            >
-              {["All", "Work", "Education"].map((mode, index) => (
-                <motion.button
+            {/* Mode Filters */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="flex flex-wrap gap-2">
+              {["All", "Work", "Education"].map((mode) => (
+                <button
                   key={mode}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => { setActiveMode(mode as any); setCurrentPage(1); }}
-                  className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${
-                    activeMode === mode ? "bg-[#ed6a3e] border-[#ed6a3e] text-white" : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:text-gray-300"
+                  className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border transition-all ${
+                    activeMode === mode ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20" : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:text-gray-300"
                   }`}
                 >
                   {mode}
-                </motion.button>
+                </button>
               ))}
             </motion.div>
 
-            {/* Priority Filter Section */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="space-y-2"
-            >
-              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 ml-1">Filter by Priority</p>
+            {/* Priority Filter */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.7 }} className="space-y-2 sm:space-y-3">
+              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 ml-1">Sort by Priority</p>
               <div className="flex flex-wrap gap-2">
-                {["All", "High", "Medium", "Low"].map((p, index) => (
-                  <motion.button
+                {["All", "High", "Medium", "Low"].map((p) => (
+                  <button
                     key={p}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     onClick={() => { setActivePriority(p as any); setCurrentPage(1); }}
-                    className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${
+                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border transition-all ${
                       activePriority === p 
                       ? "bg-white border-white text-black shadow-lg shadow-white/10" 
                       : "bg-[#0a0a0a] border-[#1a1a12] text-gray-600 hover:border-gray-500"
                     }`}
                   >
                     {p}
-                  </motion.button>
+                  </button>
                 ))}
               </div>
             </motion.div>
           </div>
           
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-            className="text-gray-500 text-xs font-bold uppercase tracking-widest"
-          >
-            {filteredExperiences.length} Results Found
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="text-gray-500 text-xs font-bold uppercase tracking-widest">
+            {filteredExperiences.length} Milestones Found
           </motion.p>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.0 }}
-            className="hidden lg:block pt-4"
-          >
+          <div className="hidden lg:block pt-4">
             <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
-          </motion.div>
+          </div>
         </div>
 
-        {/* RIGHT SIDE: List */}
+        {/* RIGHT SIDE: Experience Grid */}
         <div className="lg:w-2/3">
           {currentItems.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
               {currentItems.map((exp, index) => (
                 <motion.div
                   key={exp._id}
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                   onClick={() => openPopup(exp)}
-                  className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#0a0a0a] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 w-full max-w-137.5"
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl sm:rounded-3xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-56 sm:h-64 md:h-70 w-full"
                 >
+                  {/* Background Layer */}
+                  <div className="absolute inset-0 z-0">
+                    <motion.img
+                      initial={{ scale: 1.1 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.6 }}
+                      src={exp.image}
+                      alt={exp.company}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+                  </div>
+
+                  {/* Priority Glow Animation */}
                   <motion.div 
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      opacity: [0.2, 0.3, 0.2],
-                    }}
+                    animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className={`absolute top-0 right-0 w-32 h-32 blur-[80px] rounded-full ${
+                    className={`absolute top-0 right-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 blur-[60px] sm:blur-[70px] md:blur-[80px] rounded-full z-10 ${
                       exp.priority === "High" ? "bg-[#ed6a3e]" : exp.priority === "Medium" ? "bg-blue-500" : "bg-gray-500"
                     }`} 
                   />
 
-                  <div className="absolute inset-0 p-8 flex flex-col justify-between z-20">
-                    <div className="flex justify-between items-start">
-                      <motion.div 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: index * 0.15 + 0.2 }}
-                        className="flex gap-2"
-                      >
-                        <span className="px-3 py-1 rounded-md bg-black/60 border border-white/5 text-[#ed6a3e] text-[10px] font-black uppercase tracking-widest">
+                  {/* Content Layer */}
+                  <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-between z-20">
+                    <div className="flex justify-between items-start gap-2">
+                      <div className="flex gap-1.5 sm:gap-2 flex-wrap">
+                        <span className="px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-md border border-white/5 text-[#ed6a3e] text-[9px] sm:text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
                           {exp.period}
                         </span>
-                        <motion.span 
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ duration: 0.3, delay: index * 0.15 + 0.3, type: "spring" }}
-                          className={`px-3 py-1 rounded-md bg-black/40 border border-white/5 text-[9px] font-bold uppercase tracking-widest ${
-                            exp.priority === 'High' ? 'text-white' : 'text-gray-500'
-                          }`}
-                        >
+                        <span className={`px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest ${
+                          exp.priority === 'High' ? 'text-white' : 'text-gray-400'
+                        }`}>
                           {exp.priority}
-                        </motion.span>
-                      </motion.div>
-                      <motion.div 
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
-                        className="text-3xl font-black text-[#1a1a12] stroke-[#2a2a20] stroke-1"
-                      >
-                        0{indexOfFirstItem + index + 1}
-                      </motion.div>
+                        </span>
+                      </div>
                     </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
-                    >
-                      <h3 className="text-2xl sm:text-3xl font-black text-white uppercase group-hover:text-[#ed6a3e] transition-colors">
+                    <div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-1">
                         {exp.company}
                       </h3>
-                      <p className="text-gray-400 italic text-sm">{exp.role}</p>
-                    </motion.div>
-
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.15 + 0.4 }}
-                      className="flex flex-wrap gap-2"
-                    >
-                      {exp.skills.map((skill: string, i: number) => (
-                        <motion.span 
-                          key={i}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3, delay: index * 0.15 + 0.5 + i * 0.05 }}
-                          className="text-[10px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20]"
-                        >
-                          {skill} {i !== exp.skills.length - 1 ? "|" : ""}
-                        </motion.span>
-                      ))}
-                    </motion.div>
+                      <p className="text-[#ed6a3e] font-medium italic text-[10px] sm:text-xs mb-2 sm:mb-3">
+                        {exp.role}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {exp.skills.map((skill, i) => (
+                          <span key={i} className="text-[8px] sm:text-[9px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20] group-hover:border-[#ed6a3e]/40 transition-colors">
+                            {skill} {i !== exp.skills.length - 1 ? "•" : ""}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
           ) : (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center py-20 border border-dashed border-[#2a2a20] rounded-3xl"
-            >
-              <p className="text-gray-600 uppercase tracking-widest font-bold">No results matching your filters.</p>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-16 sm:py-20 md:py-24 border border-dashed border-[#2a2a20] rounded-2xl sm:rounded-3xl">
+              <p className="text-gray-600 uppercase tracking-widest font-black text-xs">No matching milestones found.</p>
             </motion.div>
           )}
 
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="lg:hidden mt-10"
-          >
+          <div className="lg:hidden mt-8 sm:mt-10 pb-8 sm:pb-10">
             <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

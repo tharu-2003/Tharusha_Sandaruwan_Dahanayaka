@@ -5,19 +5,31 @@ import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
 import { ContentPopup } from '../components/ContentPopup';
 
+export interface Content {
+    _id: string; 
+    title: string;
+    description: string;
+    date: string;
+    category: "Video" | "Post"; 
+    link: string;
+    noteImage?: string; // Image for Posts
+    watchingTime?: string; 
+    readTime?: string;    
+}
+
 const VideoIcon = () => (
-  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
 );
 
 const PostIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" /></svg>
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" /></svg>
 );
 
 const ContentsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeCategory, setActiveCategory] = useState<"All" | "Post" | "Video">("All"); // NEW: Category state
-  const itemsPerPage = 3;
+  const [activeCategory, setActiveCategory] = useState<"All" | "Post" | "Video">("All");
+  const itemsPerPage = 4;
 
   const [selectedContent, setSelectedContent] = useState<any>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -33,141 +45,149 @@ const ContentsPage = () => {
     document.body.style.overflow = 'unset';
   };
 
-  // 1. Updated Filter Logic
   const filteredContents = useMemo(() => {
     let results = [...contentData].reverse();
-
-    if (activeCategory !== "All") {
-      results = results.filter(item => item.category === activeCategory);
-    }
-
+    if (activeCategory !== "All") results = results.filter(item => item.category === activeCategory);
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       results = results.filter(item => 
         item.title.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query) ||
         item.description.toLowerCase().includes(query)
       );
     }
-
     return results;
   }, [searchQuery, activeCategory]);
 
   const totalPages = Math.ceil(filteredContents.length / itemsPerPage);
-  
-  useEffect(() => {
-    if (currentPage > totalPages && totalPages > 0) {
-      setCurrentPage(1);
-    }
-  }, [totalPages, currentPage]);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredContents.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredContents.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-5 sm:p-10 md:p-16 lg:p-20 font-sans selection:bg-[#ed6a3e]/30">
+    <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-8 lg:p-22 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
       <ContentPopup content={selectedContent} isOpen={isPopupOpen} onClose={closeContent} />
 
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-32 mt-20 lg:mt-3">
+      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-24 mt-4">
         
-        {/* LEFT SIDE: Title, Search & Filter Buttons */}
-        <div className="w-full lg:w-1/3 lg:sticky lg:top-32 h-fit space-y-8">
+        {/* LEFT SIDE: Title & Filters */}
+        <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-4 sm:space-y-6 md:space-y-8">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="text-4xl sm:text-6xl lg:text-6xl font-black tracking-tighter leading-none uppercase">KNOWLEDGE</h1>
-            <span className="ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase text-4xl sm:text-6xl lg:text-6xl font-black block">BASE</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase mb-1">KNOWLEDGE</h1>
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block leading-none">BASE</span>
           </motion.div>
 
-          <div className="space-y-5">
-            {/* Search Box */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-              <input 
-                type="text"
-                placeholder="Search archive..."
-                value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white focus:border-[#ed6a3e] outline-none transition-all"
-              />
-            </motion.div>
+          <div className="space-y-3 sm:space-y-4 md:space-y-6">
+            <input 
+              type="text"
+              placeholder="Search archive..."
+              value={searchQuery}
+              onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+              className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base text-white focus:border-[#ed6a3e] outline-none transition-all"
+            />
 
-            {/* NEW: Filter Buttons (All, Post, Video) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-2 max-w-md"
-            >
-              {["All", "Post", "Video"].map((mode, index) => (
-                <motion.button
+            <div className="flex flex-wrap gap-2">
+              {["All", "Post", "Video"].map((mode) => (
+                <button
                   key={mode}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setActiveCategory(mode as any); 
-                    setCurrentPage(1);
-                  }}
-                  className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border ${
-                    activeCategory === mode
-                      ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20"
-                      : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:border-gray-400 hover:text-gray-300"
+                  onClick={() => { setActiveCategory(mode as any); setCurrentPage(1); }}
+                  className={`px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border transition-all ${
+                    activeCategory === mode ? "bg-[#ed6a3e] border-[#ed6a3e] text-white" : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:text-gray-300"
                   }`}
                 >
                   {mode}
-                </motion.button>
+                </button>
               ))}
-            </motion.div>
+            </div>
           </div>
           
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="text-gray-500 text-xs font-bold uppercase tracking-[0.2em]">
-            Displaying {filteredContents.length} {activeCategory === "All" ? "" : activeCategory} items
-          </motion.p>
-
-          <div className="hidden lg:block">
-            <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
-          </div>
+          <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">{filteredContents.length} items found</p>
+          <div className="hidden lg:block pt-4"><Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} /></div>
         </div>
 
-        {/* RIGHT SIDE: Content List */}
+        {/* RIGHT SIDE: Content Grid */}
         <div className="lg:w-2/3">
           {currentItems.length > 0 ? (
-            <div className="flex flex-col">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
               {currentItems.map((item, index) => (
-                <motion.div key={item._id} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: index * 0.15 }}>
-                  <div onClick={() => openContent(item)} className="group flex items-start justify-between gap-4 sm:gap-10 py-10 border-b border-[#2a2a20] hover:border-[#ed6a3e]/40 transition-all duration-500 cursor-pointer">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="text-[#ed6a3e]">{item.category === "Video" ? <VideoIcon /> : <PostIcon />}</span>
-                        <span className="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-black">{item.category}</span>
-                      </div>
-                      <h3 className="text-2xl sm:text-3xl font-black text-white group-hover:text-[#ed6a3e] transition-colors mb-3 uppercase tracking-tight">{item.title}</h3>
-                      <p className="text-gray-500 text-sm sm:text-base leading-relaxed line-clamp-2 mb-6 group-hover:text-gray-400">{item.description}</p>
-                      <div className="flex items-center gap-6 opacity-60">
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{item.date}</span>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{item.category === "Video" ? item.watchingTime : item.readTime}</span>
+                <motion.div
+                  key={item._id}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  onClick={() => openContent(item)}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl sm:rounded-3xl bg-[#43433e] border border-[#74746b] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-56 sm:h-64 md:h-70 w-full"
+                >
+                  {/* Image Logic: Youtube thumbnail for Video, noteImage for Post */}
+                  <div className="absolute inset-0 z-0">
+                    <motion.img
+                      initial={{ scale: 1.1 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.6 }}
+                      src={
+                        item.category === "Video" 
+                          ? `https://img.youtube.com/vi/${
+                              item.link.includes("youtu.be/") 
+                                ? item.link.split("youtu.be/")[1].split("?")[0] 
+                                : item.link.includes("v=") 
+                                  ? item.link.split("v=")[1].split("&")[0] 
+                                  : item.link.split("embed/")[1]?.split("?")[0]
+                            }/maxresdefault.jpg` 
+                          : item.noteImage || 'https://via.placeholder.com/600x400/1a1a12/ffffff?text=Note'
+                      }
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (item.category === "Video" && !target.src.includes('mqdefault')) {
+                          target.src = target.src.replace('maxresdefault', 'mqdefault');
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+                  </div>
+
+                  {/* Glow effect */}
+                  <div className={`absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 blur-[60px] sm:blur-[80px] rounded-full z-10 opacity-20 ${item.category === "Video" ? "bg-red-500" : "bg-[#ed6a3e]"}`} />
+
+                  {/* Content */}
+                  <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-between z-20">
+                    <div className="flex justify-between items-start gap-2">
+                      <div className="flex gap-1.5 sm:gap-2 flex-wrap">
+                        <span className="px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-md border border-white/5 text-[#ed6a3e] text-[9px] sm:text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 sm:gap-2">
+                          {item.category === "Video" ? <VideoIcon /> : <PostIcon />}
+                          {item.category}
+                        </span>
+                        <span className="px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/40 border border-white/5 text-[8px] sm:text-[9px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{item.date}</span>
                       </div>
                     </div>
-                    <div className="w-12 h-12 rounded-full border border-[#2a2a20] flex items-center justify-center text-[#ed6a3e] group-hover:bg-[#ed6a3e] group-hover:text-white transition-all duration-500">
-                        <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 17L17 7M17 7H7M17 7v10" /></svg>
+
+                    <div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-tighter group-hover:text-[#ed6a3e] transition-colors mb-1 sm:mb-1.5 line-clamp-2">{item.title}</h3>
+                      <p className="text-gray-400 text-[10px] sm:text-xs mb-3 sm:mb-4 line-clamp-2 leading-relaxed">{item.description}</p>
+                      
+                      <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                        <span className="text-[9px] sm:text-[10px] text-[#ed6a3e] font-black uppercase tracking-widest">
+                          {item.category === "Video" ? item.watchingTime : item.readTime}
+                        </span>
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#ed6a3e] transition-all">
+                          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-24 border border-dashed border-[#2a2a20] rounded-3xl"><p className="text-gray-600 uppercase tracking-widest font-black text-xs">No matching results found</p></div>
+            <div className="text-center py-16 sm:py-20 md:py-24 border border-dashed border-[#2a2a20] rounded-2xl sm:rounded-3xl">
+              <p className="text-gray-600 uppercase tracking-widest font-black text-xs">No matching results found.</p>
+            </div>
           )}
-
-          <div className="lg:hidden mt-12 pb-10">
-            <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
-          </div>
+          <div className="lg:hidden mt-8 sm:mt-10 pb-8 sm:pb-10"><Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} /></div>
         </div>
       </div>
     </div>
