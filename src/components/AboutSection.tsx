@@ -132,7 +132,7 @@ export function AboutSection() {
               </motion.div>
               
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-auto">
-                COLLABORATIONS,<br /> EDUCATION
+                COLLABORATIONS,<br /> EXPERIENCE
               </h3>
               
               <div className="flex justify-end">
@@ -157,7 +157,7 @@ export function AboutSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Link 
-            to="https://www.figma.com/files/team/1394880521228814547/recents-and-sharing?fuid=1394880518703012792" 
+            to="/projects" 
             className="relative block overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#c4f445] group transition-all duration-300"
           >
             <motion.div 
