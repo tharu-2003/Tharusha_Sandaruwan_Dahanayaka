@@ -63,7 +63,7 @@ import experience_image1 from "../experienceImages/experience_image1.png";
 // import experience_image3 from "../experienceImages/experience_image3.png";
 
 //Content Images
-import content_image1 from "../contentImages/content_images1.webp";
+import content_image1 from "../contentImages/content_images1.png";
 
 
 
