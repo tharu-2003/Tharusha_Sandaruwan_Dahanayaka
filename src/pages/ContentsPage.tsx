@@ -166,7 +166,7 @@ const ContentsPage = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-tighter group-hover:text-[#ed6a3e] transition-colors mb-1 sm:mb-1.5 line-clamp-2">{item.title}</h3>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-1">{item.title}</h3>
                       <p className="text-gray-400 text-[10px] sm:text-xs mb-3 sm:mb-4 line-clamp-2 leading-relaxed">{item.description}</p>
                       
                       <div className="flex items-center justify-between pt-2 border-t border-white/5">
