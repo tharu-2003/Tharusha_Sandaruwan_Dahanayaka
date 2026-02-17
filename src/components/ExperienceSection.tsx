@@ -88,7 +88,7 @@ export function ExperienceSection() {
       <div className="space-y-4">
         {experiences.map((exp, index) => (
           <motion.div
-            key={exp._id} // index වෙනුවට අනන්‍ය _id එකක් පාවිච්චි කිරීම වඩාත් හොඳයි
+            key={exp._id} 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -122,16 +122,26 @@ export function ExperienceSection() {
                 </p>
                 
                 {/* Skills Tags */}
-                <div className="flex flex-wrap gap-2">
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.15  }}
+                  className="flex flex-wrap gap-2">
                   {exp.skills.map((skill: string, sIndex: number) => (
-                    <span 
+                    <motion.span 
                       key={sIndex}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: index * 0.15 + 0.6 + sIndex * 0.05 }}
+                      whileHover={{ scale: 1.05 }}
                       className="text-[10px] px-3 py-1 border border-[#2a2a20] text-gray-400 rounded-full group-hover:border-[#ed6a3e]/30 group-hover:text-gray-300 transition-colors"
                     >
                       {skill}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
               </div>
 
               {/* Step Indicator */}
