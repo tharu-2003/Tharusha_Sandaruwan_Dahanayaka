@@ -59,8 +59,18 @@ import project_image17 from "../projectImages/project_image17.png";
 
 // Experience Images
 import experience_image1 from "../experienceImages/experience_image1.png";
-// import experience_image2 from "../experienceImages/experience_image2.png";
-// import experience_image3 from "../experienceImages/experience_image3.png";
+
+import experience_image4_1 from "../experienceImages/experience_image4_1.png";
+import experience_image4_2 from "../experienceImages/experience_image4_2.jpg";
+import experience_image4_3 from "../experienceImages/experience_image4_3.jpg";
+import experience_image4_4 from "../experienceImages/experience_image4_4.jpg";
+
+import experience_image5_1 from "../experienceImages/experience_image5_1.png";
+import experience_image5_2 from "../experienceImages/experience_image5_2.jpg";
+import experience_image5_3 from "../experienceImages/experience_image5_3.jpg";
+import experience_image5_4 from "../experienceImages/experience_image5_4.jpg";
+import experience_image5_5 from "../experienceImages/experience_image5_5.jpg";
+import experience_image5_6 from "../experienceImages/experience_image5_6.jpg";
 
 //Content Images
 import content_image1 from "../contentImages/content_images1.png";
@@ -85,16 +95,17 @@ export interface Experience {
     _id: string; 
     role: string;
     company: string;
+    title: string;  // add new 
     period: string;
     description: string;
-    image: string;
+    image: string[];        
     skills: string[];
     location: string;
     industry: string;
     mode: "Work" | "Education";
     priority: "High" | "Medium" | "Low"; 
     workModeStatements: string; 
-    links: string; 
+    links: string[];       
 }
 
 export interface Project {
@@ -104,9 +115,9 @@ export interface Project {
   description: string;
   image: string;
   tags: string[];
-  timeline: string;   // NEW
-  role: string;       // NEW
-  platform: string;   // NEW
+  timeline: string;   
+  role: string;       
+  platform: string;   
   links: {
     github?: string;
     live?: string;
@@ -198,8 +209,18 @@ export const assets = {
 
   // Experience Images
   experience_image1,
-  // experience_image2,
-  // experience_image3,
+
+  experience_image4_1,
+  experience_image4_2,
+  experience_image4_3,
+  experience_image4_4,
+
+  experience_image5_1,
+  experience_image5_2,
+  experience_image5_3,
+  experience_image5_4,
+  experience_image5_5,
+  experience_image5_6,
 
 
   // Content Images
@@ -737,71 +758,114 @@ export const projectsData: Project[] = [
 export const experiencesData: Experience[] = [
   {
     _id: "1",
-    role: "GCE Ordinary Level",
+    role: "GCE Ordinary Level Student",
     company: "Department of Examinations, Sri Lanka",
+    title: "GCE Ordinary Level Examination",
     period: "2020 - 2021",
     description:
       "Achieved 9A passes including Mathematics and English.",
-    image: experience_image1,
-    skills: ["Mathematics", "English", "Science", "ICT", "COMMERCE", "General Knowledge"],
+    image: [ experience_image1 ],  // Example of multiple images for one experience
+    skills: ["#Mathematics", "#English", "#Science", "#ICT", "#COMMERCE", "#General Knowledge"],
     location: "Glle, Sri Lanka",
     industry: "General Education",
     mode: "Education",
     priority: "Medium",
     workModeStatements: "Full-time secondary education",
-    links: ""
+    links: []
   },
   {
     _id: "2",
-    role: "GCE Advanced Level – Mathematics Stream",
+    role: "GCE Advanced Level Student",
     company: "Department of Examinations, Sri Lanka",
+    title: "GCE Advanced Level Examination  – Mathematics Stream",
     period: "2022 - 2024",
     description:
       "Completed Advanced Level in Mathematics stream.",
-    image: experience_image1,
-    skills: ["Mathematics", "Physics", "Chemistry", "Combined Maths", "ICT", "Problem Solving"],
+    image: [ experience_image1 ],  
+    skills: ["#Mathematics", "#Physics", "#Chemistry", "#Combined Maths", "#ICT", "#Problem Solving"],
     location: "Galle, Sri Lanka",
     industry: "General Education",
     mode: "Education",
     priority: "Low",
     workModeStatements: "Full-time secondary education",
-    links: ""
+    links: [] 
   },
   {
     _id: "3",
-    role: "Higher National Diploma in Software Engineering",
+    role: "Software Engineering Student",
     company: "Institute of Java & Software Engineering (IJSE)",
+    title: "Finalist, Hackathon Coding Competition",
+    period: "2024",
+    description:
+      "Overnight intensive programming round.",
+    image: [ experience_image4_1 , experience_image4_2 , experience_image4_3 , experience_image4_4 ], 
+    skills: [
+      "#Java"
+    ],    
+    location: "Panadura, Sri Lanka",
+    industry: "Software Engineering Education",
+    mode: "Education",
+    priority: "High",
+    workModeStatements: "Full-day campus academic program",
+    links: ["https://www.facebook.com/share/v/1Ag3xgBJEC/", ]
+  },
+  {
+    _id: "4",
+    role: "Software Engineering Student",
+    company: "Institute of Java & Software Engineering (IJSE)",
+    title: "Finalist, Circle-Edge Software Development Competition",
+    period: "2025",
+    description:
+      "Selected for Grand Finals at Shangri-La, Colombo.",
+    image: [ experience_image5_1 , experience_image5_2 , experience_image5_3 , experience_image5_4 , experience_image5_5 , experience_image5_6 ], 
+    skills: [
+      "#React",
+      "#MongoDB",   
+      "#React Native",
+      "#Expo",
+    ],    
+    location: "Colombo, Sri Lanka",
+    industry: "Software Engineering Education",
+    mode: "Education",
+    priority: "High",
+    workModeStatements: "Full-day on-campus academic program",
+    links: ["https://www.facebook.com/share/v/1GeHC3o6rD/", "https://www.facebook.com/share/p/16exLPJjU3/", "https://www.facebook.com/share/p/19aAWAtpw3/" ]
+  },
+  {
+    _id: "5",
+    role: "Software Engineering Student",
+    company: "Institute of Java & Software Engineering (IJSE)",
+    title: "Higher National Diploma in Software Engineering",
     period: "2024 - Present",
     description:
       "Specializing in full-stack development, OOP principles, enterprise application architecture, and database systems.",
-    image: experience_image1,
+    image: [ experience_image1 , experience_image1 , experience_image1 ], 
     skills: [
       // High Priority
-      "Java",
-      "Spring Boot",
-      "React",
-      "MySQL",
-      "Hibernate",
-      "MongoDB",
+      "#Java",
+      "#Spring Boot",
+      "#React",
+      "#MySQL",
+      "#Hibernate",
+      "#MongoDB",
 
       // Medium Priority
-      "Python",
-      "React Native",
-      "Expo",
+      "#Python",
+      "#React Native",
+      "#Expo",
 
       // Low Priority / Specialized
-      "JavaFX",
-      "Architecture"
+      "#JavaFX",
+      "#Architecture"
     ],    
     location: "Colombo, Sri Lanka",
     industry: "Software Engineering Education",
     mode: "Education",
     priority: "High",
     workModeStatements: "Full-time on-campus academic program",
-    links: "https://ijse.lk"
+    links: ["https://ijse.lk"]
   },
 ];
-
 
 
 export const contentData: Content[] = [
