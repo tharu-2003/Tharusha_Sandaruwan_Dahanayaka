@@ -1,25 +1,70 @@
 import { useEffect, useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { experiencesData } from '../assets/datas/assets';
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
 import { ExperiencePopup } from '../components/ExperiencePopup';
 
+// 1. Experience Interface Definition
 export interface Experience {
     _id: string; 
     role: string;
     company: string;
+    title: string;  // add new 
     period: string;
     description: string;
-    image: string;
+    image: string[]; // Array for multiple images
     skills: string[];
     location: string;
     industry: string;
     mode: "Work" | "Education";
     priority: "High" | "Medium" | "Low"; 
     workModeStatements: string; 
-    links: string; 
+    links: string[]; 
 }
+
+// 2. Card Image Slider Component
+const CardImageSlider = ({ images, company }: { images: string[], company: string }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3500); // 3.5 seconds per slide
+    return () => clearInterval(timer);
+  }, [images]);
+
+  return (
+    <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={images[index]}
+          alt={company}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="w-full h-full object-cover opacity-20 group-hover:opacity-40"
+        />
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+      
+      {/* Visual Indicator for Multiple Images */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-30">
+          {images.map((_, i) => (
+            <div 
+              key={i} 
+              className={`h-1 rounded-full transition-all duration-300 ${i === index ? "w-4 bg-[#ed6a3e]" : "w-1 bg-white/20"}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ExperiencePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,10 +74,10 @@ const ExperiencePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
-  const [selectedExp, setSelectedExp] = useState<any>(null);
+  const [selectedExp, setSelectedExp] = useState<Experience | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const openPopup = (exp: any) => {
+  const openPopup = (exp: Experience) => {
     setSelectedExp(exp);
     setIsPopupOpen(true);
     document.body.style.overflow = 'hidden';
@@ -47,13 +92,8 @@ const ExperiencePage = () => {
     let results = [...experiencesData];
     const priorityOrder: Record<string, number> = { "High": 1, "Medium": 2, "Low": 3 };
 
-    if (activeMode !== "All") {
-      results = results.filter(exp => exp.mode === activeMode);
-    }
-
-    if (activePriority !== "All") {
-      results = results.filter(exp => exp.priority === activePriority);
-    }
+    if (activeMode !== "All") results = results.filter(exp => exp.mode === activeMode);
+    if (activePriority !== "All") results = results.filter(exp => exp.priority === activePriority);
 
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
@@ -72,148 +112,57 @@ const ExperiencePage = () => {
   }, [searchQuery, activeMode, activePriority]);
 
   const totalPages = Math.ceil(filteredExperiences.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredExperiences.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredExperiences.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20 font-sans selection:bg-[#ed6a3e]/30">
+    <div className="min-h-screen bg-black text-white p-5 sm:p-10 md:p-16 lg:p-20 font-sans selection:bg-[#ed6a3e]/30">
       <Navigation />
       <ExperiencePopup experience={selectedExp} isOpen={isPopupOpen} onClose={closePopup} />
 
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-24 mt-20 lg:mt-5">
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mt-20 lg:mt-3">
         
-        {/* ── LEFT SIDE ── */}
-        <div className="lg:w-1/3 lg:sticky lg:top-24 h-fit space-y-4 sm:space-y-6 md:space-y-8">
-
-          {/* Title: outer y-fade → h1 slides from left → span slides from right */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.h1
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-black tracking-tighter uppercase mb-1"
-            >
-              JOURNEY &
-            </motion.h1>
-            <motion.span
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 uppercase block leading-none"
-            >
-              EXPERIENCE
-            </motion.span>
+        {/* LEFT SIDE: Controls */}
+        <div className="w-full lg:w-1/3 lg:sticky lg:top-32 h-fit space-y-8">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.h1 initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-4xl sm:text-6xl lg:text-6xl font-black tracking-tighter leading-none uppercase">JOURNEY &</motion.h1>
+            <motion.span initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="ghost-text text-[#1a1a12] stroke-[#2a2a20] stroke-1 text-4xl sm:text-6xl lg:text-7xl font-black block leading-none">EXPERIENCE</motion.span>
           </motion.div>
 
-          <div className="space-y-3 sm:space-y-4 md:space-y-6">
-
-            {/* Search Box */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <input 
-                type="text"
-                placeholder="Search milestones..."
-                value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-xl sm:rounded-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base text-white placeholder-gray-600 focus:outline-none focus:border-[#ed6a3e] transition-all"
-              />
+          <div className="space-y-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
+              <input type="text" placeholder="Search archive..." value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }} className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white focus:border-[#ed6a3e] outline-none transition-all placeholder:text-gray-600" />
             </motion.div>
 
-            {/* Mode Filter Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-2"
-            >
-              {(["All", "Work", "Education"] as const).map((mode, index) => (
-                <motion.button
-                  key={mode}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => { setActiveMode(mode); setCurrentPage(1); }}
-                  className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border transition-all duration-300 ${
-                    activeMode === mode
-                      ? "bg-[#ed6a3e] border-[#ed6a3e] text-white shadow-lg shadow-[#ed6a3e]/20"
-                      : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:border-gray-400 hover:text-gray-300"
-                  }`}
-                >
-                  {mode}
-                </motion.button>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="flex flex-wrap gap-2">
+              {["All", "Work", "Education"].map((mode) => (
+                <button key={mode} onClick={() => { setActiveMode(mode as any); setCurrentPage(1); }} className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all duration-300 ${activeMode === mode ? "bg-[#ed6a3e] border-[#ed6a3e] text-white" : "bg-[#1a1a12] border-[#2a2a20] text-gray-500 hover:text-white"}`}>{mode}</button>
               ))}
             </motion.div>
 
-            {/* Priority Filter Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="space-y-2 sm:space-y-3"
-            >
-              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 ml-1">Sort by Priority</p>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.7 }} className="space-y-3">
+              <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 ml-1">Priority Level</p>
               <div className="flex flex-wrap gap-2">
-                {(["All", "High", "Medium", "Low"] as const).map((p, index) => (
-                  <motion.button
-                    key={p}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.75 + index * 0.05 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => { setActivePriority(p); setCurrentPage(1); }}
-                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest border transition-all duration-300 ${
-                      activePriority === p 
-                        ? "bg-white border-white text-black shadow-lg shadow-white/10" 
-                        : "bg-[#0a0a0a] border-[#1a1a12] text-gray-600 hover:border-gray-500"
-                    }`}
-                  >
-                    {p}
-                  </motion.button>
+                {["All", "High", "Medium", "Low"].map((p) => (
+                  <button key={p} onClick={() => { setActivePriority(p as any); setCurrentPage(1); }} className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${activePriority === p ? "bg-white text-black border-white" : "bg-transparent border-[#2a2a20] text-gray-600"}`}>{p}</button>
                 ))}
               </div>
             </motion.div>
           </div>
-          
-          {/* Result count */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
-            className="text-gray-500 text-xs font-bold uppercase tracking-widest"
-          >
-            {filteredExperiences.length} Milestones Found
-          </motion.p>
-
-          {/* Desktop Pagination */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="hidden lg:block pt-4"
-          >
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="text-gray-500 text-xs sm:text-sm font-medium uppercase tracking-[0.2em]">Displaying {filteredExperiences.length} milestones</motion.p>
+          <div className="hidden lg:block pt-4">
             <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
-          </motion.div>
+          </div>
         </div>
 
-        {/* ── RIGHT SIDE ── */}
+        {/* RIGHT SIDE: Experience Grid */}
         <div className="lg:w-2/3">
           {currentItems.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+            /* Tablet (md) වලදී grid-cols-2 වන අතර Laptop/Desktop වලදීද එම grid එකම පවතිනු ඇත */
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
               {currentItems.map((exp, index) => (
                 <motion.div
                   key={exp._id}
@@ -222,75 +171,35 @@ const ExperiencePage = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, y: -5 }}
                   onClick={() => openPopup(exp)}
-                  className="group relative cursor-pointer overflow-hidden rounded-2xl sm:rounded-3xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-56 sm:h-64 md:h-70 w-full"
+                  className="group relative cursor-pointer overflow-hidden rounded-4xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-70 w-full"
                 >
-                  {/* Background Image — scale 1.1→1 on mount + zoom on hover */}
-                  <div className="absolute inset-0 z-0">
-                    <motion.img
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                      src={exp.image} 
-                      alt={exp.company}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
-                  </div>
+                  {/* Integrated Slider for Card Background */}
+                  <CardImageSlider images={exp.image} company={exp.company} />
 
-                  {/* Priority Glow */}
+                  {/* Priority Glow Orb */}
                   <motion.div 
                     animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className={`absolute top-0 right-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 blur-[60px] sm:blur-[70px] md:blur-[80px] rounded-full z-10 ${
+                    className={`absolute top-0 right-0 w-32 h-32 blur-[80px] rounded-full z-10 ${
                       exp.priority === "High" ? "bg-[#ed6a3e]" : exp.priority === "Medium" ? "bg-blue-500" : "bg-gray-500"
                     }`} 
                   />
 
-                  {/* Content */}
-                  <div className="absolute inset-0 p-4 sm:p-5 md:p-6 flex flex-col justify-between z-20">
+                  {/* Card Content Overlay */}
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
+                    <div className="flex justify-between items-start">
+                      <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="px-3 py-1 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5">
+                        <span className="text-[#ed6a3e] text-[10px] font-black uppercase tracking-widest">{exp.period}</span>
+                      </motion.div>
+                    </div>
 
-                    {/* Top badges — slide in from left */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                      className="flex gap-1.5 sm:gap-2 flex-wrap"
-                    >
-                      <span className="px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/50 backdrop-blur-md border border-white/5 text-[#ed6a3e] text-[9px] sm:text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
-                        {exp.period}
-                      </span>
-                      <span className={`px-2.5 sm:px-3 py-1 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border border-white/5 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest ${
-                        exp.priority === 'High' ? 'text-white' : 'text-gray-400'
-                      }`}>
-                        {exp.priority}
-                      </span>
-                    </motion.div>
-
-                    {/* Bottom content — slide up */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
-                    >
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-1">
-                        {exp.company}
-                      </h3>
-                      <p className="text-[#ed6a3e] font-medium italic text-[10px] sm:text-xs mb-2 sm:mb-3">
-                        {exp.role}
-                      </p>
-
-                      {/* Skill tags — individual staggered fade-in */}
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                        {exp.skills.map((skill, i) => (
-                          <motion.span
-                            key={i}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 + 0.5 + i * 0.05 }}
-                            className="text-[8px] sm:text-[9px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20] group-hover:border-[#ed6a3e]/40 transition-colors"
-                          >
-                            {skill} {i !== exp.skills.length - 1 ? "•" : ""}
-                          </motion.span>
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+                      <h3 className="text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-3">{exp.title}</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.slice(0, 3).map((skill, i) => (
+                          <span key={i} className="text-[9px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20] group-hover:border-[#ed6a3e]/40 transition-colors">
+                            {skill} {i !== 2 && i !== exp.skills.length - 1 ? "•" : ""}
+                          </span>
                         ))}
                       </div>
                     </motion.div>
@@ -299,25 +208,14 @@ const ExperiencePage = () => {
               ))}
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center py-16 sm:py-20 md:py-24 border border-dashed border-[#2a2a20] rounded-2xl sm:rounded-3xl"
-            >
-              <p className="text-gray-600 uppercase tracking-widest font-black text-xs">No matching milestones found.</p>
-            </motion.div>
+            <div className="text-center py-20 border border-dashed border-[#2a2a20] rounded-[2.5rem]">
+              <p className="text-gray-600 font-bold uppercase tracking-widest">No results found.</p>
+            </div>
           )}
 
-          {/* Mobile Pagination */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="lg:hidden mt-8 sm:mt-10 pb-8 sm:pb-10"
-          >
+          <div className="lg:hidden mt-12 pb-10">
             <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
