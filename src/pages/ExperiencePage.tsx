@@ -10,10 +10,10 @@ export interface Experience {
     _id: string; 
     role: string;
     company: string;
-    title: string;  // add new 
+    title: string;
     period: string;
     description: string;
-    image: string[]; // Array for multiple images
+    image: string[]; 
     skills: string[];
     location: string;
     industry: string;
@@ -23,41 +23,48 @@ export interface Experience {
     links: string[]; 
 }
 
-// 2. Card Image Slider Component
+// 2. Optimized Card Image Slider Component
 const CardImageSlider = ({ images, company }: { images: string[], company: string }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (images.length <= 1) return;
+    if (!images || images.length <= 1) return;
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 3500); // 3.5 seconds per slide
+    }, 4000); // Smooth scroll every 4 seconds
     return () => clearInterval(timer);
   }, [images]);
 
   return (
-    <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
+    <div className="absolute inset-0 z-0 bg-[#0a0a0a] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.img
           key={index}
           src={images[index]}
           alt={company}
-          initial={{ opacity: 0, scale: 1.1 }}
+          // Mobile Optimized Transitions
+          initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="w-full h-full object-cover opacity-20 group-hover:opacity-40"
+          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+          className="w-full h-full object-cover opacity-25 group-hover:opacity-45 transition-opacity duration-700"
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
       
-      {/* Visual Indicator for Multiple Images */}
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1 z-30">
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+      
+      {/* Smooth Pill Indicators */}
+      {images && images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
           {images.map((_, i) => (
-            <div 
+            <motion.div 
               key={i} 
-              className={`h-1 rounded-full transition-all duration-300 ${i === index ? "w-4 bg-[#ed6a3e]" : "w-1 bg-white/20"}`}
+              animate={{ 
+                width: i === index ? 16 : 4,
+                backgroundColor: i === index ? "#ed6a3e" : "rgba(255,255,255,0.2)"
+              }}
+              className="h-1 rounded-full transition-all duration-500"
             />
           ))}
         </div>
@@ -100,6 +107,7 @@ const ExperiencePage = () => {
       results = results.filter(exp => 
         exp.company.toLowerCase().includes(query) ||
         exp.role.toLowerCase().includes(query) ||
+        exp.title.toLowerCase().includes(query) ||
         exp.skills.some(skill => skill.toLowerCase().includes(query))
       );
     }
@@ -125,7 +133,7 @@ const ExperiencePage = () => {
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mt-20 lg:mt-3">
         
-        {/* LEFT SIDE: Controls */}
+        {/* LEFT SIDE: Filtering Controls */}
         <div className="w-full lg:w-1/3 lg:sticky lg:top-32 h-fit space-y-8">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <motion.h1 initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-4xl sm:text-6xl lg:text-6xl font-black tracking-tighter leading-none uppercase">JOURNEY &</motion.h1>
@@ -134,7 +142,7 @@ const ExperiencePage = () => {
 
           <div className="space-y-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-              <input type="text" placeholder="Search archive..." value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }} className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white focus:border-[#ed6a3e] outline-none transition-all placeholder:text-gray-600" />
+              <input type="text" placeholder="Search archive..." value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }} className="w-full bg-[#1a1a12] border border-[#2a2a20] rounded-2xl px-6 py-4 text-white focus:border-[#ed6a3e] outline-none transition-all placeholder:text-gray-600 shadow-lg" />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="flex flex-wrap gap-2">
@@ -161,7 +169,6 @@ const ExperiencePage = () => {
         {/* RIGHT SIDE: Experience Grid */}
         <div className="lg:w-2/3">
           {currentItems.length > 0 ? (
-            /* Tablet (md) වලදී grid-cols-2 වන අතර Laptop/Desktop වලදීද එම grid එකම පවතිනු ඇත */
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
               {currentItems.map((exp, index) => (
                 <motion.div
@@ -173,7 +180,7 @@ const ExperiencePage = () => {
                   onClick={() => openPopup(exp)}
                   className="group relative cursor-pointer overflow-hidden rounded-4xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-70 w-full"
                 >
-                  {/* Integrated Slider for Card Background */}
+                  {/* Smooth Image Slider */}
                   <CardImageSlider images={exp.image} company={exp.company} />
 
                   {/* Priority Glow Orb */}
@@ -186,7 +193,7 @@ const ExperiencePage = () => {
                   />
 
                   {/* Card Content Overlay */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between z-20 pointer-events-none">
                     <div className="flex justify-between items-start">
                       <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="px-3 py-1 rounded-2xl bg-black/40 backdrop-blur-md border border-white/5">
                         <span className="text-[#ed6a3e] text-[10px] font-black uppercase tracking-widest">{exp.period}</span>
@@ -194,7 +201,10 @@ const ExperiencePage = () => {
                     </div>
 
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                      <h3 className="text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-3">{exp.title}</h3>
+                      <h3 className="text-2xl font-black text-white uppercase tracking-tighter group-hover:tracking-wider transition-all duration-500 mb-1">{exp.title}</h3>
+                      <p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest mb-3 opacity-80 group-hover:opacity-100 transition-opacity">
+                        {exp.company}
+                      </p>
                       <div className="flex flex-wrap gap-2">
                         {exp.skills.slice(0, 3).map((skill, i) => (
                           <span key={i} className="text-[9px] text-gray-500 font-bold uppercase tracking-widest border-b border-[#2a2a20] group-hover:border-[#ed6a3e]/40 transition-colors">
@@ -208,7 +218,7 @@ const ExperiencePage = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 border border-dashed border-[#2a2a20] rounded-[2.5rem]">
+            <div className="text-center py-20 border border-dashed border-[#2a2a20] rounded-4xl">
               <p className="text-gray-600 font-bold uppercase tracking-widest">No results found.</p>
             </div>
           )}
