@@ -35,6 +35,7 @@ export function ToolsSection() {
       transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
       className="mb-20"
     >
+      
       <motion.div 
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -63,6 +64,7 @@ export function ToolsSection() {
           >
             {/* Ambient Background Glow on Hover */}
             <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
             
             {/* Icon Container - Always Colorful */}
             <motion.div 
@@ -157,6 +159,13 @@ export function ToolsSection() {
           {/* Hover highlight effect */}
           <div className="absolute inset-0 bg-[#ed6a3e] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
           
+          {/* Shine Effect */}
+          <motion.div
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12"
+          />
+
           <div className="relative flex items-center gap-3">
             <span className="text-sm font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-white transition-colors duration-300">
               See All Tools

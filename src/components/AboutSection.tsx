@@ -155,6 +155,13 @@ export function AboutSection() {
             to="/experience"
             className="relative block overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#ed6a3e] group transition-all duration-300"
           >
+            {/* Shine Effect */}
+            <motion.div
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12"
+            />
+
             <motion.div
               animate={{ rotate: [0, 5, 0] }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -217,10 +224,18 @@ export function AboutSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ scale: 1.02, y: -5 }}
         >
+          
           <Link
             to="/projects"
             className="relative block overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-44 sm:h-52 bg-[#c4f445] group transition-all duration-300"
           >
+            {/* Shine Effect */}
+            <motion.div
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12"
+            />
+
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 8, repeat: Infinity }}

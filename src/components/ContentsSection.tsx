@@ -188,6 +188,13 @@ export function ContentsSection() {
           {/* Hover highlight effect */}
           <div className="absolute inset-0 bg-[#ed6a3e] translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
           
+          {/* Shine Effect */}
+          <motion.div
+            animate={{ x: ["-100%", "100%"] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12"
+          />
+
           <div className="relative flex items-center gap-3">
             <span className="text-sm font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-white transition-colors duration-300">
               See All Contents
