@@ -23,34 +23,44 @@ export interface Experience {
   links: string[];
 }
 
-// 2. Card Image Slider Component (preserved from original)
+// 2. Card Image Slider Component — enhanced auto-scroll with direction-aware transitions
 const CardImageSlider = ({ images, company }: { images: string[], company: string }) => {
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   useEffect(() => {
     if (!images || images.length <= 1) return;
     const timer = setInterval(() => {
+      setDirection(1);
       setIndex((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [images]);
 
+  const slideVariants = {
+    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 30 : -30, scale: 1.04 }),
+    center: { opacity: 1, x: 0, scale: 1 },
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -30 : 30, scale: 0.97 }),
+  };
+
   return (
     <div className="absolute inset-0 z-0 bg-[#0a0a0a] overflow-hidden">
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" custom={direction}>
         <motion.img
           key={index}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
           src={images[index]}
           alt={company}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-          className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+          className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
         />
       </AnimatePresence>
 
-      {/* Gradient overlay — matches ProjectPage card style */}
+      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent" />
 
       {/* Pill indicators */}
@@ -63,7 +73,8 @@ const CardImageSlider = ({ images, company }: { images: string[], company: strin
                 width: i === index ? 16 : 4,
                 backgroundColor: i === index ? "#ed6a3e" : "rgba(255,255,255,0.2)"
               }}
-              className="h-1 rounded-full transition-all duration-500"
+              transition={{ duration: 0.3 }}
+              className="h-1 rounded-full"
             />
           ))}
         </div>
@@ -94,7 +105,6 @@ const ExperiencePage = () => {
     document.body.style.overflow = 'unset';
   };
 
-  // Quick filter buttons matching ProjectPage pattern
   const modeFilters = [
     { label: "All", value: "All" },
     { label: "Work", value: "Work" },
@@ -149,10 +159,9 @@ const ExperiencePage = () => {
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mt-20 lg:mt-3">
 
-        {/* LEFT SIDE: Title, Search & Filters — mirrors ProjectPage layout exactly */}
+        {/* LEFT SIDE */}
         <div className="w-full lg:w-1/3 lg:sticky lg:top-32 h-fit space-y-8">
 
-          {/* Title with staggered animation */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -177,7 +186,6 @@ const ExperiencePage = () => {
           </motion.div>
 
           <div className="space-y-4">
-            {/* Search Box */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -193,7 +201,6 @@ const ExperiencePage = () => {
               />
             </motion.div>
 
-            {/* Mode Filter Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -220,7 +227,6 @@ const ExperiencePage = () => {
               ))}
             </motion.div>
 
-            {/* Priority Filter Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -274,7 +280,7 @@ const ExperiencePage = () => {
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE: Experience Grid — mirrors ProjectPage card grid exactly */}
+        {/* RIGHT SIDE: Experience Grid */}
         <div className="lg:w-2/3">
           {currentItems.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
@@ -288,10 +294,8 @@ const ExperiencePage = () => {
                   onClick={() => openPopup(exp)}
                   className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#1a1a12] border border-[#2a2a20] transition-all duration-500 hover:border-[#ed6a3e]/40 shadow-2xl h-60 sm:h-70 w-full"
                 >
-                  {/* Image Slider (preserved) */}
                   <CardImageSlider images={exp.image} company={exp.company} />
 
-                  {/* Priority Glow Orb (preserved) */}
                   <motion.div
                     animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -300,10 +304,8 @@ const ExperiencePage = () => {
                     }`}
                   />
 
-                  {/* Card Content — mirrors ProjectPage structure */}
                   <div className="absolute inset-0 p-6 flex flex-col justify-between z-20">
                     <div className="flex justify-between items-start">
-                      {/* Period badge — same style as ProjectPage category badge */}
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -315,7 +317,6 @@ const ExperiencePage = () => {
                         </span>
                       </motion.div>
 
-                      {/* Mode badge */}
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -342,7 +343,6 @@ const ExperiencePage = () => {
                         {exp.company}
                       </p>
 
-                      {/* Skills as tag list — same pattern as ProjectPage tags */}
                       <div className="flex flex-wrap gap-2">
                         {exp.skills.slice(0, 3).map((skill, i) => (
                           <motion.span
