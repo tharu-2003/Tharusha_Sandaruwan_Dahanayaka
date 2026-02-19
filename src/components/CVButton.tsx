@@ -1,14 +1,10 @@
 import { motion } from 'framer-motion';
 
-const CVButton = () => {
-  const handleViewCV = () => {
-    window.open('/path-to-your-cv.pdf', '_blank');
-  };
-
+// onClick prop එක එකතු කළා
+const CVButton = ({ onClick }: { onClick: () => void }) => {
   return (
-   
     <button
-      onClick={handleViewCV}
+      onClick={onClick} // handleViewCV වෙනුවට onClick භාවිතා කරයි
       className="group relative flex items-center gap-3 px-2 py-3 bg-[#1a1a12] border border-[#4f4f48] rounded-xl hover:border-[#ed6a3e]/50 transition-all duration-500 overflow-hidden w-full max-w-47.5 sm:max-w-52.5 active:scale-95 shadow-lg shadow-black/20"
     >
       {/* Background Hover Glow */}
@@ -28,7 +24,7 @@ const CVButton = () => {
         className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12"
       />
 
-      {/* Text Section - Compact labels */}
+      {/* Text Section */}
       <div className="relative text-left min-w-0">
         <span className="block text-[8px] font-black uppercase tracking-[0.2em] text-[#ed6a3e] leading-none mb-1">
           Resume

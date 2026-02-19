@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DashboardData } from "../assets/datas/assets";
 import CVButton from "./CVButton";
+import DownloadCvPopup from "./DownloadCvPopup";
 
 // ── Counting Number Component ──────────────────────────────────────────────
 function CountingNumber({ target, prefix = "" }: { target: number; prefix?: string }) {
@@ -10,6 +11,7 @@ function CountingNumber({ target, prefix = "" }: { target: number; prefix?: stri
   const isInView = useInView(ref, { once: true });
   const count = useMotionValue(0);
   const rounded = useTransform(count, (v) => `${prefix}${Math.round(v)}`);
+
 
   useEffect(() => {
     if (isInView) {
@@ -55,6 +57,10 @@ const staggerContainer = {
 
 // ── Component ──────────────────────────────────────────────────────────────
 export function AboutSection() {
+
+  const [isCvOpen, setIsCvOpen] = useState(false);
+
+
   return (
     <section className="py-8 md:py-1">
 
@@ -136,8 +142,13 @@ export function AboutSection() {
           whileTap={{ scale: 0.95 }}
           className="w-full m-4 lg:w-auto shrink-0"
         >
-          <CVButton />
+          <CVButton onClick={() => setIsCvOpen(true)} />
         </motion.div>
+
+        <DownloadCvPopup 
+          isOpen={isCvOpen} 
+          onClose={() => setIsCvOpen(false)} 
+        />
       </motion.div>
 
       {/* ── Skill Cards ── */}

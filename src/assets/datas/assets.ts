@@ -1,5 +1,7 @@
 // ----------- IMPORTS -----------
 
+import myCV from "../cv/Tharusha Sandaruwan- Resume.pdf"
+
 //my image
 import myImage from "../images/myProfile.png";
 
@@ -193,7 +195,10 @@ export const projectCategories = [
 ];
 
 
-export const assets = {    
+export const assets = { 
+  
+  myCV,
+
   ////////////////////// Project Images
   project_image1,
   project_image2,
