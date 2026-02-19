@@ -52,7 +52,7 @@ const CardImageSlider = ({ images, company }: { images: string[], company: strin
       </AnimatePresence>
       
       {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
       
       {/* Smooth Pill Indicators */}
       {images && images.length > 1 && (
