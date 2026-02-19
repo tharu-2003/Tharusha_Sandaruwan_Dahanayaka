@@ -145,7 +145,7 @@ export function SidebarProfile() {
 
           {/* LinkedIn */}
           <motion.a
-            href="https://www.linkedin.com/in/tharusha-sandaruwan-dahanayaka/"
+            href="https://www.linkedin.com/in/tharusha-sandaruwan1/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-[#ed6a3e] hover:bg-[#ed6a3e] hover:text-white transition-all duration-200"
