@@ -14,7 +14,7 @@ function CountingNumber({ target, prefix = "" }: { target: number; prefix?: stri
   useEffect(() => {
     if (isInView) {
       const controls = animate(count, target, {
-        duration: 1.8,
+        duration: 4.8,
         ease: [0.16, 1, 0.3, 1], // expo out — fast start, slow finish
       });
       return controls.stop;
