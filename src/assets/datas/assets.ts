@@ -58,7 +58,11 @@ import project_image17 from "../projectImages/project_image17.png";
 
 
 // Experience Images
-import experience_image1 from "../experienceImages/experience_image1.png";
+import experience_image1_1 from "../experienceImages/experience_image1_1.png";
+// import experience_image1_2 from "../experienceImages/experience_image1_2.png";
+import experience_image1_3 from "../experienceImages/experience_image1_3.jpg";
+
+import experience_image3_2 from "../experienceImages/experience_image3_2.jpg";
 
 import experience_image4_1 from "../experienceImages/experience_image4_1.png";
 import experience_image4_2 from "../experienceImages/experience_image4_2.jpg";
@@ -71,6 +75,9 @@ import experience_image5_3 from "../experienceImages/experience_image5_3.jpg";
 import experience_image5_4 from "../experienceImages/experience_image5_4.jpg";
 import experience_image5_5 from "../experienceImages/experience_image5_5.jpg";
 import experience_image5_6 from "../experienceImages/experience_image5_6.jpg";
+
+import experience_image6_1 from "../experienceImages/experience_image6_1.png";
+
 
 //Content Images
 import content_image1 from "../contentImages/content_images1.png";
@@ -187,7 +194,7 @@ export const projectCategories = [
 
 
 export const assets = {    
-  // Project Images
+  ////////////////////// Project Images
   project_image1,
   project_image2,
   project_image3,
@@ -207,8 +214,12 @@ export const assets = {
   project_image17,
 
 
-  // Experience Images
-  experience_image1,
+  //////////////////// Experience Images
+  experience_image1_1,
+  // experience_image1_2,
+  experience_image1_3,
+
+  experience_image3_2,
 
   experience_image4_1,
   experience_image4_2,
@@ -222,11 +233,14 @@ export const assets = {
   experience_image5_5,
   experience_image5_6,
 
+  experience_image6_1,
 
-  // Content Images
+
+  ////////////////////// Content Images
   content_image1,
 
 
+  //////////////////// Tool Images
   // Frontend Icons
   reactIcon,
   expoIcon,
@@ -764,7 +778,7 @@ export const experiencesData: Experience[] = [
     period: "2020 - 2021",
     description:
       "Achieved 9A passes including Mathematics and English.",
-    image: [ experience_image1 ],  // Example of multiple images for one experience
+    image: [ experience_image1_1, experience_image1_3 ],  
     skills: ["#Mathematics", "#English", "#Science", "#ICT", "#COMMERCE", "#General Knowledge"],
     location: "Glle, Sri Lanka",
     industry: "General Education",
@@ -781,7 +795,7 @@ export const experiencesData: Experience[] = [
     period: "2022 - 2024",
     description:
       "Completed Advanced Level in Mathematics stream.",
-    image: [ experience_image1 ],  
+    image: [ experience_image1_1 ],  
     skills: ["#Mathematics", "#Physics", "#Chemistry", "#Combined Maths", "#ICT", "#Problem Solving"],
     location: "Galle, Sri Lanka",
     industry: "General Education",
@@ -791,7 +805,23 @@ export const experiencesData: Experience[] = [
     links: [] 
   },
   {
-    _id: "3",
+    _id: "3", 
+    role: "Software Engineering Student",
+    company: "Institute of Software Engineering (IJSE)",
+    title: "2nd Best Project Award - Semester 01", 
+    period: "2025",
+    description: "Awarded 2nd Best Project in the Semester 01 final evaluation. Developed a comprehensive software solution [Insert Project Name, e.g., RapidRide] using Java and JavaFX, focusing on clean architecture and user experience.",
+    image: [ experience_image3_2 ], 
+    skills: ["#Java", "#JavaFX", "#MySQL","#JasperReports","#Maven","#Lombok", "#Software Architecture"],
+    location: "Galle, Sri Lanka",
+    industry: "Software Engineering",
+    mode: "Education",
+    priority: "High", 
+    workModeStatements: "Academic Excellence & Project Management", 
+    links: ["https://www.facebook.com/share/18RbCGbGwJ/", "https://github.com/tharu-2003/RapidRide.git"] 
+  },
+  {
+    _id: "4",
     role: "Software Engineering Student",
     company: "Institute of Java & Software Engineering (IJSE)",
     title: "Finalist, Hackathon Coding Competition",
@@ -810,7 +840,7 @@ export const experiencesData: Experience[] = [
     links: ["https://www.facebook.com/share/v/1Ag3xgBJEC/", ]
   },
   {
-    _id: "4",
+    _id: "5",
     role: "Software Engineering Student",
     company: "Institute of Java & Software Engineering (IJSE)",
     title: "Finalist, Circle-Edge Software Development Competition",
@@ -832,14 +862,14 @@ export const experiencesData: Experience[] = [
     links: ["https://www.facebook.com/share/v/1GeHC3o6rD/", "https://www.facebook.com/share/p/16exLPJjU3/", "https://www.facebook.com/share/p/19aAWAtpw3/" ]
   },
   {
-    _id: "5",
+    _id: "6",
     role: "Software Engineering Student",
     company: "Institute of Java & Software Engineering (IJSE)",
     title: "Higher National Diploma in Software Engineering",
     period: "2024 - Present",
     description:
       "Specializing in full-stack development, OOP principles, enterprise application architecture, and database systems.",
-    image: [ experience_image1 , experience_image1 , experience_image1 ], 
+    image: [ experience_image6_1 ], 
     skills: [
       // High Priority
       "#Java",
