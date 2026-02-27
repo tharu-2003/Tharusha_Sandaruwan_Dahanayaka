@@ -783,7 +783,7 @@ export const experiencesData: Experience[] = [
     period: "2020 - 2021",
     description:
       "Successfully completed the GCE Ordinary Level curriculum, covering nine subjects across sciences, mathematics, and English.",
-    image: [ experience_image1_1, experience_image1_3 ],  
+    image: [ experience_image1_1 ],  
     skills: ["#Mathematics", "#English", "#Science", "#ICT", "#COMMERCE", "#General Knowledge"],
     location: "Glle, Sri Lanka",
     industry: "General Education",
