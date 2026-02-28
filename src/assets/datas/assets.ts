@@ -12,6 +12,7 @@ import expoIcon from "../images/expo-icon.svg";
 import typescriptIcon from "../images/typescript-icon.svg";
 import javascriptIcon from "../images/javascript-icon.svg";
 import tailwindIcon from "../images/tailwind-icon.svg";
+import framerMotionIcon from "../images/motion-icon.png";
 import bootstrapIcon from "../images/bootstrap-icon.svg";
 import htmlIcon from "../images/html-icon.svg";
 import cssIcon from "../images/css-icon.svg";
@@ -32,6 +33,10 @@ import jwtIcon from "../images/jwt-icon.png";
 import jsonIcon from "../images/json-icon.png";
 import hibernateIcon from "../images/hibernate-icon.png";
 import tomcatIcon from "../images/tomcat-icon.png";
+import cloudinaryIcon from "../images/cloudinary-icon.png";
+import axiosIcon from "../images/axios-icon.png";
+import firebaseIcon from "../images/firebase-icon.png";
+
 
 
 
@@ -44,6 +49,12 @@ import githubIcon from "../images/github-icon.svg";
 import canvaIcon from "../images/canva-icon.svg";
 import jupyterIcon from "../images/jupyter-icon.png";
 import msOfficeIcon from "../images/msOffice-icon.png";
+import vercelIcon from "../images/vercel-icon.svg";
+import azureIcon from "../images/azure-icon.svg";
+import windowsIcon from "../images/windows-icon.svg";
+import linuxIcon from "../images/linux-icon.svg.png";
+
+
 
 
 // Project Images
@@ -303,6 +314,7 @@ export const toolsData: ToolsDataType = {
     { name: "TypeScript", description: "Programming Language", link: "#", icon: typescriptIcon },
     { name: "JavaScript", description: "Programming Language", link: "#", icon: javascriptIcon },
     { name: "Tailwind CSS", description: "CSS Framework", link: "#", icon: tailwindIcon },
+    { name: "Framer Motion", description: "React Animation Library", link: "#", icon: framerMotionIcon },
     { name: "Bootstrap", description: "CSS Framework", link: "#", icon: bootstrapIcon },
     { name: "HTML", description: "Markup Language", link: "#", icon: htmlIcon },
     { name: "CSS", description: "Styling Language", link: "#", icon: cssIcon },
@@ -316,6 +328,7 @@ export const toolsData: ToolsDataType = {
     { name: "Spring Security", description: "Authentication & Authorization", link: "#", icon: springIcon },
     { name: "JWT", description: "Secure API Authorization", link: "#", icon: jwtIcon },
     { name: "JSON", description: "Data Exchange Format for APIs", link: "#", icon: jsonIcon },
+    { name: "Axios", description: "HTTP Client for API Communication", link: "#", icon: axiosIcon },
     { name: "Hibernate", description: "Java ORM Framework", link: "#", icon: hibernateIcon },
     { name: "Node.js", description: "Runtime Environment", link: "#", icon: nodeIcon },
     { name: "Express", description: "Node.js Framework", link: "#", icon: expressIcon },
@@ -325,6 +338,8 @@ export const toolsData: ToolsDataType = {
     { name: "Docker", description: "Containerization", link: "#", icon: dockerIcon },
     { name: "Postman", description: "API Testing Tool", link: "#", icon: postmanIcon },
     { name: "Apache Tomcat", description: "Java Web Server & Servlet Container", link: "#", icon: tomcatIcon },
+    { name: "Cloudinary", description: "Cloud Image & Video Hosting Service", link: "#", icon: cloudinaryIcon },
+    { name: "Firebase", description: "Realtime Backend & Authentication Platform", link: "#", icon: firebaseIcon },
   ],
 
   tools: [
@@ -336,6 +351,10 @@ export const toolsData: ToolsDataType = {
     { name: "Jupyter Notebook", description: "Interactive Data Science Environment", link: "#", icon: jupyterIcon },
     { name: "Microsoft Office", description: "Office Productivity Tools", link: "#", icon: msOfficeIcon },
     { name: "Canva", description: "Design Platform", link: "#", icon: canvaIcon },
+    { name: "Azure", description: "Cloud Platform & Infrastructure Services", link: "#", icon: azureIcon },
+    { name: "Vercel", description: "Frontend Deployment Platform", link: "#", icon: vercelIcon },
+    { name: "Linux", description: "Operating System", link: "#", icon: linuxIcon },
+    { name: "Windows", description: "Operating System", link: "#", icon: windowsIcon },
   ],
 };
 
