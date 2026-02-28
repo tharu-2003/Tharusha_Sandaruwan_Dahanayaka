@@ -7,7 +7,8 @@ import myImage from "../images/myProfile.png";
 
 // Frontend Icons
 import reactIcon from "../images/react-icon.svg";
-import expoIcon from "../images/expo-icon.png";
+import reactNativeIcon from "../images/react-native-icon.webp";
+import expoIcon from "../images/expo-icon.svg";
 import typescriptIcon from "../images/typescript-icon.svg";
 import javascriptIcon from "../images/javascript-icon.svg";
 import tailwindIcon from "../images/tailwind-icon.svg";
@@ -27,6 +28,12 @@ import mongodbIcon from "../images/mongodb-icon.svg";
 import mysqlIcon from "../images/mysql-icon.svg";
 import dockerIcon from "../images/docker-icon.svg";
 import postmanIcon from "../images/postman-icon.svg";
+import jwtIcon from "../images/jwt-icon.png";
+import jsonIcon from "../images/json-icon.png";
+import hibernateIcon from "../images/hibernate-icon.png";
+import tomcatIcon from "../images/tomcat-icon.png";
+
+
 
 // Tools Icons
 import ideaIcon from "../images/idea-icon.svg";
@@ -35,7 +42,8 @@ import figmaIcon from "../images/figma-icon.svg";
 import gitIcon from "../images/git-icon.svg";
 import githubIcon from "../images/github-icon.svg";
 import canvaIcon from "../images/canva-icon.svg";
-
+import jupyterIcon from "../images/jupyter-icon.png";
+import msOfficeIcon from "../images/msOffice-icon.png";
 
 
 // Project Images
@@ -290,6 +298,7 @@ export const assets = {
 export const toolsData: ToolsDataType = {
   frontend: [
     { name: "React", description: "Frontend Library", link: "#", icon: reactIcon },
+    { name: "React Native", description: "Mobile Aplication", link: "#", icon: reactNativeIcon },
     { name: "Expo", description: "React Native Platform", link: "#", icon: expoIcon },
     { name: "TypeScript", description: "Programming Language", link: "#", icon: typescriptIcon },
     { name: "JavaScript", description: "Programming Language", link: "#", icon: javascriptIcon },
@@ -303,7 +312,11 @@ export const toolsData: ToolsDataType = {
 
   backend: [
     { name: "Java", description: "Programming Language", link: "#", icon: javaIcon },
-    { name: "Spring", description: "Java Framework", link: "#", icon: springIcon },
+    { name: "Spring Boot", description: "Java Framework", link: "#", icon: springIcon },
+    { name: "Spring Security", description: "Authentication & Authorization", link: "#", icon: springIcon },
+    { name: "JWT", description: "Secure API Authorization", link: "#", icon: jwtIcon },
+    { name: "JSON", description: "Data Exchange Format for APIs", link: "#", icon: jsonIcon },
+    { name: "Hibernate", description: "Java ORM Framework", link: "#", icon: hibernateIcon },
     { name: "Node.js", description: "Runtime Environment", link: "#", icon: nodeIcon },
     { name: "Express", description: "Node.js Framework", link: "#", icon: expressIcon },
     { name: "Python", description: "Programming Language", link: "#", icon: pythonIcon },
@@ -311,6 +324,7 @@ export const toolsData: ToolsDataType = {
     { name: "MySQL", description: "SQL Database", link: "#", icon: mysqlIcon },
     { name: "Docker", description: "Containerization", link: "#", icon: dockerIcon },
     { name: "Postman", description: "API Testing Tool", link: "#", icon: postmanIcon },
+    { name: "Apache Tomcat", description: "Java Web Server & Servlet Container", link: "#", icon: tomcatIcon },
   ],
 
   tools: [
@@ -319,6 +333,8 @@ export const toolsData: ToolsDataType = {
     { name: "Figma", description: "Design Tool", link: "#", icon: figmaIcon },
     { name: "Git", description: "Version Control", link: "#", icon: gitIcon },
     { name: "GitHub", description: "Code Hosting", link: "#", icon: githubIcon },
+    { name: "Jupyter Notebook", description: "Interactive Data Science Environment", link: "#", icon: jupyterIcon },
+    { name: "Microsoft Office", description: "Office Productivity Tools", link: "#", icon: msOfficeIcon },
     { name: "Canva", description: "Design Platform", link: "#", icon: canvaIcon },
   ],
 };
@@ -783,12 +799,12 @@ export const experiencesData: Experience[] = [
     role: "GCE Ordinary Level Student",
     company: "Department of Examinations, Sri Lanka",
     title: "GCE Ordinary Level Examination",
-    period: "2020 - 2021",
+    period: "2019",
     description:
       "Successfully completed the GCE Ordinary Level curriculum, covering nine subjects across sciences, mathematics, and English.",
     image: [ experience_image1_1 ],  
     skills: ["#Mathematics", "#English", "#Science", "#ICT", "#COMMERCE", "#General Knowledge"],
-    location: "Glle, Sri Lanka",
+    location: "St.Mary’s College, Galle",
     industry: "General Education",
     mode: "Education",
     priority: "Medium",
@@ -800,12 +816,12 @@ export const experiencesData: Experience[] = [
     role: "GCE Advanced Level Student",
     company: "Department of Examinations, Sri Lanka",
     title: "GCE Advanced Level Examination  – Mathematics Stream",
-    period: "2022 - 2024",
+    period: "2022",
     description:
       "Completed Advanced Level in Mathematics stream.",
     image: [ experience_image1_1 ],  
     skills: ["#Mathematics", "#Physics", "#Chemistry", "#Combined Maths", "#ICT", "#Problem Solving"],
-    location: "Galle, Sri Lanka",
+    location: "Ananda Central College, Galle",
     industry: "General Education",
     mode: "Education",
     priority: "Low",
@@ -817,11 +833,11 @@ export const experiencesData: Experience[] = [
     role: "Software Engineering Student",
     company: "Institute of Software Engineering (IJSE)",
     title: "2nd Best Project Award - Semester 01", 
-    period: "2025",
+    period: "2024 - 2026",
     description: "Awarded 2nd Best Project in the Semester 01 final evaluation. Developed a comprehensive software solution [Insert Project Name, e.g., RapidRide] using Java and JavaFX, focusing on clean architecture and user experience.",
     image: [ experience_image3_1 ,experience_image3_2 ], 
     skills: ["#Java", "#JavaFX", "#MySQL","#JasperReports","#Maven","#Lombok", "#Software Architecture"],
-    location: "Galle, Sri Lanka",
+    location: "IJSE, Galle",
     industry: "Software Engineering",
     mode: "Education",
     priority: "High", 
@@ -838,9 +854,12 @@ export const experiencesData: Experience[] = [
       "Overnight intensive programming round.",
     image: [ experience_image4_1 , experience_image4_2 , experience_image4_3 , experience_image4_4 ], 
     skills: [
-      "#Java"
+      "#Java",
+      "#Hackathon",
+      "#Coding",
+      "#Competition"
     ],    
-    location: "Panadura, Sri Lanka",
+    location: "IJSE, Panadura",
     industry: "Software Engineering Education",
     mode: "Education",
     priority: "High",
@@ -861,8 +880,10 @@ export const experiencesData: Experience[] = [
       "#MongoDB",   
       "#React Native",
       "#Expo",
+      "#Circle-Edge",
+      "#Competition"
     ],    
-    location: "Colombo, Sri Lanka",
+    location: "Shangri-La, Colombo",
     industry: "Software Engineering Education",
     mode: "Education",
     priority: "High",
@@ -891,6 +912,15 @@ export const experiencesData: Experience[] = [
       "#Python",
       "#React Native",
       "#Expo",
+      "#Express",
+      "#Tailwind CSS",
+
+      // Architecture
+      "#MVC",
+      "#Layered",
+      "#Microservices",
+      "#REST full",
+      "#MERN Stack",
 
       // Low Priority / Specialized
       "#JavaFX",
