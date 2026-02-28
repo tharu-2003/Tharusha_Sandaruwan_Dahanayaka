@@ -998,6 +998,26 @@ export const contentData: Content[] = [
         readTime: "8min watch",
         link: "https://youtu.be/rTyLz8O6dmg?si=iDrkq7UKOycY797F",
     },
+    {
+        _id: "5",
+        title: "Object Oriented Programming",
+        description:
+        "In this tutorial, I break down the core principles of OOP into simple, easy-to-understand concepts. Whether you are a student at IJSE or a self-taught developer, mastering these basics is essential for building scalable applications.",
+        date: "Feb 13, 2026",
+        category: "Video",
+        readTime: "6.30min watch",
+        link: "https://youtu.be/Ygyn-9GZIQM",
+    },
+    {
+        _id: "6",
+        title: "Software Architecture",
+        description:
+        ", I break down Monolithic, MVC, and Layered architectures. We’ll explore what they are, their pros and cons, and the strategies you need to migrate from one to another. Whether you are a student or an aspiring Full-Stack Developer, these concepts are the foundation of modern system design.",
+        date: "Feb 18, 2026",
+        category: "Video",
+        readTime: "7min watch",
+        link: "https://youtu.be/MPTaFJx52E0",
+    },
 
 ];
 
