@@ -33,11 +33,22 @@ function useResponsiveSize() {
 export function IconGlobe({ icons, speed = 1 }: IconGlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef<number>(0);
-  const angleRef = useRef<number>(0);
   const imagesRef = useRef<HTMLImageElement[]>([]);
+
+  // Rotation state
+  const rotRef = useRef({ x: 0.4, y: 0 }); // current rotation (tilt + yaw)
+  const velRef = useRef({ x: 0, y: 0 });    // velocity for inertia
+  const dragRef = useRef({
+    active: false,
+    lastX: 0,
+    lastY: 0,
+    movedX: 0,
+    movedY: 0,
+  });
 
   const size = useResponsiveSize();
 
+  // Preload images
   useEffect(() => {
     imagesRef.current = icons.map((src) => {
       const img = new Image();
@@ -46,6 +57,7 @@ export function IconGlobe({ icons, speed = 1 }: IconGlobeProps) {
     });
   }, [icons]);
 
+  // Canvas draw loop
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -62,7 +74,7 @@ export function IconGlobe({ icons, speed = 1 }: IconGlobeProps) {
     const R = size * 0.38;
     const count = icons.length;
 
-    // Fibonacci lattice
+    // Fibonacci lattice positions
     const positions: { lat: number; lon: number }[] = [];
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < count; i++) {
@@ -74,16 +86,41 @@ export function IconGlobe({ icons, speed = 1 }: IconGlobeProps) {
       });
     }
 
-    const TILT = 0.4;
     const baseIconRatio = size < 400 ? 0.14 : size < 600 ? 0.12 : 0.11;
+    const AUTO_SPEED = 0.004 * speed;
 
     function draw() {
       if (!ctx) return;
       ctx.clearRect(0, 0, size, size);
 
-      angleRef.current += 0.004 * speed;
-      const rotY = angleRef.current;
+      const drag = dragRef.current;
+      const vel = velRef.current;
+      const rot = rotRef.current;
 
+      if (drag.active) {
+        // While dragging — no auto rotation, no inertia
+      } else {
+        // Apply inertia
+        rot.y += vel.y;
+        rot.x += vel.x;
+
+        // Dampen velocity
+        vel.y *= 0.92;
+        vel.x *= 0.92;
+
+        // Clamp X tilt so it doesn't flip upside down
+        rot.x = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, rot.x));
+
+        // Auto rotate when velocity is low
+        if (Math.abs(vel.y) < 0.001) {
+          rot.y += AUTO_SPEED;
+        }
+      }
+
+      const rotY = rot.y;
+      const rotX = rot.x;
+
+      // Project icons
       const projected: {
         x: number; y: number; z: number;
         idx: number; scale: number; alpha: number;
@@ -92,18 +129,18 @@ export function IconGlobe({ icons, speed = 1 }: IconGlobeProps) {
       for (let i = 0; i < count; i++) {
         const { lat, lon } = positions[i];
 
-        const x0 = Math.cos(lat) * Math.cos(lon);
-        const y0 = Math.sin(lat);
-        const z0 = Math.cos(lat) * Math.sin(lon);
+        let x0 = Math.cos(lat) * Math.cos(lon);
+        let y0 = Math.sin(lat);
+        let z0 = Math.cos(lat) * Math.sin(lon);
 
-        // Rotate Y
+        // Rotate Y (yaw)
         const x1 = x0 * Math.cos(rotY) + z0 * Math.sin(rotY);
         const z1 = -x0 * Math.sin(rotY) + z0 * Math.cos(rotY);
         const y1 = y0;
 
-        // Tilt X
-        const y2 = y1 * Math.cos(TILT) - z1 * Math.sin(TILT);
-        const z2 = y1 * Math.sin(TILT) + z1 * Math.cos(TILT);
+        // Rotate X (tilt/pitch)
+        const y2 = y1 * Math.cos(rotX) - z1 * Math.sin(rotX);
+        const z2 = y1 * Math.sin(rotX) + z1 * Math.cos(rotX);
         const x2 = x1;
 
         const depth = (z2 + 1) / 2;
@@ -148,11 +185,99 @@ export function IconGlobe({ icons, speed = 1 }: IconGlobeProps) {
     return () => cancelAnimationFrame(frameRef.current);
   }, [size, speed, icons.length]);
 
+  // ── Mouse events ──
+  function onMouseDown(e: React.MouseEvent) {
+    dragRef.current = {
+      active: true,
+      lastX: e.clientX,
+      lastY: e.clientY,
+      movedX: 0,
+      movedY: 0,
+    };
+    velRef.current = { x: 0, y: 0 };
+  }
+
+  function onMouseMove(e: React.MouseEvent) {
+    const drag = dragRef.current;
+    if (!drag.active) return;
+
+    const dx = e.clientX - drag.lastX;
+    const dy = e.clientY - drag.lastY;
+
+    drag.movedX += dx;
+    drag.movedY += dy;
+
+    const sensitivity = 0.007;
+    rotRef.current.y += dx * sensitivity;
+    rotRef.current.x += dy * sensitivity;
+    rotRef.current.x = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, rotRef.current.x));
+
+    // Store velocity for inertia
+    velRef.current = {
+      y: dx * sensitivity,
+      x: dy * sensitivity,
+    };
+
+    drag.lastX = e.clientX;
+    drag.lastY = e.clientY;
+  }
+
+  function onMouseUp() {
+    dragRef.current.active = false;
+  }
+
+  // ── Touch events ──
+  function onTouchStart(e: React.TouchEvent) {
+    const t = e.touches[0];
+    dragRef.current = {
+      active: true,
+      lastX: t.clientX,
+      lastY: t.clientY,
+      movedX: 0,
+      movedY: 0,
+    };
+    velRef.current = { x: 0, y: 0 };
+  }
+
+  function onTouchMove(e: React.TouchEvent) {
+    e.preventDefault();
+    const drag = dragRef.current;
+    if (!drag.active) return;
+
+    const t = e.touches[0];
+    const dx = t.clientX - drag.lastX;
+    const dy = t.clientY - drag.lastY;
+
+    const sensitivity = 0.007;
+    rotRef.current.y += dx * sensitivity;
+    rotRef.current.x += dy * sensitivity;
+    rotRef.current.x = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, rotRef.current.x));
+
+    velRef.current = {
+      y: dx * sensitivity,
+      x: dy * sensitivity,
+    };
+
+    drag.lastX = t.clientX;
+    drag.lastY = t.clientY;
+  }
+
+  function onTouchEnd() {
+    dragRef.current.active = false;
+  }
+
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: size, height: size }}
-      className="pointer-events-none"
+      style={{ width: size, height: size, cursor: "grab" }}
+      className="touch-none select-none"
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     />
   );
 }
