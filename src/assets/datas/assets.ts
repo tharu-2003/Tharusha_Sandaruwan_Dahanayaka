@@ -64,6 +64,7 @@ import experience_image1_1 from "../experienceImages/experience_image1_1.png";
 // import experience_image1_2 from "../experienceImages/experience_image1_2.png";
 import experience_image1_3 from "../experienceImages/experience_image1_3.jpg";
 
+import experience_image3_1 from "../experienceImages/experience_image3_1.jpg";
 import experience_image3_2 from "../experienceImages/experience_image3_2.jpg";
 
 import experience_image4_1 from "../experienceImages/experience_image4_1.png";
@@ -79,6 +80,8 @@ import experience_image5_5 from "../experienceImages/experience_image5_5.jpg";
 import experience_image5_6 from "../experienceImages/experience_image5_6.jpg";
 
 import experience_image6_1 from "../experienceImages/experience_image6_1.png";
+import experience_image6_2 from "../experienceImages/experience_image6_2.jpg";
+import experience_image6_3 from "../experienceImages/experience_image6_3.jpg";
 
 
 //Content Images
@@ -816,7 +819,7 @@ export const experiencesData: Experience[] = [
     title: "2nd Best Project Award - Semester 01", 
     period: "2025",
     description: "Awarded 2nd Best Project in the Semester 01 final evaluation. Developed a comprehensive software solution [Insert Project Name, e.g., RapidRide] using Java and JavaFX, focusing on clean architecture and user experience.",
-    image: [ experience_image3_2 ], 
+    image: [ experience_image3_1 ,experience_image3_2 ], 
     skills: ["#Java", "#JavaFX", "#MySQL","#JasperReports","#Maven","#Lombok", "#Software Architecture"],
     location: "Galle, Sri Lanka",
     industry: "Software Engineering",
@@ -874,7 +877,7 @@ export const experiencesData: Experience[] = [
     period: "2024 - Present",
     description:
       "Specializing in full-stack development, OOP principles, enterprise application architecture, and database systems.",
-    image: [ experience_image6_1 ], 
+    image: [ experience_image6_1, experience_image6_2, experience_image6_3 ], 
     skills: [
       // High Priority
       "#Java",
