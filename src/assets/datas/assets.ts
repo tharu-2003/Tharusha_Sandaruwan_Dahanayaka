@@ -964,7 +964,7 @@ export const contentData: Content[] = [
         "Spring Security and JWT provide a powerful way to protect modern Spring Boot applications by ensuring only authorized users can access system resources. By implementing secure authentication and token-based authorization, developers can prevent data breaches, protect user data, and build reliable, production-ready systems that maintain user trust.",
         date: "Sep 29, 2025",
         category: "Post",
-        watchingTime: "60min read",
+        readTime: "60min read",
         link: "https://medium.com/@sandaruwantharusha968/mastering-spring-security-with-jwt-your-ultimate-guide-to-bulletproof-authentication-4c6f36ac9877",
         noteImage: content_image1
     },
@@ -975,7 +975,7 @@ export const contentData: Content[] = [
         "Complete beginner wondering where to start your journey in tech? This video is designed for you. We break down the core Programming Fundamentals that every developer needs to know before diving into complex projects.",
         date: "Feb 10, 2026",
         category: "Video",
-        readTime: "7min watch",
+        watchingTime: "7min watch",
         link: "https://youtu.be/zr1Bdqjglhk?si=EeoPJaYMsJF1WpRT",
     },
     {
@@ -985,7 +985,7 @@ export const contentData: Content[] = [
         "Are you a student starting your journey in Software Engineering, or just curious about how data is stored in the apps you use every day? In this video, I break down the core concepts of Databases in the simplest way possible!",
         date: "Feb 11, 2026",
         category: "Video",
-        readTime: "7min watch",
+        watchingTime: "7min watch",
         link: "https://youtu.be/JWkMz1ea5QU?si=r8XkBqIRkcDHWj4W",
     },
     {
@@ -995,7 +995,7 @@ export const contentData: Content[] = [
         "Welcome back to Part 2 of my Database series! In the first video, we covered the  \"what\" and \"why\" of databases. Now, it’s time to get our hands dirty with MySQL Queries.",
         date: "Feb 12, 2026",
         category: "Video",
-        readTime: "8min watch",
+        watchingTime: "8min watch",
         link: "https://youtu.be/rTyLz8O6dmg?si=iDrkq7UKOycY797F",
     },
     {
@@ -1005,18 +1005,38 @@ export const contentData: Content[] = [
         "In this tutorial, I break down the core principles of OOP into simple, easy-to-understand concepts. Whether you are a student at IJSE or a self-taught developer, mastering these basics is essential for building scalable applications.",
         date: "Feb 13, 2026",
         category: "Video",
-        readTime: "6.30min watch",
+        watchingTime: "6.30min watch",
         link: "https://youtu.be/Ygyn-9GZIQM",
     },
     {
         _id: "6",
         title: "Software Architecture",
         description:
-        ", I break down Monolithic, MVC, and Layered architectures. We’ll explore what they are, their pros and cons, and the strategies you need to migrate from one to another. Whether you are a student or an aspiring Full-Stack Developer, these concepts are the foundation of modern system design.",
+        "I break down Monolithic, MVC, and Layered architectures. We’ll explore what they are, their pros and cons, and the strategies you need to migrate from one to another. Whether you are a student or an aspiring Full-Stack Developer, these concepts are the foundation of modern system design.",
         date: "Feb 18, 2026",
         category: "Video",
-        readTime: "7min watch",
+        watchingTime: "7min watch",
         link: "https://youtu.be/MPTaFJx52E0",
+    },
+    {
+        _id: "7",
+        title: "Java: An Explainer (Part 1)",
+        description:
+        "Why is Java still one of the most popular programming languages in the world? In this 6th video of my \"Coding Journey\" series, we dive deep into the core of Java to understand what makes it a powerhouse in the tech industry.",
+        date: "Mar 1, 2026",
+        category: "Video",
+        watchingTime: "6.30min watch",
+        link: "https://youtu.be/4Z_OEUZybOM",
+    },
+    {
+        _id: "8",
+        title: "Java: An Explainer (Part 2)",
+        description:
+        "If you've ever wondered how a Java program actually runs on any computer or struggled to understand where your data goes in memory, this video is for you. We break down complex engineering concepts into simple, beginner-friendly explanations.",
+        date: "Mar 1, 2026",
+        category: "Video",
+        watchingTime: "6.30min watch",
+        link: "https://youtu.be/KeXUgmzYkWs",
     },
 
 ];
