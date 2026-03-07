@@ -5,6 +5,7 @@ import ExperiencePage from "./pages/ExperiencePage";
 import ToolPage from "./pages/ToolPage";
 import ContactPage from "./pages/ContactPage";
 import ContentsPage from "./pages/ContentsPage";
+import { Analytics } from "@vercel/analytics/react";
 
 
 const App = () => {
@@ -19,6 +20,8 @@ const App = () => {
             <Route path='/contents' element={<ContentsPage />} />
             <Route path='/contact' element={<ContactPage />} />
       </Routes> 
+
+      <Analytics />
     </>      
          
     
