@@ -1057,19 +1057,36 @@ export const DashboardData: DashboardData = {
   technologiesCount,
 };
 
-export const getYouTubeEmbedUrl = (url: string) => {
+// export const getYouTubeEmbedUrl = (url: string) => {
+//   if (!url) return "";
+
+//   let videoId = "";
+
+//   if (url.includes("youtu.be/")) {
+//     videoId = url.split("youtu.be/")[1].split("?")[0];
+//   } else if (url.includes("watch?v=")) {
+//     videoId = url.split("v=")[1].split("&")[0];
+//   } else if (url.includes("embed/")) {
+//     videoId = url.split("embed/")[1].split("?")[0];
+//   }
+
+//   return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+// };
+
+export const getYouTubeVideoId = (url: string): string => {
   if (!url) return "";
-
-  let videoId = "";
-
-  if (url.includes("youtu.be/")) {
-    videoId = url.split("youtu.be/")[1].split("?")[0];
-  } else if (url.includes("watch?v=")) {
-    videoId = url.split("v=")[1].split("&")[0];
-  } else if (url.includes("embed/")) {
-    videoId = url.split("embed/")[1].split("?")[0];
-  }
-
-  return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+  if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
+  if (url.includes("watch?v="))  return url.split("v=")[1].split("&")[0];
+  if (url.includes("embed/"))    return url.split("embed/")[1].split("?")[0];
+  return "";
 };
 
+export const getYouTubeEmbedUrl = (url: string): string => {
+  const id = getYouTubeVideoId(url);
+  return id ? `https://www.youtube.com/embed/${id}` : "";
+};
+
+export const getYouTubeThumbnail = (url: string): string => {
+  const id = getYouTubeVideoId(url);
+  return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : "";
+};

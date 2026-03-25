@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { contentData } from '../assets/datas/assets'; 
+import { contentData, getYouTubeVideoId } from '../assets/datas/assets'; 
 import { Navigation } from '../components/Navigation';
 import { Pagination } from '../components/PaginationControls';
 import { ContentPopup } from '../components/ContentPopup';
@@ -24,6 +24,43 @@ const VideoIcon = () => (
 const PostIcon = () => (
     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" /></svg>
 );
+
+const ThumbnailImage = ({ item, index }: { item: Content; index: number }) => {
+  const id = getYouTubeVideoId(item.link);
+  const [src, setSrc] = useState(`https://img.youtube.com/vi/${id}/maxresdefault.jpg`);
+  const [attempts, setAttempts] = useState(0);
+
+  const fallbacks = [
+    `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/sddefault.jpg`,
+    `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    `https://img.youtube.com/vi/${id}/mqdefault.jpg`,
+  ];
+
+  const tryNext = () => {
+    const next = attempts + 1;
+    if (next < fallbacks.length) {
+      setAttempts(next);
+      setSrc(fallbacks[next]);
+    }
+  };
+
+  return (
+    <motion.img
+      initial={{ scale: 1.1 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+      src={src}
+      alt={item.title}
+      onLoad={(e) => {
+        const target = e.target as HTMLImageElement;
+        if (target.naturalWidth <= 120) tryNext();
+      }}
+      onError={tryNext}
+      className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
+    />
+  );
+};
 
 const ContentsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -181,31 +218,46 @@ const ContentsPage = () => {
                 >
                   {/* Background Image — scale 1.1→1 on mount + zoom on hover */}
                   <div className="absolute inset-0 z-0">
-                    <motion.img
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                      src={
-                        item.category === "Video" 
-                          ? `https://img.youtube.com/vi/${
-                              item.link.includes("youtu.be/") 
-                                ? item.link.split("youtu.be/")[1].split("?")[0] 
-                                : item.link.includes("v=") 
-                                  ? item.link.split("v=")[1].split("&")[0] 
-                                  : item.link.split("embed/")[1]?.split("?")[0]
-                            }/maxresdefault.jpg` 
-                          : item.noteImage || 'https://via.placeholder.com/600x400/1a1a12/ffffff?text=Note'
-                      }
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        if (item.category === "Video" && !target.src.includes('mqdefault')) {
-                          target.src = target.src.replace('maxresdefault', 'mqdefault');
-                        }
-                      }}
-                    />
+                    {item.category === "Video" ? (
+                      <>
+                        <ThumbnailImage item={item} index={index} />
+                        <motion.div
+                          animate={{ y: ["-100%", "200%"] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                          className="absolute inset-x-0 h-32 bg-linear-to-b from-transparent via-[#ed6a3e]/10 to-transparent pointer-events-none"
+                        />
+                      </>
+                    ) : item.noteImage ? (
+                      <motion.img
+                        initial={{ scale: 1.1 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                        src={item.noteImage}
+                        alt={item.title}
+                        className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110 opacity-20 group-hover:opacity-40"
+                      />
+                    ) : (
+                      <motion.div
+                        animate={{ opacity: [0.05, 0.1, 0.05] }}
+                        transition={{ duration: 5, repeat: Infinity }}
+                        className="absolute inset-0 flex items-center justify-center text-[200px] text-[#ed6a3e]/10"
+                      >
+                        <svg fill="none" stroke="currentColor" strokeWidth="1" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" />
+                        </svg>
+                      </motion.div>
+                    )}
+
                     <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-br from-[#ed6a3e]/10 via-transparent to-transparent" />
+
+                    <div className="absolute bottom-6 left-6 w-20 h-20 opacity-20 pointer-events-none">
+                      <div className="grid grid-cols-4 gap-1 h-full">
+                        {[...Array(16)].map((_, i) => (
+                          <div key={i} className="w-1 h-1 bg-[#ed6a3e] rounded-full" />
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Glow */}
