@@ -1,6 +1,6 @@
 // ----------- IMPORTS -----------
 
-import myCV from "../cv/Tharusha Sandaruwan_CV.pdf"
+import myCV from "../cv/Tharusha_Sandaruwan_CV.pdf"
 
 //my image
 import myImage from "../images/myProfile.png";
